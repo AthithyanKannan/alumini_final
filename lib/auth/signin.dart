@@ -1,4 +1,4 @@
-
+import 'package:alumini_final/auth/otp_number.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +132,7 @@ class _SignInState extends State<SignIn> {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => UpdateScreen())));
+                    MaterialPageRoute(builder: ((context) => OtpNumber())));
               },
               child: const Text(
                 'Continue',
