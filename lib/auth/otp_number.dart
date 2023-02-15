@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OtpNumber extends StatefulWidget {
+ 
   const OtpNumber({super.key});
 
   @override
@@ -88,6 +89,7 @@ class _OtpNumberState extends State<OtpNumber> {
                           MaterialPageRoute(
                             builder: (context) => OtpVerification(),
                           ));
+                      
                     },
                     child: const Text('Proceed'),
                     style: ButtonStyle(
