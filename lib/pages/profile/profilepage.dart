@@ -359,8 +359,8 @@ class _MyProfileState extends State<MyProfile> {
               ),
               Positioned(
                 top: 100,
-                left: 20,
-                right: 20,
+                left: 30,
+                right: 30,
                 child: Container(
                   height: MediaQuery.of(context).size.height / 4,
                   decoration: BoxDecoration(
@@ -392,15 +392,14 @@ class _MyProfileState extends State<MyProfile> {
               ),
               Positioned(
                   top: 50,
-                  left: 20,
-                  right: 20,
+                  left: 130,
                   child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.black,
-
-                      )
-                      
-                      )
+                    radius: 50,
+                    backgroundColor: Colors.black,
+                    backgroundImage: AssetImage(
+                      "assets/Athi.jpg",
+                    ),
+                  ))
             ],
           ),
         ],
