@@ -37,12 +37,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         BoxDecoration(color: primaryColor),
                   ),
                 ),
-                Positioned(
+               const  Positioned(
                   top: 115,
                   left: 130,
                   child: CircleAvatar(
                     radius: 50,
-                    child: Icon(
+                     child:  Icon(
                       Icons.person,
                       color: Colors.black,
                       size: 60,
@@ -52,14 +52,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 ),
               ],
             ),
-            SizedBox(
+           const SizedBox(
               height: 70,
             ),
             UpdateTextBox('Name', nameController),
             UpdateTextBox('Batch', batchController),
             UpdateTextBox('Branch', branchController),
             UpdateDateBox('DOB', dobController),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Padding(

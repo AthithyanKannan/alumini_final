@@ -15,7 +15,7 @@ class OtpNumber extends StatefulWidget {
 class _OtpNumberState extends State<OtpNumber> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController numbercontroller = TextEditingController();
+    var numbercontroller = TextEditingController();
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
@@ -25,7 +25,7 @@ class _OtpNumberState extends State<OtpNumber> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
@@ -77,6 +77,9 @@ class _OtpNumberState extends State<OtpNumber> {
                     padding: const EdgeInsets.symmetric(horizontal: 45),
                     child: TextFormField(
                       textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                        prefixText:'+91'
+                      ),
                       keyboardType: TextInputType.number,
                     )),
                 const SizedBox(
@@ -97,7 +100,7 @@ class _OtpNumberState extends State<OtpNumber> {
                             MaterialStateProperty.all(primaryColor),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.symmetric(
-                                horizontal: 60, vertical: 15)),
+                                horizontal: 80, vertical: 15)),
                         elevation: MaterialStateProperty.all(8),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)))))

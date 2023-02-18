@@ -15,37 +15,137 @@ class UpdateWorkScreen extends StatefulWidget {
 }
 
 class _UpdateWorkScreenState extends State<UpdateWorkScreen> {
-  TextEditingController destinationcontroller = TextEditingController();
+  TextEditingController designationcontroller = TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController locationcontroller = TextEditingController();
+  TextEditingController degreecontroller = TextEditingController();
+  TextEditingController aboutcontroller = TextEditingController();
   final List<String> profession = [
-    'Working at',
+    'Industry',
     'Higher Studies',
-    'Entrepreneur',
+    'Entrepreneur'
+    'Competative exams',
+    'Trainers',
+    'Banking sectors',
+    'Searching job',
+    'House wife',
+    'Government job'
     'Other'
   ];
   String? selectedValue;
   final _formKey = GlobalKey<FormState>();
-  bool isWork = false, isStudies = false, isbusniess = false, isOther = false;
+  bool isIndustry = false,isStudies = false, isbusniess = false,isExam = false, isTrainer = false,isBank = false,isSearch = false,isHousewife = false,isGovt = false,    isOther = false;
 
   viewFields(item) {
     if (item == profession[0]) {
-      isWork = true;
+      isIndustry = true;
       isStudies = false;
       isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
       isOther = false;
     } else if (item == profession[1]) {
-      isWork = false;
+      isIndustry = false;
       isStudies = true;
       isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
       isOther = false;
     } else if (item == profession[2]) {
-      isWork = false;
+      isIndustry = false;
       isStudies = false;
       isbusniess = true;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
       isOther = false;
-    } else {
-      isWork = false;
+      } else if (item == profession[3]) {
+      isIndustry = false;
       isStudies = false;
       isbusniess = false;
+      isExam = true;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
+      isOther = false;
+    } else if (item == profession[4]) {
+      isIndustry = false;
+      isStudies = false;
+      isbusniess = false;
+      isExam = false;
+      isTrainer = true;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
+      isOther = false;
+    }else if (item == profession[5]) {
+      isIndustry = false;
+      isStudies = false;
+      isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = true;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
+      isOther = false;
+    }else if (item == profession[6]) {
+      isIndustry = false;
+      isStudies = false;
+      isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = true;
+      isHousewife = false;
+      isGovt = false;
+      isOther = false;
+    }else if (item == profession[7]) {
+      isIndustry = false;
+      isStudies = false;
+      isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = true;
+      isGovt = false;
+      isOther = false;
+    }else if (item == profession[8]) {
+      isIndustry = false;
+      isStudies = false;
+      isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = true;
+      isOther = false;
+    }else {
+      isIndustry = false;
+      isStudies = false;
+      isbusniess = false;
+      isExam = false;
+      isTrainer = false;
+      isBank = false;
+      isSearch = false;
+      isHousewife = false;
+      isGovt = false;
       isOther = true;
     }
     setState(() {});
@@ -96,34 +196,77 @@ class _UpdateWorkScreenState extends State<UpdateWorkScreen> {
                 },
               ),
             ),
-            if (isWork)
+            if (isIndustry)
               Column(
                 children: [
-                  WorkTextBox('Destination', destinationcontroller),
-                  WorkTextBox('Destination', destinationcontroller),
-                  WorkTextBox('Destination', destinationcontroller),
+                  WorkTextBox('Designation', designationcontroller),
+                  WorkTextBox('Industry Name', namecontroller),
+                  WorkTextBox(' Location', locationcontroller),
                 ],
               ),
             if (isStudies)
               Column(
                 children: [
-                  WorkTextBox('Destination', destinationcontroller),
-                  WorkTextBox('Destination', destinationcontroller),
-                  WorkTextBox('Destination', destinationcontroller),
+                  WorkTextBox('Collage/institute', namecontroller),
+                  WorkTextBox('location', locationcontroller),
+                  WorkTextBox('Degree', degreecontroller),
                 ],
               ),
             if (isbusniess)
               Column(
                 children: [
-                  WorkTextBox('Destination', destinationcontroller),
-                  WorkTextBox('Destination', destinationcontroller),
-                  WorkTextBox('Destination', destinationcontroller),
+                  WorkTextBox('About business', aboutcontroller),
+                  WorkTextBox('location', locationcontroller)
+                ],
+              ),
+              if (isExam)
+              Column(
+                children: [
+                  WorkTextBox('Institute name', namecontroller),
+                  WorkTextBox('Degree', degreecontroller),
+                  WorkTextBox('location', locationcontroller)
+                ],
+              ),
+              if (isTrainer)
+              Column(
+                children: [
+                  WorkTextBox('Working at', namecontroller),
+                  WorkTextBox('location', locationcontroller),
+                  WorkTextBox('Designation', designationcontroller)
+                ],
+              ),
+              if (isBank)
+              Column(
+                children: [
+                  WorkTextBox('Institute name', namecontroller),
+                  WorkTextBox('Designation', designationcontroller),
+                  WorkTextBox('location', locationcontroller)
+                ],
+              ),
+              if (isSearch)
+              Column(
+                children: [
+                  WorkTextBox('About business', aboutcontroller),
+                  WorkTextBox('location', locationcontroller)
+                ],
+              ),
+              if (isHousewife)
+              Column(
+                children: [
+                  WorkTextBox('About', aboutcontroller),
+                ],
+              ),
+              if (isGovt)
+              Column(
+                children: [
+                  WorkTextBox('Designation', designationcontroller),
+                  WorkTextBox('location', locationcontroller)
                 ],
               ),
             if (isOther)
               Column(
                 children: [
-                  WorkTextBox('Destination', destinationcontroller),
+                  WorkTextBox('About', aboutcontroller)
                 ],
               ),
             InkWell(

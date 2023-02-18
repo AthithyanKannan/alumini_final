@@ -28,7 +28,7 @@ class StartState extends State<StatefulWidget> {
   route(){
     Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (
-        (context) => SignIn()
+        (context) => HomeScreen()
         )
         ));
   }

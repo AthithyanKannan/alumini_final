@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter/services.dart';
 import 'package:alumini_final/auth/otp_number.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _OtpVerificationState extends State<OtpVerification> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child:const  Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
@@ -32,67 +32,185 @@ class _OtpVerificationState extends State<OtpVerification> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                SvgPicture.asset(
-                  'assets/otpscreen.svg',
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: MediaQuery.of(context).size.height / 2.7,
-                ),
-                const Text(
-                  'OTP Verification',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                RichText(
-                    text: TextSpan(
-                        text: 'Enter the OTP send to ',
-                        style: TextStyle(color: Colors.grey),
-                        children: [
-                      TextSpan(
-                          text: '',
-                          style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold))
-                    ])),
-                const SizedBox(
-                  height: 2,
-                ),
-                const Text(
-                  'on this mobile number',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Text(
-                  'Enter Mobile Number',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 45),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Column(children: [
+              SvgPicture.asset(
+                'assets/otpscreen.svg',
+                width: MediaQuery.of(context).size.width / 2,
+                height: MediaQuery.of(context).size.height / 3,
+              ),
+              const Text(
+                'OTP Verification',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  text:const  TextSpan(
+                      text: 'Enter the OTP send to ',
+                      style: TextStyle(color: Colors.grey),
+                      children: [
+                    TextSpan(
+                        text: "6383001730",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold))
+                  ])),
+              const SizedBox(
+                height: 30,
+              ),
+              Form(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    
+                    height: 68,
+                    width: 60,
                     child: TextFormField(
-                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 20
+                      ),
+                        onChanged: (value) {
+                          if (value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ))),
+                  ),
+                  SizedBox(
+                    height: 68,
+                    width: 60,
+                    child: TextFormField(
+                        onChanged: (value) {
+                          if (value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                      
                       keyboardType: TextInputType.number,
-                    )),
-                const SizedBox(
-                  height: 50,
-                ),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Proceed'),
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      style:const  TextStyle(
+                        fontSize: 20
+                      ),
+                      textAlign: TextAlign.center,
+                       decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        ))
+                    ),
+                  ),
+                  SizedBox(
+                    height: 68,
+                    width: 60,
+                    child: TextFormField(
+                      style: TextStyle(
+                        fontSize: 20
+                      ),
+                        onChanged: (value) {
+                          if (value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      
+                      textAlign: TextAlign.center,
+                       decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          
+                        ))
+                    ),
+                  ),
+                  SizedBox(
+                    height: 68,
+                    width: 60,
+                    child: TextFormField(
+                      style:const TextStyle(
+                        fontSize: 20
+                      ),
+                      showCursor: false,
+                    onChanged: (value) {
+                      if (value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      textAlign: TextAlign.center,
+                       decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ))
+                    ),
+                  ),
+                ],
+              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                 const  Text("Don't receive the OTP?"),
+                  TextButton(onPressed: () {
+                    
+                  }, child: const Text(
+                    'RESEND OTP',
+                    style: TextStyle(
+                      color: Colors.deepOrangeAccent,
+                      fontSize: 15
+                    ),
+                    ))
+                ],
+              ),
+
+             const SizedBox(
+                height: 20,
+              ),
+               ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OtpVerification(),
+                          ));
+                      
+                    },
+                    child: const Text('Verify & Continue'),
                     style: ButtonStyle(
+                      textStyle: MaterialStateProperty.all(
+                        const TextStyle(
+                          fontSize: 15
+                        )
+                      ),
                         backgroundColor:
                             MaterialStateProperty.all(primaryColor),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.symmetric(
                                 horizontal: 60, vertical: 15)),
-                        elevation: MaterialStateProperty.all(8),
+                        
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)))))
-              ],
+            ],
+            
             ),
           ),
         ),
