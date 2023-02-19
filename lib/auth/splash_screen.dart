@@ -8,6 +8,8 @@ import 'package:alumini_final/pages/searchpage.dart';
 import 'package:alumini_final/pages/update_screens/update_prof.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/update_screens/update_profile.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -28,7 +30,7 @@ class StartState extends State<StatefulWidget> {
   route(){
     Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (
-        (context) => HomeScreen()
+        (context) => UpdateScreen()
         )
         ));
   }
