@@ -32,7 +32,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
     'Trainers',
     'Banking sectors',
     'Searching job',
-    'House wife',
     'Government job'
         'Other'
   ];
@@ -46,7 +45,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false,
       isBank = false,
       isSearch = false,
-      isHousewife = false,
       isGovt = false,
       isOther = false;
 
@@ -59,7 +57,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[1]) {
@@ -70,7 +67,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[2]) {
@@ -81,7 +77,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[3]) {
@@ -92,7 +87,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[4]) {
@@ -103,7 +97,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = true;
       isBank = false;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[5]) {
@@ -114,7 +107,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = true;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[6]) {
@@ -125,7 +117,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = true;
-      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[7]) {
@@ -136,18 +127,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
-      isHousewife = true;
-      isGovt = false;
-      isOther = false;
-    } else if (item == profession[8]) {
-      isIndustry = false;
-      isStudies = false;
-      isbusniess = false;
-      isExam = false;
-      isTrainer = false;
-      isBank = false;
-      isSearch = false;
-      isHousewife = false;
       isGovt = true;
       isOther = false;
     } else {
@@ -158,7 +137,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
-      isHousewife = false;
       isGovt = false;
       isOther = true;
     }
@@ -167,7 +145,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   @override
   Widget build(BuildContext context) {
-     Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BackgroundColor,
       body: SingleChildScrollView(
@@ -178,15 +156,18 @@ class _UpdateScreenState extends State<UpdateScreen> {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height/5,
+                  height: MediaQuery.of(context).size.height / 5,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: primaryColor),
+                  decoration: BoxDecoration(color: primaryColor),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("data",style: TextStyle(color: Colors.white),),
-                      Text("data")],
+                      Text(
+                        "data",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text("data")
+                    ],
                   ),
                 ),
                 const Positioned(
@@ -261,7 +242,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
             //       ],
             //     ),
             //   ),
-                Container(
+            Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
               margin: EdgeInsets.symmetric(vertical: 8),
               width: size.width * 0.8,
@@ -269,20 +250,18 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   color: Color.fromRGBO(217, 217, 217, 1.0),
                   borderRadius: BorderRadius.circular(12)),
               child: DropdownButtonFormField2(
-                hint: Text('Current Status',
-                    style: TextStyle(fontSize: 15)),
+                hint: Text('Current Status', style: TextStyle(fontSize: 15)),
                 icon: Icon(Icons.arrow_drop_down),
                 iconEnabledColor: Color.fromRGBO(5, 68, 94, 35.0),
                 iconDisabledColor: Color.fromRGBO(217, 217, 217, 1.0),
-                buttonHeight: 22,
+                buttonHeight: 30,
                 isDense: true,
                 items: profession
                     .map((e) => DropdownMenuItem<String>(
                           value: e,
                           child: Text(
                             e,
-                            style: const TextStyle(
-                                fontSize: 14),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ))
                     .toList(),
@@ -291,7 +270,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 },
               ),
             ),
-              if (isIndustry)
+            if (isIndustry)
               Column(
                 children: [
                   WorkTextBox('Designation', designationcontroller),
@@ -299,7 +278,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox(' Location', locationcontroller),
                 ],
               ),
-              if (isStudies)
+            if (isStudies)
               Column(
                 children: [
                   WorkTextBox('Collage/institute', namecontroller),
@@ -307,7 +286,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('Degree', degreecontroller),
                 ],
               ),
-              
+
             if (isbusniess)
               Column(
                 children: [
@@ -315,7 +294,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('location', locationcontroller)
                 ],
               ),
-              if (isExam)
+            if (isExam)
               Column(
                 children: [
                   WorkTextBox('Institute name', namecontroller),
@@ -323,7 +302,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('location', locationcontroller)
                 ],
               ),
-              if (isTrainer)
+            if (isTrainer)
               Column(
                 children: [
                   WorkTextBox('Working at', namecontroller),
@@ -331,7 +310,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('Designation', designationcontroller)
                 ],
               ),
-              if (isBank)
+            if (isBank)
               Column(
                 children: [
                   WorkTextBox('Institute name', namecontroller),
@@ -339,20 +318,15 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('location', locationcontroller)
                 ],
               ),
-              if (isSearch)
+            if (isSearch)
               Column(
                 children: [
                   WorkTextBox('About business', aboutcontroller),
                   WorkTextBox('location', locationcontroller)
                 ],
               ),
-              if (isHousewife)
-              Column(
-                children: [
-                  WorkTextBox('About', aboutcontroller),
-                ],
-              ),
-              if (isGovt)
+
+            if (isGovt)
               Column(
                 children: [
                   WorkTextBox('Designation', designationcontroller),
@@ -361,11 +335,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
               ),
             if (isOther)
               Column(
-                children: [
-                  WorkTextBox('About', aboutcontroller)
-                ],
+                children: [WorkTextBox('About', aboutcontroller)],
               ),
-            
           ],
         ),
       ),
@@ -429,6 +400,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       ),
     );
   }
+
   Widget WorkTextBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -440,9 +412,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
           borderRadius: BorderRadius.circular(8)),
       child: TextFormField(
         controller: controller,
-        decoration: InputDecoration(
-            hintText: hint,
-            border: InputBorder.none),
+        decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
       height: 50,
     );
