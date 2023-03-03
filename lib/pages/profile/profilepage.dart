@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:alumini_final/auth/signin.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
 import 'package:alumini_final/pages/update_screens/update_profile.dart';
@@ -18,6 +19,23 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
+        title: RichText(
+          text: TextSpan(
+            text: 'My ', 
+            style: TextStyle(
+              fontSize: 20
+            ),
+            children: [
+              TextSpan(
+                text: 'Profile',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600
+                )
+                )
+                ]),
+        ),
+        centerTitle: true,
         backgroundColor: primaryColor,
         elevation: 0,
         leading: Icon(
@@ -49,7 +67,7 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => UpdateScreen(),
+                                      builder: (context) => SignIn(),
                                     ),
                                     (route) => false);
                               },
@@ -67,7 +85,6 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
               ))
         ],
       ),
-      
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -81,33 +98,33 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(12),
                         bottomRight: Radius.circular(12))),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'My',
-                        style: TextStyle(fontSize: 25, color: Colors.white),
-                      ),
-                      Text(
-                        "Profile",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 27),
-                      )
-                    ],
-                  ),
-                ),
+                // child: Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: const [
+                //       Text(
+                //         'My',
+                //         style: TextStyle(fontSize: 25, color: Colors.white),
+                //       ),
+                //       Text(
+                //         "Profile",
+                //         style: TextStyle(
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.white,
+                //             fontSize: 27),
+                //       )
+                //     ],
+                //   ),
+                // ),
               ),
               Positioned(
                 top: 100,
                 left: 30,
                 right: 30,
                 child: Container(
-                  // height: MediaQuery.of(context).size.height / 4,
+                  height: MediaQuery.of(context).size.height / 4,
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(color: Colors.black87, blurRadius: 12)
@@ -164,34 +181,173 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
               height: 120,
             ),
             Container(
-              height: MediaQuery.of(context).size.height/2,
-              color: Colors.grey,
-              child: TabBarView(
-                controller: _tabcontroller,
-                children: [
-                  Container(
-                    color: Colors.grey,
+              height: MediaQuery.of(context).size.height / 3,
+              width: MediaQuery.of(context).size.width / 1.2,
+              child: TabBarView(controller: _tabcontroller, children: [
+                Container(
                     child: Tab(
-                      child: Column(
-                        children: [
-                          Text('data'),
-                          Text('data'),
-                           Text('data'), Text('data'),
-                            Text('data'),
-                             Text('data'),
-                              Text('data'),
-                               Text('data'),
-                                Text('data'),
-                                 Text('data'),
-                                  
-                          
-                        ],
-                      ),
-                      )
-                      ),
-                   Container(
-                  
-                    child: Tab(text: "Akash"))
+                  child: Column(
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              'Batch',
+                              style:
+                                  TextStyle(fontFamily: 'Roboto', fontSize: 18),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '2025',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 16,
+                                      color: Colors.grey[600]),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            const Text(
+                              'Branch',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'ISE',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 16,
+                                      color: Colors.grey[600]),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              'Date of Birth',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '13.04.2004',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 16,
+                                      color: Colors.grey[600]),
+                                )
+                              ],
+                            ),
+                          ])
+                    ],
+                  ),
+                )),
+                Container(
+                    child: Tab(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                'Designation',
+                                style: TextStyle(
+                                    fontFamily: 'Roboto', fontSize: 18),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'App Developer',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 16,
+                                        color: Colors.grey[600]),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              const Text(
+                                'Industry Name',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'TCS',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 16,
+                                        color: Colors.grey[600]),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                'Location',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Chennai',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 16,
+                                        color: Colors.grey[600]),
+                                  )
+                                ],
+                              ),
+                            ])
+                      ]),
+                ))
               ]),
             )
           ],
@@ -200,3 +356,4 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
     );
   }
 }
+

@@ -1,4 +1,7 @@
+
+
 import 'package:alumini_final/colors.dart';
+import 'package:alumini_final/pages/home.dart';
 import 'package:alumini_final/pages/update_screens/update_work.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -27,13 +30,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
   final List<String> profession = [
     'Industry',
     'Higher Studies',
-    'Entrepreneur'
-        'Competative exams',
+    'Entrepreneur',
+    'Competative exams',
     'Trainers',
     'Banking sectors',
     'Searching job',
-    'Government job'
-        'Other'
+    'Government job',
+    'Other'
   ];
 
   String? selectedValue;
@@ -45,6 +48,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false,
       isBank = false,
       isSearch = false,
+      isHousewife = false,
       isGovt = false,
       isOther = false;
 
@@ -57,6 +61,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[1]) {
@@ -67,6 +72,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[2]) {
@@ -77,6 +83,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[3]) {
@@ -87,6 +94,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[4]) {
@@ -97,6 +105,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = true;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[5]) {
@@ -107,6 +116,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = true;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[6]) {
@@ -117,6 +127,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = true;
+      isHousewife = false;
       isGovt = false;
       isOther = false;
     } else if (item == profession[7]) {
@@ -127,6 +138,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = true;
       isOther = false;
     } else {
@@ -137,6 +149,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isTrainer = false;
       isBank = false;
       isSearch = false;
+      isHousewife = false;
       isGovt = false;
       isOther = true;
     }
@@ -156,18 +169,28 @@ class _UpdateScreenState extends State<UpdateScreen> {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height / 4,
                   width: double.infinity,
                   decoration: BoxDecoration(color: primaryColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "data",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text("data")
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 60.0, horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Complete your",
+                          style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
+                        Text(
+                          "Profile",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const Positioned(
@@ -188,12 +211,33 @@ class _UpdateScreenState extends State<UpdateScreen> {
             const SizedBox(
               height: 70,
             ),
-            UpdateTextBox('Name', nameController),
-            UpdateTextBox('Batch', batchController),
-            UpdateTextBox('Branch', branchController),
-            UpdateDateBox('DOB', dobController),
+            UpdateTextBox('Name', nameController, TextInputType.name),
+            UpdateTextBox('Batch', batchController, TextInputType.number),
+            UpdateTextBox('Branch', branchController, TextInputType.name),
+            UpdateTextBox('DOB', dobController, TextInputType.datetime),
             const SizedBox(
-              height: 25,
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                        text: 'Add your ',
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        children: [
+                          TextSpan(
+                              text: 'Working Experience',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold))
+                        ]),
+                  ),
+                ],
+              ),
             ),
             // Padding(
             //   padding: const EdgeInsets.symmetric(
@@ -242,6 +286,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
             //       ],
             //     ),
             //   ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
               margin: EdgeInsets.symmetric(vertical: 8),
@@ -250,11 +297,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   color: Color.fromRGBO(217, 217, 217, 1.0),
                   borderRadius: BorderRadius.circular(12)),
               child: DropdownButtonFormField2(
+                alignment: AlignmentDirectional.topStart,
+                itemPadding: EdgeInsets.symmetric(horizontal: 20),
                 hint: Text('Current Status', style: TextStyle(fontSize: 15)),
                 icon: Icon(Icons.arrow_drop_down),
                 iconEnabledColor: Color.fromRGBO(5, 68, 94, 35.0),
                 iconDisabledColor: Color.fromRGBO(217, 217, 217, 1.0),
-                buttonHeight: 30,
+                buttonHeight: 22,
                 isDense: true,
                 items: profession
                     .map((e) => DropdownMenuItem<String>(
@@ -325,7 +374,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('location', locationcontroller)
                 ],
               ),
-
             if (isGovt)
               Column(
                 children: [
@@ -337,13 +385,36 @@ class _UpdateScreenState extends State<UpdateScreen> {
               Column(
                 children: [WorkTextBox('About', aboutcontroller)],
               ),
+              ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ));
+                    },
+                    child: const Text('Save'),
+                    style: ButtonStyle(
+                      textStyle: MaterialStateProperty.all(
+                        const TextStyle(
+                          fontSize: 15
+                        )
+                      ),
+                        backgroundColor:
+                            MaterialStateProperty.all(primaryColor),
+                        padding: MaterialStateProperty.all(
+                            const EdgeInsets.symmetric(
+                                horizontal: 80, vertical: 15)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)))))
           ],
         ),
       ),
     );
   }
 
-  Widget UpdateTextBox(String hint, TextEditingController controller) {
+  Widget UpdateTextBox(
+      String hint, TextEditingController controller, TextInputType type) {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -353,38 +424,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
           color: Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
       child: TextFormField(
+        keyboardType: type,
+        cursorColor: Colors.black,
+        textCapitalization: TextCapitalization.sentences,
         controller: controller,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
-      ),
-      height: 50,
-    );
-  }
-
-  Widget UpdateDateBox(String hint, TextEditingController controller) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: EdgeInsets.symmetric(vertical: 12),
-      width: size.width * 0.9,
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(217, 217, 217, 1.0),
-          borderRadius: BorderRadius.circular(8)),
-      child: TextFormField(
-        keyboardAppearance: null,
-        controller: controller,
-        decoration: InputDecoration(hintText: hint, border: InputBorder.none),
-        onTap: () async {
-          DateTime? pickeddate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(1950),
-              lastDate: DateTime(2100));
-          if (pickeddate != null) {
-            setState(() {
-              dobController.text = DateFormat('yyyy-mm-dd').format(pickeddate);
-            });
-          }
-        },
       ),
       height: 50,
     );
@@ -409,8 +453,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
       width: size.width * 0.9,
       decoration: BoxDecoration(
           color: Color.fromRGBO(217, 217, 217, 1.0),
-          borderRadius: BorderRadius.circular(8)),
+          borderRadius: BorderRadius.circular(12)),
       child: TextFormField(
+        cursorColor: Colors.black,
+        textCapitalization: TextCapitalization.sentences,
         controller: controller,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
