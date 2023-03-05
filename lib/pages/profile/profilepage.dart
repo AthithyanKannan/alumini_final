@@ -20,20 +20,12 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
       backgroundColor: BackgroundColor,
       appBar: AppBar(
         title: RichText(
-          text: TextSpan(
-            text: 'My ', 
-            style: TextStyle(
-              fontSize: 20
-            ),
-            children: [
-              TextSpan(
+          text:
+              TextSpan(text: 'My ', style: TextStyle(fontSize: 20), children: [
+            TextSpan(
                 text: 'Profile',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600
-                )
-                )
-                ]),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+          ]),
         ),
         centerTitle: true,
         backgroundColor: primaryColor,
@@ -42,6 +34,15 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
           Icons.arrow_back_ios_new,
         ),
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => editprofile(),
+                    ));
+              },
+              icon: Icon(Icons.edit)),
           IconButton(
               onPressed: () {
                 showDialog(
@@ -155,6 +156,7 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
                           controller: _tabcontroller,
                           isScrollable: true,
                           labelColor: Colors.black,
+                         indicatorColor: Colors.black,
                           unselectedLabelColor: Colors.grey,
                           tabs: [
                             Tab(text: "Personal Info"),
@@ -356,4 +358,3 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
     );
   }
 }
-

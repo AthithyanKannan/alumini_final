@@ -1,102 +1,92 @@
-import 'package:alumini_final/colors.dart';
 import 'package:flutter/material.dart';
 
-class EditMyProfile extends StatefulWidget {
-  const EditMyProfile({super.key});
+class editprofile extends StatefulWidget {
+  const editprofile({super.key});
 
   @override
-  State<EditMyProfile> createState() => _EditMyProfileState();
+  State<editprofile> createState() => _editprofileState();
 }
 
-class _EditMyProfileState extends State<EditMyProfile> {
-   final List<String> editprofession = [
-    'Working at',
-    'Higher Studies',
-    'Entrepreneur',
-    'Other'
-  ];
-  String? selectedValue;
-  final _formKey = GlobalKey<FormState>();
-  bool isWork = false, isStudies = false, isbusniess = false, isOther = false;
-
-  viewFields(item) {
-    if (item == editprofession[0]) {
-      isWork = true;
-      isStudies = false;
-      isbusniess = false;
-      isOther = false;
-    } else if (item == editprofession[1]) {
-      isWork = false;
-      isStudies = true;
-      isbusniess = false;
-      isOther = false;
-    } else if (item == editprofession[2]) {
-      isWork = false;
-      isStudies = false;
-      isbusniess = true;
-      isOther = false;
-    } else {
-      isWork = false;
-      isStudies = false;
-      isbusniess = false;
-      isOther = true;
-    }
-    setState(() {});
-  }
-  TextEditingController editnamecontroller = TextEditingController();
-  TextEditingController editbatchcontroller = TextEditingController();
-  TextEditingController editbranchcontroller = TextEditingController();
+class _editprofileState extends State<editprofile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: BackgroundColor,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Edit Profile',
-          style: TextStyle(color: Colors.black87),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Colors.black87,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.check),
-            color: Colors.black87,
-          ),
-        ],
-        elevation: 0,
-      ),
-      body: Container(
-        height: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 150),
+            decoration: const BoxDecoration(color: Colors.black),
+            child: Column(
               children: [
-                SizedBox(height: 20),
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.black,
-                  child: Icon(Icons.person,
-                  size: 50,
-                  color: Colors.white,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Edit Profile",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 20,),
+                Divider(
+                  color: Colors.white,
+                  height: 50,
+                  thickness: 1,
+                  indent: 25,
+                  endIndent: 25,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      radius: 48,
+                      backgroundColor: Colors.white,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/Athi.jpg'),
+                        radius: 45,
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Athithiyan K",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              letterSpacing: 2.0,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "7376211CS320",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              letterSpacing: 2.0,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
+                      color: Colors.blueGrey,
+                      borderRadius: BorderRadius.circular(5)),
+                )
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-  }
+}

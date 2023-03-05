@@ -1,5 +1,3 @@
-
-
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
 import 'package:alumini_final/pages/update_screens/update_work.dart';

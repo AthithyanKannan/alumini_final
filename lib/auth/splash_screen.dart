@@ -5,7 +5,6 @@ import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
 import 'package:alumini_final/pages/profile/profilepage.dart';
 import 'package:alumini_final/pages/searchpage.dart';
-import 'package:alumini_final/pages/update_screens/update_prof.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/update_screens/update_profile.dart';
@@ -30,7 +29,7 @@ class StartState extends State<StatefulWidget> {
   route(){
     Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (
-        (context) => SignIn()
+        (context) => HomeScreen()
         )
         ));
   }
