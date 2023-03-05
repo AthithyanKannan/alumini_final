@@ -1,3 +1,7 @@
+import 'dart:ffi';
+import 'dart:math';
+
+import 'package:alumini_final/colors.dart';
 import 'package:flutter/material.dart';
 
 class editprofile extends StatefulWidget {
@@ -7,85 +11,105 @@ class editprofile extends StatefulWidget {
   State<editprofile> createState() => _editprofileState();
 }
 
-class _editprofileState extends State<editprofile> {
+class _editprofileState extends State<editprofile>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 150),
-            decoration: const BoxDecoration(color: Colors.black),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Edit Profile",
+    TabController _edittabcontroller = TabController(length: 2, vsync: this);
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: RichText(
+            text: TextSpan(
+                text: 'Edit ',
+                style: TextStyle(fontSize: 20),
+                children: [
+                  TextSpan(
+                      text: 'Profile',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          letterSpacing: 2.0,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
+                          fontSize: 20, fontWeight: FontWeight.w600))
+                ]),
+          ),
+          centerTitle: true,
+          backgroundColor: primaryColor,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new),
+          ),
+        ),
+        body: Flexible(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: (Radius.circular(30)),
+                      bottomRight: (Radius.circular(30))),
                 ),
-                Divider(
-                  color: Colors.white,
-                  height: 50,
-                  thickness: 1,
-                  indent: 25,
-                  endIndent: 25,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Column(
                   children: [
                     CircleAvatar(
-                      radius: 48,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/Athi.jpg'),
-                        radius: 45,
-                      ),
+                      radius: 50,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Athithiyan K",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              letterSpacing: 2.0,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "7376211CS320",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              letterSpacing: 2.0,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 10,
                     ),
+                    Divider(
+                      color: Colors.white,
+                      thickness: 1,
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0),
+                      child: Container(
+                          width: MediaQuery.of(context).size.height,
+                          decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(children: [
+                            TabBar(
+                                controller: _edittabcontroller,
+                                indicatorPadding:
+                                    EdgeInsets.symmetric(horizontal: 1),
+                                indicatorWeight: 2,
+                                indicator: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10)),
+                                labelColor: Colors.black,
+                                unselectedLabelColor: Colors.white,
+                                tabs: [
+                                  Tab(
+                                    text: 'Personal Info',
+                                  ),
+                                  Tab(
+                                    text: 'Working Experience',
+                                  )
+                                ]),
+                            TabBarView(
+                                controller: _edittabcontroller,
+                                children: [
+                                  Tab(
+                                    text: 'Athi',
+                                  ),
+                                  Tab(
+                                    text: 'Thiru',
+                                  )
+                                ])
+                          ])),
+                    )
                   ],
                 ),
-                Container(
-                  height: 50,
-                  width: MediaQuery.of(context).size.height,
-                  decoration: BoxDecoration(
-                      color: Colors.blueGrey,
-                      borderRadius: BorderRadius.circular(5)),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
