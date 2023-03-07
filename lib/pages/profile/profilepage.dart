@@ -117,7 +117,9 @@ class _MyProfileState extends State<MyProfile>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      ElevatedButton(onPressed: (()=>{}), child: Text(
+                      ElevatedButton(onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => editprofile(),));
+                      }, child: Text(
                         "Edit Profile",
                         style: TextStyle(
                           letterSpacing: 1.0,
