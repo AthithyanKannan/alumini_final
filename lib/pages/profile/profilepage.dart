@@ -1,8 +1,5 @@
-import 'dart:ui';
-import 'package:alumini_final/auth/signin.dart';
-import 'package:alumini_final/colors.dart';
-import 'package:alumini_final/pages/profile/edit_myprofie.dart';
-import 'package:alumini_final/pages/update_screens/update_profile.dart';
+import 'package:alumini_final/pages/profile/tab1.dart';
+import 'package:alumini_final/pages/profile/tab2.dart';
 import 'package:flutter/material.dart';
 
 class MyProfile extends StatefulWidget {
@@ -12,345 +9,197 @@ class MyProfile extends StatefulWidget {
   State<MyProfile> createState() => _MyProfileState();
 }
 
-class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
+class _MyProfileState extends State<MyProfile>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TabController _tabcontroller = TabController(length: 2, vsync: this);
     return Scaffold(
-      backgroundColor: BackgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: RichText(
-          text:
-              TextSpan(text: 'My ', style: TextStyle(fontSize: 20), children: [
-            TextSpan(
-                text: 'Profile',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
-          ]),
+        title: Text(
+          "My Profile",
+          style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+              letterSpacing: 2.0),
         ),
-        centerTitle: true,
-        backgroundColor: primaryColor,
-        elevation: 0,
-        leading: Icon(
-          Icons.arrow_back_ios_new,
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => editprofile(),
-                    ));
-              },
-              icon: Icon(Icons.edit)),
-          IconButton(
-              onPressed: () {
-                showDialog(
-                    useSafeArea: false,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Expanded(
-                          child: AlertDialog(
-                        title: const Text('Log Out'),
-                        content: const Text('Are you sure to Logout'),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text(
-                                'Back',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              )),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SignIn(),
-                                    ),
-                                    (route) => false);
-                              },
-                              child: const Text(
-                                'Exit',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ))
-                        ],
-                      ));
-                    });
-              },
-              icon: const Icon(
-                Icons.logout,
-              ))
-        ],
+        elevation: 0.0,
+        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Stack(clipBehavior: Clip.none, children: [
-              Container(
-                height: MediaQuery.of(context).size.height / 4,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(12))),
-                // child: Padding(
-                //   padding:
-                //       const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: const [
-                //       Text(
-                //         'My',
-                //         style: TextStyle(fontSize: 25, color: Colors.white),
-                //       ),
-                //       Text(
-                //         "Profile",
-                //         style: TextStyle(
-                //             fontWeight: FontWeight.bold,
-                //             color: Colors.white,
-                //             fontSize: 27),
-                //       )
-                //     ],
-                //   ),
-                // ),
-              ),
-              Positioned(
-                top: 100,
-                left: 30,
-                right: 30,
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 4,
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(color: Colors.black87, blurRadius: 12)
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text(
-                        'Athithyan K',
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      const Text(
-                        "BE Student",
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TabBar(
-                          controller: _tabcontroller,
-                          isScrollable: true,
-                          labelColor: Colors.black,
-                         indicatorColor: Colors.black,
-                          unselectedLabelColor: Colors.grey,
-                          tabs: [
-                            Tab(text: "Personal Info"),
-                            Tab(
-                              text: "Working Experience",
-                            )
-                          ])
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                  top: 50,
-                  left: 130,
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.black,
-                    backgroundImage: AssetImage(
-                      "assets/Athi.jpg",
-                    ),
-                  ))
-            ]),
-            const SizedBox(
-              height: 120,
-            ),
             Container(
-              height: MediaQuery.of(context).size.height / 3,
-              width: MediaQuery.of(context).size.width / 1.2,
-              child: TabBarView(controller: _tabcontroller, children: [
-                Container(
-                    child: Tab(
-                  child: Column(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black54,
+                      blurRadius: 15.0,
+                      offset: Offset(0.0, 0.75))
+                ],
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 20,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0), //or 15.0
+                            child: Container(
+                              height: 90.0,
+                              width: 90.0,
+                              child: Image.asset('assets/Athi.jpg'),
                             ),
-                            const Text(
-                              'Batch',
-                              style:
-                                  TextStyle(fontFamily: 'Roboto', fontSize: 18),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '2025',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontSize: 16,
-                                      color: Colors.grey[600]),
-                                )
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            const Text(
-                              'Branch',
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("Athithiyan K",
                               style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Roboto',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'ISE',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontSize: 16,
-                                      color: Colors.grey[600]),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(
-                              'Date of Birth',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18,
+                                  letterSpacing: 1.0)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text("Software Developer,",
                               style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Roboto',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '13.04.2004',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontSize: 16,
-                                      color: Colors.grey[600]),
-                                )
-                              ],
-                            ),
-                          ])
+                                  color: Colors.blueGrey,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15,
+                                  letterSpacing: 1.0)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text("Google",
+                              style: TextStyle(
+                                  color: Colors.blueGrey,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15,
+                                  letterSpacing: 1.0)),
+                        ],
+                      ),
                     ],
                   ),
-                )),
-                Container(
-                    child: Tab(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 20,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              colors: [
+                                Color.fromRGBO(46, 170, 250, 1),
+                                Color.fromRGBO(31, 47, 152, 1),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(5)),
+                        padding: EdgeInsets.all(8),
+                        child: Text(
+                          "Edit Profile",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    SizedBox(height: 25),
+                    Container(
+                      width: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Color.fromRGBO(46, 170, 250, 1),
+                              Color.fromRGBO(31, 47, 152, 1),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TabBar(
+                              unselectedLabelColor: Colors.white,
+                              labelColor: Colors.black,
+                              indicatorColor: Colors.white,
+                              indicatorWeight: 2,
+                              indicator: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                              const Text(
-                                'Designation',
-                                style: TextStyle(
-                                    fontFamily: 'Roboto', fontSize: 18),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'App Developer',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 16,
-                                        color: Colors.grey[600]),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              const Text(
-                                'Industry Name',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Roboto',
+                              controller: tabController,
+                              tabs: [
+                                Tab(
+                                  text: 'PERSONAL DETAILS',
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'TCS',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 16,
-                                        color: Colors.grey[600]),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const Text(
-                                'Location',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Roboto',
+                                Tab(
+                                  text: 'WORK EXPERIENCE',
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Chennai',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 16,
-                                        color: Colors.grey[600]),
-                                  )
-                                ],
-                              ),
-                            ])
-                      ]),
-                ))
-              ]),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        controller: tabController,
+                        children: [
+                          Tab1(),
+                          Tab2(),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
             )
           ],
         ),
