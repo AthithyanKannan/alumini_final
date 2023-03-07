@@ -12,242 +12,307 @@ class _AluminiProfileState extends State<AluminiProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Profile'),
-        centerTitle: true,
-        backgroundColor: primaryColor,
-        elevation: 0,
-         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Colors.white,
+        iconTheme: IconThemeData(
+          color: Color.fromRGBO(255, 255, 255, 1),
         ),
+        title: Text(
+          "Profile",
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+              letterSpacing: 2.0),
+        ),
+        elevation: 0.0,
+        backgroundColor: primaryColor,
       ),
-      backgroundColor: BackgroundColor,
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height/2.5,
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20)
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-               crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CircleAvatar(
-                      backgroundImage: AssetImage('assets/Athi.jpg'),
-                      radius: 60,                   
-                    ),
-                    SizedBox(
-                      height:10,
-                    ),
-                    Text(
-                      'Athithyan K',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 20,
-                        color: Colors.white
-                      ),
-                      ),
-                      SizedBox(
-                      height:2,
-                    ),
-                      Text(
-                        'Mobile App Developer',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Roboto',
-                          color: Colors.white
-                        ),
-                        )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            left: 20,
-            right: 20,
-            top: 200,
-            child: Container(
-              height: MediaQuery.of(context).size.height/1.7,
-              padding: const EdgeInsets.only(left: 20, right: 20),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30)
+                color: primaryColor,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black54,
+                      blurRadius: 15.0,
+                      offset: Offset(0.0, 0.75))
+                ],
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
               ),
-            child:Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.fromLTRB(30, 20, 30, 0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'Batch',
-                    style: TextStyle(fontFamily: 'Roboto', fontSize: 18),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Column(
                     children: [
-                      Text(
-                        '2025',
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            color: Colors.grey[600]),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Branch',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ISE',
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            color: Colors.grey[600]),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0), //or 15.0
+                                child: Container(
+                                  height: 90.0,
+                                  width: 90.0,
+                                  child: Image.asset('assets/Athi.jpg'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text("Athithiyan K",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      letterSpacing: 1.0)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Software Developer,",
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
+                                      letterSpacing: 1.0)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Google",
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
+                                      letterSpacing: 1.0)),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'Date of Birth',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '13.04.2004',
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            color: Colors.grey[600]),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Working At:',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
+                    mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset('assets/logo_brand.png', width: 50, height: 50,),
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ZOHO',
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'Role',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'App Developer',
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            color: Colors.grey[600]),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'Company Location',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Bangalore',
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            color: Colors.grey[600]),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
                 ],
               ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Colors.white,
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 15.0,
+                        offset: Offset(0.0, 0.75))
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Alumni Details",
+                      style: TextStyle(
+                          letterSpacing: 1.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromRGBO(245, 245, 245, 1),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Branch",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                                fontSize: 13),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "Informative Sience and Engineering",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromRGBO(245, 245, 245, 1),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Batch",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                                fontSize: 13),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "2025 ",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromRGBO(245, 245, 245, 1),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Company Name",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                                fontSize: 13),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "Google",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromRGBO(245, 245, 245, 1),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Company Location",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                                fontSize: 13),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "Unites States, California",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromRGBO(245, 245, 245, 1),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Designation",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                                fontSize: 13),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "Software Developer",
+                            style: TextStyle(
+                                letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-        ],
+          ],
+        ),
       ),
     );
   }
