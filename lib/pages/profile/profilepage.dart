@@ -1,3 +1,4 @@
+import 'package:alumini_final/pages/profile/edit_myprofie.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
 import 'package:alumini_final/pages/profile/tab2.dart';
 import 'package:flutter/material.dart';
@@ -116,26 +117,33 @@ class _MyProfileState extends State<MyProfile>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: [
-                                Color.fromRGBO(46, 170, 250, 1),
-                                Color.fromRGBO(31, 47, 152, 1),
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(5)),
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          "Edit Profile",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1.0),
+                      ElevatedButton(onPressed: (()=>{}), child: Text(
+                        "Edit Profile",
+                        style: TextStyle(
+                          letterSpacing: 1.0,
+                          fontWeight: FontWeight.w600
                         ),
-                      ),
+                      )),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //       gradient: LinearGradient(
+                      //         begin: Alignment.bottomLeft,
+                      //         end: Alignment.topRight,
+                      //         colors: [
+                      //           Color.fromRGBO(46, 170, 250, 1),
+                      //           Color.fromRGBO(31, 47, 152, 1),
+                      //         ],
+                      //       ),
+                      //       borderRadius: BorderRadius.circular(5)),
+                      //   padding: EdgeInsets.all(8),
+                      //   child: Text(
+                      //     "Edit Profile",
+                      //     style: TextStyle(
+                      //         color: Colors.white,
+                      //         fontWeight: FontWeight.w600,
+                      //         letterSpacing: 1.0),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ],
