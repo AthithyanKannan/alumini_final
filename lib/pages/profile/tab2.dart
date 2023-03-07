@@ -1,3 +1,4 @@
+import 'package:alumini_final/colors.dart';
 import 'package:flutter/material.dart';
 
 class Tab2 extends StatelessWidget {
@@ -6,84 +7,111 @@ class Tab2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const SizedBox(
-              height: 20,
+      backgroundColor:BackgroundColor,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(children: [
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromRGBO(245, 245, 245, 1),
             ),
-            const Text(
-              'Designation',
-              style: TextStyle(fontFamily: 'Roboto', fontSize: 18),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            padding: EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'App Developer',
+                  "Company Name",
                   style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 16,
-                      color: Colors.grey[600]),
-                )
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Industry Name',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Roboto',
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blueGrey,
+                      fontSize: 13),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
                 Text(
-                  'TCS',
+                  "Google",
                   style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 16,
-                      color: Colors.grey[600]),
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 20,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromRGBO(245, 245, 245, 1),
             ),
-            const Text(
-              'Location',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Roboto',
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            padding: EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Chennai',
+                  "Company Location",
                   style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 16,
-                      color: Colors.grey[600]),
-                )
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blueGrey,
+                      fontSize: 13),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  "United States, California",
+                  style: TextStyle(
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15),
+                ),
               ],
             ),
-          ]),
-        )
-      ]),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromRGBO(245, 245, 245, 1),
+            ),
+            padding: EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Designation",
+                  style: TextStyle(
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blueGrey,
+                      fontSize: 13),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  "App Developer",
+                  style: TextStyle(
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15),
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

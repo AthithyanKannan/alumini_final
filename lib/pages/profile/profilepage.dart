@@ -104,60 +104,64 @@ class _MyProfileState extends State<MyProfile>
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Column(
                     children: [
-                      Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0), //or 15.0
-                            child: Container(
-                              height: 90.0,
-                              width: 90.0,
-                              child: Image.asset('assets/Athi.jpg'),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 5,
+                          Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(20.0), //or 15.0
+                                child: Container(
+                                  height: 90.0,
+                                  width: 90.0,
+                                  child: Image.asset('assets/Athi.jpg'),
+                                ),
+                              ),
+                            ],
                           ),
-                          Text("Athithyan K",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                // letterSpacing: 1.0,
-                              )),
                           SizedBox(
-                            height: 10,
+                            width: 20,
                           ),
-                          Text("Software Developer,",
-                              style: TextStyle(
-                                color: Colors.blueGrey,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                // letterSpacing: 1.0
-                              )),
-                          SizedBox(
-                            height: 10,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text("Athithyan K",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      letterSpacing: 1.0)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Software Developer,",
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
+                                      letterSpacing: 1.0
+                                      )),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Google",
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
+                                      letterSpacing: 1.0
+                                      )),
+                            ],
                           ),
-                          Text("Google",
-                              style: TextStyle(
-                                color: Colors.blueGrey,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                // letterSpacing: 1.0
-                              )),
                         ],
                       ),
                     ],
@@ -184,7 +188,7 @@ class _MyProfileState extends State<MyProfile>
                             "Edit Profile",
                             style: TextStyle(
                                 color: primaryColor,
-                                // letterSpacing: 1.0,
+                                letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600),
                           )),
                     ],
@@ -196,7 +200,7 @@ class _MyProfileState extends State<MyProfile>
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height/1.8,
                 child: Column(
                   children: [
                     SizedBox(height: 25),

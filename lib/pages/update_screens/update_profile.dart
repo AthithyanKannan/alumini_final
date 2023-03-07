@@ -237,53 +237,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 ],
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(
-            //     horizontal: 20,
-            //   ),
-            //   child: GestureDetector(
-            //     onTap: () async {
-            //       String Name = nameController.text;
-            //       String Batch = batchController.text;
-            //       String Branch = branchController.text;
-            //       String DOB = dobController.text;
-
-            //       if (Name.isEmpty) {
-            //         showSnackBar("Enter your Name");
-            //       } else if (Batch.isEmpty) {
-            //         showSnackBar("Enter your Batch and Branch");
-            //       } else if (Branch.isEmpty) {
-            //         showSnackBar("Enter your Mobile No.");
-            //       } else if (DOB.isEmpty) {
-            //         showSnackBar("Enter your DOB");
-            //       } else {}
-            //     },
-            //   ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.end,
-            //       children: [
-            //         InkWell(
-            //           onTap: () {
-            //             Navigator.push(
-            //                 context,
-            //                 MaterialPageRoute(
-            //                     builder: (context) => UpdateWorkScreen()));
-            //           },
-            //           child: Container(
-            //             padding:
-            //                 EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-            //             decoration: BoxDecoration(
-            //                 color: primaryColor,
-            //                 borderRadius: BorderRadius.circular(30)),
-            //             child: Text(
-            //               'Next->',
-            //               style: TextStyle(color: Colors.white, fontSize: 18),
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
             SizedBox(
               height: 10,
             ),
@@ -333,7 +286,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('Degree', degreecontroller),
                 ],
               ),
-
             if (isbusniess)
               Column(
                 children: [
@@ -383,28 +335,24 @@ class _UpdateScreenState extends State<UpdateScreen> {
               Column(
                 children: [WorkTextBox('About', aboutcontroller)],
               ),
-              ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ));
-                    },
-                    child: const Text('Save'),
-                    style: ButtonStyle(
-                      textStyle: MaterialStateProperty.all(
-                        const TextStyle(
-                          fontSize: 15
-                        )
-                      ),
-                        backgroundColor:
-                            MaterialStateProperty.all(primaryColor),
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.symmetric(
-                                horizontal: 80, vertical: 15)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)))))
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ));
+                },
+                child: const Text('Save'),
+                style: ButtonStyle(
+                    textStyle: MaterialStateProperty.all(
+                        const TextStyle(fontSize: 15)),
+                    backgroundColor: MaterialStateProperty.all(primaryColor),
+                    padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(
+                            horizontal: 80, vertical: 15)),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)))))
           ],
         ),
       ),

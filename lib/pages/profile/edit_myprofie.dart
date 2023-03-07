@@ -48,8 +48,7 @@ class _editprofileState extends State<editprofile>
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Container(
                 height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: [
+                child: Column(children: [
                   SizedBox(height: 15),
                   Container(
                     width: MediaQuery.of(context).size.height,
@@ -77,18 +76,13 @@ class _editprofileState extends State<editprofile>
                           ),
                         ],
                       ),
-                    
                     ),
                   ),
                   Expanded(
-                    child: TabBarView(
-                      children: [
-                        EditPersonalTab(),
-                        EditWorkTab()
-                      ],
-                      )
-                      )
-
+                      child: TabBarView(
+                    controller: _edittabcontroller,
+                    children: [EditPersonalTab(), EditWorkTab()],
+                  ))
                 ]),
               ),
             ))));

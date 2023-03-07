@@ -21,11 +21,13 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         backgroundColor: primaryColor,
         elevation: 0,
-        title: Text(
-          'Alumini Connect',
-          style: TextStyle(
-              color: Colors.white,
-              ),
+       title: RichText(
+          text:
+              TextSpan(text: 'Alumini ', style: TextStyle(fontSize: 20), children: [
+            TextSpan(
+                text: 'Connect',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+          ]),
         ),
         actions: [
           IconButton(

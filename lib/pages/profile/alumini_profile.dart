@@ -12,7 +12,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: BackgroundColor,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Color.fromRGBO(255, 255, 255, 1),
@@ -55,7 +55,8 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Column(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(20.0), //or 15.0
+                                borderRadius:
+                                    BorderRadius.circular(20.0), //or 15.0
                                 child: Container(
                                   height: 90.0,
                                   width: 90.0,
@@ -105,10 +106,14 @@ class _AluminiProfileState extends State<AluminiProfile> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Image.asset('assets/logo_brand.png', width: 50, height: 50,),
-                      ],
-                    ),
+                    children: [
+                      Image.asset(
+                        'assets/logo_brand.png',
+                        width: 50,
+                        height: 50,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
