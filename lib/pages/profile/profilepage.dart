@@ -1,6 +1,8 @@
+import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
 import 'package:alumini_final/pages/profile/tab2.dart';
+import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:flutter/material.dart';
 
 class MyProfile extends StatefulWidget {
@@ -29,25 +31,69 @@ class _MyProfileState extends State<MyProfile>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: BackgroundColor,
       appBar: AppBar(
-        title: Text(
-          "My Profile",
-          style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-              letterSpacing: 2.0),
+        // centerTitle: true,
+        backgroundColor: primaryColor,
+        elevation: 0,
+        title: RichText(
+          text:
+              TextSpan(text: 'My ', style: TextStyle(fontSize: 20), children: [
+            TextSpan(
+                text: 'Profile',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+          ]),
         ),
-        elevation: 0.0,
-        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showDialog(
+                    useSafeArea: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Expanded(
+                          child: AlertDialog(
+                        title: const Text('Log Out'),
+                        content: const Text('Are you sure to Logout'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                'Back',
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
+                              )),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UpdateScreen(),
+                                    ),
+                                    (route) => false);
+                              },
+                              child: const Text(
+                                'Exit',
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black),
+                              ))
+                        ],
+                      ));
+                    });
+              },
+              icon: const Icon(
+                Icons.logout,
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: primaryColor,
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                       color: Colors.black54,
@@ -62,7 +108,6 @@ class _MyProfileState extends State<MyProfile>
               child: Column(
                 children: [
                   Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
@@ -86,30 +131,33 @@ class _MyProfileState extends State<MyProfile>
                           SizedBox(
                             height: 5,
                           ),
-                          Text("Athithiyan K",
+                          Text("Athithyan K",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                  letterSpacing: 1.0)),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                // letterSpacing: 1.0,
+                              )),
                           SizedBox(
                             height: 10,
                           ),
                           Text("Software Developer,",
                               style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  letterSpacing: 1.0)),
+                                color: Colors.blueGrey,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                // letterSpacing: 1.0
+                              )),
                           SizedBox(
                             height: 10,
                           ),
                           Text("Google",
                               style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  letterSpacing: 1.0)),
+                                color: Colors.blueGrey,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                // letterSpacing: 1.0
+                              )),
                         ],
                       ),
                     ],
@@ -117,35 +165,28 @@ class _MyProfileState extends State<MyProfile>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      ElevatedButton(onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => editprofile(),));
-                      }, child: Text(
-                        "Edit Profile",
-                        style: TextStyle(
-                          letterSpacing: 1.0,
-                          fontWeight: FontWeight.w600
-                        ),
-                      )),
-                      // Container(
-                      //   decoration: BoxDecoration(
-                      //       gradient: LinearGradient(
-                      //         begin: Alignment.bottomLeft,
-                      //         end: Alignment.topRight,
-                      //         colors: [
-                      //           Color.fromRGBO(46, 170, 250, 1),
-                      //           Color.fromRGBO(31, 47, 152, 1),
-                      //         ],
-                      //       ),
-                      //       borderRadius: BorderRadius.circular(5)),
-                      //   padding: EdgeInsets.all(8),
-                      //   child: Text(
-                      //     "Edit Profile",
-                      //     style: TextStyle(
-                      //         color: Colors.white,
-                      //         fontWeight: FontWeight.w600,
-                      //         letterSpacing: 1.0),
-                      //   ),
-                      // ),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => editprofile(),
+                                ));
+                          },
+                          style: ElevatedButton.styleFrom(
+                              onPrimary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10)),
+                          child: Text(
+                            "Edit Profile",
+                            style: TextStyle(
+                                color: primaryColor,
+                                // letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600),
+                          )),
                     ],
                   ),
                 ],
@@ -162,35 +203,29 @@ class _MyProfileState extends State<MyProfile>
                     Container(
                       width: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            colors: [
-                              Color.fromRGBO(46, 170, 250, 1),
-                              Color.fromRGBO(31, 47, 152, 1),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(5)),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         children: [
                           Padding(
                             padding: EdgeInsets.all(5),
                             child: TabBar(
-                              unselectedLabelColor: Colors.white,
-                              labelColor: Colors.black,
-                              indicatorColor: Colors.white,
-                              indicatorWeight: 2,
-                              indicator: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                              indicatorColor: primaryColor,
                               controller: tabController,
+                              indicatorPadding:
+                                  EdgeInsets.symmetric(horizontal: 1),
+                              indicatorWeight: 1,
+                              indicator: BoxDecoration(
+                                  color: primaryColor,
+                                  borderRadius: BorderRadius.circular(5)),
+                              labelColor: Colors.white,
+                              unselectedLabelColor: Colors.black,
                               tabs: [
                                 Tab(
-                                  text: 'PERSONAL DETAILS',
+                                  text: 'Personal Info',
                                 ),
                                 Tab(
-                                  text: 'WORK EXPERIENCE',
+                                  text: 'Working Experience',
                                 ),
                               ],
                             ),
