@@ -191,8 +191,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   ),
                 ),
                 const Positioned(
-                  top: 120,
-                  left: 110,
+                  top: 140,
+                  left: 130,
                   child: CircleAvatar(
                     radius: 50,
                     child: Icon(

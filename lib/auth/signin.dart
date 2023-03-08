@@ -3,6 +3,7 @@ import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:alumini_final/colors.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -26,14 +27,9 @@ class _SignInState extends State<SignIn> {
             left: 0,
             child: Container(
                 height: MediaQuery.of(context).size.height / 2,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft,
-                        colors: [
-                      Color.fromRGBO(0, 36, 72, 1.0),
-                      Color.fromRGBO(5, 25, 55, 1.0),
-                    ])),
+                decoration:  BoxDecoration(
+                    color: primaryColor
+                    ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
