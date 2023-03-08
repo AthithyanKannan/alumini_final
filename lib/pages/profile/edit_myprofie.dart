@@ -45,6 +45,7 @@ class _editprofileState extends State<editprofile>
             body: SingleChildScrollView(
                 child: Container(
               width: double.infinity,
+              height: MediaQuery.of(context).size.height / 1.5,
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Container(
                 height: MediaQuery.of(context).size.height,
@@ -82,7 +83,23 @@ class _editprofileState extends State<editprofile>
                       child: TabBarView(
                     controller: _edittabcontroller,
                     children: [EditPersonalTab(), EditWorkTab()],
-                  ))
+                  )),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Save Changes'),
+                      style: ButtonStyle(
+                          textStyle: MaterialStateProperty.all(
+                              const TextStyle(fontSize: 15)),
+                          backgroundColor:
+                              MaterialStateProperty.all(primaryColor),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                  horizontal: 80, vertical: 15)),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)))))
                 ]),
               ),
             ))));

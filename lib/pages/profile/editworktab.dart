@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:alumini_final/colors.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/material.dart';
+
 class EditWorkTab extends StatefulWidget {
   const EditWorkTab({super.key});
 
@@ -8,6 +10,11 @@ class EditWorkTab extends StatefulWidget {
 }
 
 class _EditWorkTabState extends State<EditWorkTab> {
+  
+  TextEditingController editnameController = TextEditingController();
+  TextEditingController editbatchController = TextEditingController();
+  TextEditingController editbranchController = TextEditingController();
+  TextEditingController editdobController = TextEditingController();
   TextEditingController editdesignationcontroller = TextEditingController();
   TextEditingController editnamecontroller = TextEditingController();
   TextEditingController editlocationcontroller = TextEditingController();
@@ -16,18 +23,28 @@ class _EditWorkTabState extends State<EditWorkTab> {
   final List<String> editprofession = [
     'Industry',
     'Higher Studies',
-    'Entrepreneur'
+    'Entrepreneur',
     'Competative exams',
     'Trainers',
     'Banking sectors',
     'Searching job',
-    'House wife',
-    'Government job'
+    'Government job',
     'Other'
   ];
+
   String? selectedValue;
   final _formKey = GlobalKey<FormState>();
-  bool isIndustry = false,isStudies = false, isbusniess = false,isExam = false, isTrainer = false,isBank = false,isSearch = false,isHousewife = false,isGovt = false,    isOther = false;
+
+  bool isIndustry = false,
+      isStudies = false,
+      isbusniess = false,
+      isExam = false,
+      isTrainer = false,
+      isBank = false,
+      isSearch = false,
+      isHousewife = false,
+      isGovt = false,
+      isOther = false;
 
   viewFields(item) {
     if (item == editprofession[0]) {
@@ -63,7 +80,7 @@ class _EditWorkTabState extends State<EditWorkTab> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      } else if (item == editprofession[3]) {
+    } else if (item == editprofession[3]) {
       isIndustry = false;
       isStudies = false;
       isbusniess = false;
@@ -85,7 +102,7 @@ class _EditWorkTabState extends State<EditWorkTab> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-    }else if (item == editprofession[5]) {
+    } else if (item == editprofession[5]) {
       isIndustry = false;
       isStudies = false;
       isbusniess = false;
@@ -96,7 +113,7 @@ class _EditWorkTabState extends State<EditWorkTab> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-    }else if (item == editprofession[6]) {
+    } else if (item == editprofession[6]) {
       isIndustry = false;
       isStudies = false;
       isbusniess = false;
@@ -107,18 +124,7 @@ class _EditWorkTabState extends State<EditWorkTab> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-    }else if (item == editprofession[7]) {
-      isIndustry = false;
-      isStudies = false;
-      isbusniess = false;
-      isExam = false;
-      isTrainer = false;
-      isBank = false;
-      isSearch = false;
-      isHousewife = true;
-      isGovt = false;
-      isOther = false;
-    }else if (item == editprofession[8]) {
+    } else if (item == editprofession[7]) {
       isIndustry = false;
       isStudies = false;
       isbusniess = false;
@@ -129,7 +135,7 @@ class _EditWorkTabState extends State<EditWorkTab> {
       isHousewife = false;
       isGovt = true;
       isOther = false;
-    }else {
+    } else {
       isIndustry = false;
       isStudies = false;
       isbusniess = false;
@@ -148,17 +154,19 @@ class _EditWorkTabState extends State<EditWorkTab> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: 
-        Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 1),
               margin: EdgeInsets.symmetric(vertical: 7),
-              width: size.width * 0.6,
+              width: size.width * 0.8,
               decoration: BoxDecoration(
                   color: Color.fromRGBO(217, 217, 217, 1.0),
                   borderRadius: BorderRadius.circular(12)),
               child: DropdownButtonFormField2(
-                hint: Text('Current Status',
-                    style: TextStyle(fontSize: 15)),
+                hint: Text('Current Status', style: TextStyle(fontSize: 15)),
                 icon: Icon(Icons.arrow_drop_down),
                 iconEnabledColor: Color.fromRGBO(5, 68, 94, 35.0),
                 iconDisabledColor: Color.fromRGBO(217, 217, 217, 1.0),
@@ -169,8 +177,7 @@ class _EditWorkTabState extends State<EditWorkTab> {
                           value: e,
                           child: Text(
                             e,
-                            style: const TextStyle(
-                                fontSize: 14),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ))
                     .toList(),
@@ -179,85 +186,84 @@ class _EditWorkTabState extends State<EditWorkTab> {
                 },
               ),
             ),
-            // if(isIndustry){
-            //       Column(
-            //     children: [
-            //       EditWorkTextBox('Designation', designationcontroller),
-            //       EditWorkTextBox('Industry Name', namecontroller),
-            //       EditWorkTextBox(' Location', locationcontroller),
-            //     ],
-            //   ),
-            // }
-             
-            // if (isStudies)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('Collage/institute', namecontroller),
-            //       WorkTextBox('location', locationcontroller),
-            //       WorkTextBox('Degree', degreecontroller),
-            //     ],
-            //   ),
-            // if (isbusniess)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('About business', aboutcontroller),
-            //       WorkTextBox('location', locationcontroller)
-            //     ],
-            //   ),
-            //   if (isExam)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('Institute name', namecontroller),
-            //       WorkTextBox('Degree', degreecontroller),
-            //       WorkTextBox('location', locationcontroller)
-            //     ],
-            //   ),
-            //   if (isTrainer)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('Working at', namecontroller),
-            //       WorkTextBox('location', locationcontroller),
-            //       WorkTextBox('Designation', designationcontroller)
-            //     ],
-            //   ),
-            //   if (isBank)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('Institute name', namecontroller),
-            //       WorkTextBox('Designation', designationcontroller),
-            //       WorkTextBox('location', locationcontroller)
-            //     ],
-            //   ),
-            //   if (isSearch)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('About business', aboutcontroller),
-            //       WorkTextBox('location', locationcontroller)
-            //     ],
-            //   ),
-            //   if (isHousewife)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('About', aboutcontroller),
-            //     ],
-            //   ),
-            //   if (isGovt)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('Designation', designationcontroller),
-            //       WorkTextBox('location', locationcontroller)
-            //     ],
-            //   ),
-            // if (isOther)
-            //   Column(
-            //     children: [
-            //       WorkTextBox('About', aboutcontroller)
-            //     ],
-            //   ),
+          ),
+          if (isIndustry)
+            Column(
+              children: [
+                EditWorkTextBox('Designation', editdesignationcontroller),
+                EditWorkTextBox('Industry Name', editnamecontroller),
+                EditWorkTextBox(' Location', editlocationcontroller),
+              ],
+            ),
+          if (isStudies)
+            Column(
+              children: [
+                EditWorkTextBox('Collage/institute', editnamecontroller),
+                EditWorkTextBox('Location', editlocationcontroller),
+                EditWorkTextBox('Degree', editdegreecontroller),
+              ],
+            ),
+          if (isbusniess)
+            Column(
+              children: [
+                EditWorkTextBox('About business', editaboutcontroller),
+                EditWorkTextBox('location', editlocationcontroller)
+              ],
+            ),
+          if (isExam)
+            Column(
+              children: [
+                EditWorkTextBox('Institute name', editnamecontroller),
+                EditWorkTextBox('Degree', editdegreecontroller),
+                EditWorkTextBox('location', editlocationcontroller)
+              ],
+            ),
+          if (isTrainer)
+            Column(
+              children: [
+                EditWorkTextBox('Working at', editnamecontroller),
+                EditWorkTextBox('Location', editlocationcontroller),
+                EditWorkTextBox('Designation', editdesignationcontroller)
+              ],
+            ),
+          if (isBank)
+            Column(
+              children: [
+                EditWorkTextBox('Institute name', editnamecontroller),
+                EditWorkTextBox('Designation', editdesignationcontroller),
+                EditWorkTextBox('Location', editlocationcontroller)
+              ],
+            ),
+          if (isSearch)
+            Column(
+              children: [
+                EditWorkTextBox('About business', editaboutcontroller),
+                EditWorkTextBox('Location', editlocationcontroller)
+              ],
+            ),
+          if (isHousewife)
+            Column(
+              children: [
+                EditWorkTextBox('About', editaboutcontroller),
+              ],
+            ),
+          if (isGovt)
+            Column(
+              children: [
+                EditWorkTextBox('Designation', editdesignationcontroller),
+                EditWorkTextBox('Location', editlocationcontroller)
+              ],
+            ),
+          if (isOther)
+            Column(
+              children: [EditWorkTextBox('About', editaboutcontroller)],
+            ),
+        ],
+      ),
     );
-
   }
-    Widget EditWorkTextBox(String hint, TextEditingController controller) {
+
+  Widget EditWorkTextBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -265,12 +271,12 @@ class _EditWorkTabState extends State<EditWorkTab> {
       width: size.width * 0.9,
       decoration: BoxDecoration(
           color: Color.fromRGBO(217, 217, 217, 1.0),
-          borderRadius: BorderRadius.circular(8)),
+          borderRadius: BorderRadius.circular(12)),
       child: TextFormField(
+        cursorColor: Colors.black,
+        textCapitalization: TextCapitalization.sentences,
         controller: controller,
-        decoration: InputDecoration(
-            hintText: hint,
-            border: InputBorder.none),
+        decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
       height: 50,
     );

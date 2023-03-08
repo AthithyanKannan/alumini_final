@@ -1,6 +1,5 @@
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
-import 'package:alumini_final/pages/update_screens/update_work.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -192,8 +191,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   ),
                 ),
                 const Positioned(
-                  top: 115,
-                  left: 130,
+                  top: 120,
+                  left: 110,
                   child: CircleAvatar(
                     radius: 50,
                     child: Icon(

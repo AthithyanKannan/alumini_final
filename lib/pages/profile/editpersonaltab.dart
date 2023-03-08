@@ -9,15 +9,17 @@ class EditPersonalTab extends StatefulWidget {
 
 class _EditPersonalTabState extends State<EditPersonalTab> {
   @override
+  TextEditingController EditnameController = TextEditingController();
+  TextEditingController EditBatchController = TextEditingController();
+  TextEditingController EditBranchController = TextEditingController();
+  TextEditingController EditDobController = TextEditingController();
   Widget build(BuildContext context) {
-    TextEditingController EditnameController = TextEditingController();
-    TextEditingController EditBatchController = TextEditingController();
-    TextEditingController EditBranchController = TextEditingController();
-    TextEditingController EditDobController = TextEditingController();
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           EditTextBox('Name', EditnameController, TextInputType.name),
           EditTextBox('Batch', EditBatchController, TextInputType.number),
           EditTextBox('Branch', EditBranchController, TextInputType.name),
