@@ -1,8 +1,22 @@
 import 'package:alumini_final/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Tab1 extends StatelessWidget {
-  const Tab1({Key? key}) : super(key: key);
+import 'profilepage.dart';
+
+class Tab1 extends StatefulWidget {
+  Tab1({Key? key}) : super(key: key);
+
+  @override
+  State<Tab1> createState() => _Tab1State();
+}
+
+class _Tab1State extends State<Tab1> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +38,7 @@ class Tab1 extends StatelessWidget {
                 Text(
                   "Branch",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -33,9 +47,9 @@ class Tab1 extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "Information Science and Engineering",
+                  "ISE",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),
@@ -58,7 +72,7 @@ class Tab1 extends StatelessWidget {
                 Text(
                   "Batch",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -67,9 +81,9 @@ class Tab1 extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "2025 ",
+                  "2025",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),
@@ -92,7 +106,7 @@ class Tab1 extends StatelessWidget {
                 Text(
                   "Date of Birth",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -101,9 +115,9 @@ class Tab1 extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "29 - 12 - 2003",
+                  "13/04/2004",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),
@@ -126,7 +140,7 @@ class Tab1 extends StatelessWidget {
                 Text(
                   "Blood Group",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -137,14 +151,13 @@ class Tab1 extends StatelessWidget {
                 Text(
                   "B+",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),
               ],
             ),
           ),
-         
         ]),
       ),
     );

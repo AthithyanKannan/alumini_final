@@ -24,7 +24,7 @@ class Tab2 extends StatelessWidget {
                 Text(
                   "Company Name",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -35,7 +35,7 @@ class Tab2 extends StatelessWidget {
                 Text(
                   "Google",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),
@@ -58,7 +58,7 @@ class Tab2 extends StatelessWidget {
                 Text(
                   "Company Location",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -69,7 +69,7 @@ class Tab2 extends StatelessWidget {
                 Text(
                   "United States, California",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),
@@ -92,7 +92,7 @@ class Tab2 extends StatelessWidget {
                 Text(
                   "Designation",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       color: Colors.blueGrey,
                       fontSize: 13),
@@ -103,7 +103,7 @@ class Tab2 extends StatelessWidget {
                 Text(
                   "App Developer",
                   style: TextStyle(
-                      letterSpacing: 1.0,
+                      // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
                       fontSize: 15),
                 ),

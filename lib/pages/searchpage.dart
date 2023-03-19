@@ -3,7 +3,11 @@ import 'package:alumini_final/pages/profile/alumini_profile.dart';
 import 'package:alumini_final/pages/update_screens/events_notifications.dart';
 import 'package:alumini_final/pages/update_screens/update_events.dart';
 import 'package:alumini_final/pages/update_screens/update_profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../auth/get_users.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -13,92 +17,97 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  List<String> docIDs = [];
+
+  Future getDocIDs() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              docIDs.add(document.reference.id);
+            }));
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: BackgroundColor,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        elevation: 0,
-       title: RichText(
-          text:
-              TextSpan(text: 'Alumini ', style: TextStyle(fontSize: 20), children: [
-            TextSpan(
-                text: 'Connect',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
-          ]),
-        ),
-        actions: [
-          IconButton(
+        backgroundColor: BackgroundColor,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: primaryColor,
+          elevation: 0,
+          title: RichText(
+            text: TextSpan(
+                text: 'Alumini ',
+                style: TextStyle(fontSize: 20),
+                children: [
+                  TextSpan(
+                      text: 'Connect',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+                ]),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdateEvent(),
+                      ));
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                )),
+            IconButton(
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UpdateEvent(),
-                    ));
+                        builder: ((context) => EventNotification())));
               },
-              icon: Icon(
-                Icons.add,
-                color: Colors.white,
-              )),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => EventNotification())));
-            },
-            icon: Icon(Icons.notifications),
-            color: Colors.white,
-          ),
-        ],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 1),
-                  margin: EdgeInsets.symmetric(vertical: 12),
-                  width: size.width * 0.9,
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(217, 217, 217, 1.0),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        prefixIconColor: Colors.black,
-                        hintText: 'Eg:Name',
-                        hintStyle: TextStyle(fontFamily: 'Roboto'),
-                        border: InputBorder.none),
-                  ),
-                  height: 50,
-                ),
-                CardFormat('Athithyan K', 'BE Student',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Jashwanth R', 'CTS Developer',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Thiru S', 'UI/UX Designer',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Rishwanth Rajaa NL', 'Mobile App Developer',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Surya R', 'Data Scientist',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Subash S', 'Game Developer',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Yuvarajan N', 'Data Scientist',
-                    AssetImage('assets/profile icon.png')),
-                CardFormat('Yogeshwaran S', 'Code Debugger',
-                    AssetImage('assets/profile icon.png')),
-              ],
+              icon: Icon(Icons.notifications),
+              color: Colors.white,
             ),
-          ),
+          ],
         ),
-      ),
-    );
+        body: Column(children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 1),
+            margin: EdgeInsets.symmetric(vertical: 12),
+            width: size.width * 0.9,
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(217, 217, 217, 1.0),
+                borderRadius: BorderRadius.circular(8)),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  prefixIconColor: Colors.black,
+                  hintText: 'Eg:Name',
+                  hintStyle: TextStyle(fontFamily: 'Roboto'),
+                  border: InputBorder.none),
+            ),
+            height: 50,
+          ),
+          Expanded(
+            child: FutureBuilder(
+                // future is what you acutually waiting for
+                future: getDocIDs(),
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 17),
+                    itemCount: docIDs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GetUser(documentId: docIDs[index]);
+                    },
+                  );
+                }),
+            )
+            ],
+          ),
+          );
   }
 
   Widget CardFormat(String name, String profession, AssetImage assetImage) {

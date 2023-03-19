@@ -1,4 +1,5 @@
 import 'package:alumini_final/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AluminiProfile extends StatefulWidget {
@@ -11,6 +12,9 @@ class AluminiProfile extends StatefulWidget {
 class _AluminiProfileState extends State<AluminiProfile> {
   @override
   Widget build(BuildContext context) {
+
+   
+
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
@@ -20,10 +24,12 @@ class _AluminiProfileState extends State<AluminiProfile> {
         title: Text(
           "Profile",
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-              letterSpacing: 2.0),
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+
+            // letterSpacing: 2.0
+          ),
         ),
         elevation: 0.0,
         backgroundColor: primaryColor,
@@ -74,30 +80,33 @@ class _AluminiProfileState extends State<AluminiProfile> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text("Athithiyan K",
+                              Text("Athithyan K",
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      letterSpacing: 1.0)),
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    // letterSpacing: 1.0
+                                  )),
                               SizedBox(
                                 height: 10,
                               ),
                               Text("Software Developer,",
                                   style: TextStyle(
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      letterSpacing: 1.0)),
+                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    // letterSpacing: 1.0
+                                  )),
                               SizedBox(
                                 height: 10,
                               ),
                               Text("Google",
                                   style: TextStyle(
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      letterSpacing: 1.0)),
+                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    // letterSpacing: 1.0
+                                  )),
                             ],
                           ),
                         ],
@@ -135,30 +144,64 @@ class _AluminiProfileState extends State<AluminiProfile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                  const  Text(
                       "Alumni Details",
                       style: TextStyle(
-                          letterSpacing: 1.0,
+                          // letterSpacing: 1.0,
                           fontWeight: FontWeight.w600,
                           color: Colors.black),
                     ),
-                    SizedBox(
+                     const SizedBox(
                       height: 20,
                     ),
                     Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Color.fromRGBO(245, 245, 245, 1),
                       ),
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                            Text(
+                            "Branch",
+                            style:  TextStyle(
+                                // letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                                fontSize: 13),
+                          ),
+                           SizedBox(
+                            height: 8,
+                          ),
+                           Text(
+                            "Information Science and Engineering",
+                            style: TextStyle(
+                                // letterSpacing: 1.0,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                   const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromRGBO(245, 245, 245, 1),
+                      ),
+                      padding: const EdgeInsets.all(8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Branch",
+                            "Contact",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.blueGrey,
                                 fontSize: 13),
@@ -167,9 +210,9 @@ class _AluminiProfileState extends State<AluminiProfile> {
                             height: 8,
                           ),
                           Text(
-                            "Informative Sience and Engineering",
+                            'athi',
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15),
                           ),
@@ -192,7 +235,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Batch",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.blueGrey,
                                 fontSize: 13),
@@ -203,7 +246,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "2025 ",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15),
                           ),
@@ -226,7 +269,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Company Name",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.blueGrey,
                                 fontSize: 13),
@@ -237,7 +280,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Google",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15),
                           ),
@@ -260,7 +303,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Company Location",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.blueGrey,
                                 fontSize: 13),
@@ -271,7 +314,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Unites States, California",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15),
                           ),
@@ -294,7 +337,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Designation",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.blueGrey,
                                 fontSize: 13),
@@ -305,7 +348,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                           Text(
                             "Software Developer",
                             style: TextStyle(
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15),
                           ),

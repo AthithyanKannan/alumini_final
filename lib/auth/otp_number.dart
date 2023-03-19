@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OtpNumber extends StatefulWidget {
- 
   const OtpNumber({super.key});
 
   @override
@@ -21,15 +20,13 @@ class _OtpNumberState extends State<OtpNumber> {
       appBar: AppBar(
         backgroundColor: BackgroundColor,
         elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black,
-          ),
-        ),
+        // title: Text(
+        //   "Enter your Number to verify",
+        //   style: TextStyle(
+        //     color: primaryColor
+        //   ),
+        // ),
+        // centerTitle: true
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -77,9 +74,7 @@ class _OtpNumberState extends State<OtpNumber> {
                     padding: const EdgeInsets.symmetric(horizontal: 45),
                     child: TextFormField(
                       textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
-                        prefixText:'+91'
-                      ),
+                      decoration: const InputDecoration(prefixText: '+91'),
                       keyboardType: TextInputType.number,
                     )),
                 const SizedBox(
@@ -92,7 +87,6 @@ class _OtpNumberState extends State<OtpNumber> {
                           MaterialPageRoute(
                             builder: (context) => OtpVerification(),
                           ));
-                      
                     },
                     child: const Text('Proceed'),
                     style: ButtonStyle(

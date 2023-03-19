@@ -1,8 +1,10 @@
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+
+int industry = 0;
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -15,16 +17,44 @@ Color primary = const Color.fromARGB(255, 103, 58, 183);
 String birth = "Date of Birth";
 
 class _UpdateScreenState extends State<UpdateScreen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController batchController = TextEditingController();
-  TextEditingController branchController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
-  TextEditingController designationcontroller = TextEditingController();
-  TextEditingController namecontroller = TextEditingController();
-  TextEditingController locationcontroller = TextEditingController();
-  TextEditingController degreecontroller = TextEditingController();
-  TextEditingController aboutcontroller = TextEditingController();
-  final List<String> profession = [
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _batchController = TextEditingController();
+  final TextEditingController _branchController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _industrydesignationcontroller =
+      TextEditingController();
+  final TextEditingController _industrynamecontroller = TextEditingController();
+  final TextEditingController _industrylocationcontroller =
+      TextEditingController();
+  final TextEditingController _highcollegecontroller = TextEditingController();
+  final TextEditingController _studylocationcontroller =
+      TextEditingController();
+  final TextEditingController _degreecontroller = TextEditingController();
+  final TextEditingController _aboutbusinesscontroller =
+      TextEditingController();
+  final TextEditingController _businesslocationcontroller =
+      TextEditingController();
+  final TextEditingController _exampreparecontroller = TextEditingController();
+  final TextEditingController _examlocation = TextEditingController();
+  final TextEditingController _banknamecontroller = TextEditingController();
+  final TextEditingController _bankdesignationcontroller =
+      TextEditingController();
+  final TextEditingController _banklocationcontroller = TextEditingController();
+  final TextEditingController _trainingplatformcontroller =
+      TextEditingController();
+  final TextEditingController _traininglocationcontroller =
+      TextEditingController();
+  final TextEditingController _trainingrolecontroller = TextEditingController();
+  final TextEditingController _searchaboutcontroller = TextEditingController();
+  final TextEditingController _skillsatcontroller = TextEditingController();
+  final TextEditingController _searchlocationcontroller =
+      TextEditingController();
+  final TextEditingController _govtdesignationcontroller =
+      TextEditingController();
+  final TextEditingController _govtlocationcontroller = TextEditingController();
+  final TextEditingController _otheraboutcontroller = TextEditingController();
+
+  List<String> profession = [
     'Industry',
     'Higher Studies',
     'Entrepreneur',
@@ -48,6 +78,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false,
       isGovt = false,
       isOther = false;
+  int industry = 1;
 
   viewFields(item) {
     if (item == profession[0]) {
@@ -154,6 +185,186 @@ class _UpdateScreenState extends State<UpdateScreen> {
   }
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    _batchController.dispose();
+    _branchController.dispose();
+    _dobController.dispose();
+    super.dispose();
+  }
+
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+
+  Future addIndustryUserDetails(
+      String name,
+      int batch,
+      String branch,
+      String dob,
+      String designation,
+      String industryname,
+      String location) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'designation': designation,
+      'industryname': industryname,
+      'location': location,
+    });
+  }
+
+  Future addStudiesUserDetails(
+      String name,
+      int batch,
+      String branch,
+      String dob,
+      String highstudycollege,
+      String degree,
+      String highstudylocation) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'higheducation': highstudycollege,
+      'degree': degree,
+      'higheducationlocation': highstudylocation,
+    });
+  }
+
+  Future addBusinessUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String aboutbusiness,
+    String location,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'about business': aboutbusiness,
+      'location': location,
+    });
+  }
+
+  Future addExamUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String preparingfor,
+    String location,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'preparing for': preparingfor,
+      'location': location,
+    });
+  }
+
+  Future addTrainerUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String trainingplatform,
+    String trainingrole,
+    String traininglocation,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'institute/college': trainingplatform,
+      'training role': trainingplatform,
+      'training location': traininglocation
+    });
+  }
+
+  Future addBankUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String bankname,
+    String designation,
+    String location,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'bank name': bankname,
+      'designation': designation,
+      'location': location
+    });
+  }
+
+  Future addSearchUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String searchfor,
+    String skillsat,
+    String location,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'searching for': searchfor,
+      'skills at': skillsat,
+      'location': location
+    });
+  }
+
+  Future addGovtUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String designation,
+    String location,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'designation': designation,
+      'location': location
+    });
+  }
+
+  Future addIsOtherUserDetails(
+    String name,
+    int batch,
+    String branch,
+    String dob,
+    String other,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'name': name,
+      'batch': batch,
+      'branch': branch,
+      'dob': dob,
+      'other': other,
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -174,7 +385,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         vertical: 60.0, horizontal: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
                           "Complete your",
                           style: TextStyle(color: Colors.white, fontSize: 25),
@@ -208,10 +419,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
             const SizedBox(
               height: 70,
             ),
-            UpdateTextBox('Name', nameController, TextInputType.name),
-            UpdateTextBox('Batch', batchController, TextInputType.number),
-            UpdateTextBox('Branch', branchController, TextInputType.name),
-            UpdateTextBox('DOB', dobController, TextInputType.datetime),
+            UpdateTextBox('Name', _nameController, TextInputType.name),
+            UpdateTextBox('Batch', _batchController, TextInputType.number),
+            UpdateTextBox('Branch', _branchController, TextInputType.name),
+            UpdateTextBox('DOB', _dobController, TextInputType.datetime),
             const SizedBox(
               height: 10,
             ),
@@ -221,7 +432,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RichText(
-                    text: TextSpan(
+                    text: const TextSpan(
                         text: 'Add your ',
                         style: TextStyle(color: Colors.black, fontSize: 20),
                         children: [
@@ -236,23 +447,24 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
-              margin: EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+              margin: const EdgeInsets.symmetric(vertical: 8),
               width: size.width * 0.8,
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(217, 217, 217, 1.0),
+                  color: const Color.fromRGBO(217, 217, 217, 1.0),
                   borderRadius: BorderRadius.circular(12)),
               child: DropdownButtonFormField2(
                 alignment: AlignmentDirectional.topStart,
-                itemPadding: EdgeInsets.symmetric(horizontal: 20),
-                hint: Text('Current Status', style: TextStyle(fontSize: 15)),
-                icon: Icon(Icons.arrow_drop_down),
-                iconEnabledColor: Color.fromRGBO(5, 68, 94, 35.0),
-                iconDisabledColor: Color.fromRGBO(217, 217, 217, 1.0),
+                itemPadding: const EdgeInsets.symmetric(horizontal: 20),
+                hint: const Text('Current Status',
+                    style: TextStyle(fontSize: 15)),
+                icon: const Icon(Icons.arrow_drop_down),
+                iconEnabledColor: const Color.fromRGBO(5, 68, 94, 35.0),
+                iconDisabledColor: const Color.fromRGBO(217, 217, 217, 1.0),
                 buttonHeight: 22,
                 isDense: true,
                 items: profession
@@ -272,75 +484,165 @@ class _UpdateScreenState extends State<UpdateScreen> {
             if (isIndustry)
               Column(
                 children: [
-                  WorkTextBox('Designation', designationcontroller),
-                  WorkTextBox('Industry Name', namecontroller),
-                  WorkTextBox(' Location', locationcontroller),
+                  WorkTextBox('Designation', _industrydesignationcontroller),
+                  WorkTextBox('Industry Name', _industrynamecontroller),
+                  WorkTextBox('Location', _industrylocationcontroller),
                 ],
               ),
             if (isStudies)
               Column(
                 children: [
-                  WorkTextBox('Collage/institute', namecontroller),
-                  WorkTextBox('location', locationcontroller),
-                  WorkTextBox('Degree', degreecontroller),
+                  WorkTextBox('College/Institute', _highcollegecontroller),
+                  WorkTextBox('Degree', _degreecontroller),
+                  WorkTextBox('Location', _studylocationcontroller),
                 ],
               ),
             if (isbusniess)
               Column(
                 children: [
-                  WorkTextBox('About business', aboutcontroller),
-                  WorkTextBox('location', locationcontroller)
+                  WorkTextBox('About business', _aboutbusinesscontroller),
+                  WorkTextBox('Location', _businesslocationcontroller)
                 ],
               ),
             if (isExam)
               Column(
                 children: [
-                  WorkTextBox('Institute name', namecontroller),
-                  WorkTextBox('Degree', degreecontroller),
-                  WorkTextBox('location', locationcontroller)
+                  WorkTextBox('Preparing For', _exampreparecontroller),
+                  WorkTextBox('Location', _examlocation)
                 ],
               ),
             if (isTrainer)
               Column(
                 children: [
-                  WorkTextBox('Working at', namecontroller),
-                  WorkTextBox('location', locationcontroller),
-                  WorkTextBox('Designation', designationcontroller)
+                  WorkTextBox('College/Institute', _trainingplatformcontroller),
+                  WorkTextBox('Training Role', _trainingrolecontroller),
+                  WorkTextBox('Location', _traininglocationcontroller),
                 ],
               ),
             if (isBank)
               Column(
                 children: [
-                  WorkTextBox('Institute name', namecontroller),
-                  WorkTextBox('Designation', designationcontroller),
-                  WorkTextBox('location', locationcontroller)
+                  WorkTextBox('Bank name', _banknamecontroller),
+                  WorkTextBox('Designation', _bankdesignationcontroller),
+                  WorkTextBox('Location', _banklocationcontroller)
                 ],
               ),
             if (isSearch)
               Column(
                 children: [
-                  WorkTextBox('About business', aboutcontroller),
-                  WorkTextBox('location', locationcontroller)
+                  WorkTextBox('Searching For', _searchaboutcontroller),
+                  WorkTextBox('Skills', _skillsatcontroller),
+                  WorkTextBox('Location', _searchlocationcontroller)
                 ],
               ),
             if (isGovt)
               Column(
                 children: [
-                  WorkTextBox('Designation', designationcontroller),
-                  WorkTextBox('location', locationcontroller)
+                  WorkTextBox('Designation', _govtdesignationcontroller),
+                  WorkTextBox('Location', _govtlocationcontroller)
                 ],
               ),
             if (isOther)
               Column(
-                children: [WorkTextBox('About', aboutcontroller)],
+                children: [WorkTextBox('About', _otheraboutcontroller)],
               ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  if (isIndustry == true) {
+                    addIndustryUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _industrydesignationcontroller.text.trim(),
+                        _industrynamecontroller.text.trim(),
+                        _industrylocationcontroller.text.trim());
+                  }
+                  if (isStudies == true) {
+                    addStudiesUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _highcollegecontroller.text.trim(),
+                        _degreecontroller.text.trim(),
+                        _studylocationcontroller.text.trim());
+                  }
+                  if (isbusniess == true) {
+                    addBusinessUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _aboutbusinesscontroller.text.trim(),
+                        _businesslocationcontroller.text.trim());
+                  }
+
+                  if (isExam == true) {
+                    addExamUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _exampreparecontroller.text.trim(),
+                        _examlocation.text.trim());
+                  }
+                  if (isTrainer == true) {
+                    addTrainerUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _trainingplatformcontroller.text.trim(),
+                        _trainingrolecontroller.text.trim(),
+                        _traininglocationcontroller.text.trim());
+                  }
+                  if (isBank == true) {
+                    addBankUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _banknamecontroller.text.trim(),
+                        _bankdesignationcontroller.text.trim(),
+                        _banklocationcontroller.text.trim());
+                  }
+                  if (isSearch == true) {
+                    addSearchUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _searchaboutcontroller.text.trim(),
+                        _skillsatcontroller.text.trim(),
+                        _searchlocationcontroller.text.trim());
+                  }
+
+                  if (isGovt == true) {
+                    addGovtUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _govtdesignationcontroller.text.trim(),
+                        _govtlocationcontroller.text.trim());
+                  }
+
+                  if (isOther == true) {
+                    addIsOtherUserDetails(
+                        _nameController.text.trim(),
+                        int.parse(_batchController.text.trim()),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _otheraboutcontroller.text.trim());
+                  }
+
+                  Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                         builder: (context) => HomeScreen(),
-                      ));
+                      ),
+                      (route) => false);
                 },
                 child: const Text('Save'),
                 style: ButtonStyle(
@@ -362,12 +664,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String hint, TextEditingController controller, TextInputType type) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(217, 217, 217, 1.0),
+          color: const Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
+      height: 50,
       child: TextFormField(
         keyboardType: type,
         cursorColor: Colors.black,
@@ -375,7 +678,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
         controller: controller,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
-      height: 50,
     );
   }
 
@@ -399,13 +701,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
       decoration: BoxDecoration(
           color: Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
+      height: 50,
       child: TextFormField(
         cursorColor: Colors.black,
         textCapitalization: TextCapitalization.sentences,
         controller: controller,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
-      height: 50,
     );
   }
 }

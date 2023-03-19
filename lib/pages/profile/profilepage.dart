@@ -1,8 +1,10 @@
+import 'package:alumini_final/auth/login_screen.dart';
+import 'package:alumini_final/auth/signin.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
 import 'package:alumini_final/pages/profile/tab2.dart';
-import 'package:alumini_final/pages/update_screens/update_profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyProfile extends StatefulWidget {
@@ -28,6 +30,7 @@ class _MyProfileState extends State<MyProfile>
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,12 +40,14 @@ class _MyProfileState extends State<MyProfile>
         backgroundColor: primaryColor,
         elevation: 0,
         title: RichText(
-          text:
-              TextSpan(text: 'My ', style: TextStyle(fontSize: 20), children: [
-            TextSpan(
-                text: 'Profile',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
-          ]),
+          text: const TextSpan(
+              text: 'My ',
+              style: TextStyle(fontSize: 20),
+              children: [
+                TextSpan(
+                    text: 'Profile',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+              ]),
         ),
         actions: [
           IconButton(
@@ -67,10 +72,11 @@ class _MyProfileState extends State<MyProfile>
                               )),
                           TextButton(
                               onPressed: () {
+                                FirebaseAuth.instance.signOut();
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => UpdateScreen(),
+                                      builder: (context) => const LoginScreen(),
                                     ),
                                     (route) => false);
                               },
@@ -94,17 +100,17 @@ class _MyProfileState extends State<MyProfile>
             Container(
               decoration: BoxDecoration(
                 color: primaryColor,
-                boxShadow: <BoxShadow>[
+                boxShadow: const <BoxShadow>[
                   BoxShadow(
                       color: Colors.black54,
                       blurRadius: 15.0,
                       offset: Offset(0.0, 0.75))
                 ],
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
               ),
-              padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+              padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: Column(
                 children: [
                   Column(
@@ -117,7 +123,7 @@ class _MyProfileState extends State<MyProfile>
                               ClipRRect(
                                 borderRadius:
                                     BorderRadius.circular(20.0), //or 15.0
-                                child: Container(
+                                child: SizedBox(
                                   height: 90.0,
                                   width: 90.0,
                                   child: Image.asset('assets/Athi.jpg'),
@@ -125,41 +131,42 @@ class _MyProfileState extends State<MyProfile>
                               ),
                             ],
                           ),
-                          SizedBox(
+                         const SizedBox(
                             width: 20,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children:const  [
                               SizedBox(
                                 height: 5,
                               ),
-                              Text("Athithyan K",
+                              Text('Athithyan',
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      letterSpacing: 1.0)),
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    // letterSpacing: 1.0
+                                  )),
                               SizedBox(
                                 height: 10,
                               ),
                               Text("Software Developer,",
                                   style: TextStyle(
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      letterSpacing: 1.0
-                                      )),
+                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    // letterSpacing: 1.0
+                                  )),
                               SizedBox(
                                 height: 10,
                               ),
-                              Text("Google",
+                              Text('Chennai',
                                   style: TextStyle(
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      letterSpacing: 1.0
-                                      )),
+                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                    // letterSpacing: 1.0
+                                  )),
                             ],
                           ),
                         ],
@@ -188,7 +195,7 @@ class _MyProfileState extends State<MyProfile>
                             "Edit Profile",
                             style: TextStyle(
                                 color: primaryColor,
-                                letterSpacing: 1.0,
+                                // letterSpacing: 1.0,
                                 fontWeight: FontWeight.w600),
                           )),
                     ],
@@ -200,7 +207,7 @@ class _MyProfileState extends State<MyProfile>
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Container(
-                height: MediaQuery.of(context).size.height/1.8,
+                height: MediaQuery.of(context).size.height / 1.8,
                 child: Column(
                   children: [
                     SizedBox(height: 25),

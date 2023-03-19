@@ -199,4 +199,3 @@ class _OtpVerificationState extends State<OtpVerification> {
     );
   }
 }
-
