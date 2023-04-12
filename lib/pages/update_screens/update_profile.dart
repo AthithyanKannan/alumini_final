@@ -1,12 +1,7 @@
-import 'package:alumini_final/auth/get_users.dart';
 import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
-import 'package:alumini_final/increment.dart';
 import 'package:alumini_final/pages/home.dart';
-import 'package:alumini_final/pages/profile/alumini_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 export 'update_profile.dart';
@@ -98,11 +93,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        industry = 1;
-        higherstudies = -1;
-        entrepreneur = -1;
-      });
     } else if (item == profession[1]) {
       isIndustry = false;
       isStudies = true;
@@ -114,9 +104,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        higherstudies = 1;
-      });
     } else if (item == profession[2]) {
       isIndustry = false;
       isStudies = false;
@@ -128,9 +115,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        entrepreneur = 1;
-      });
     } else if (item == profession[3]) {
       isIndustry = false;
       isStudies = false;
@@ -142,9 +126,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        competitive_exam = 1;
-      });
     } else if (item == profession[4]) {
       isIndustry = false;
       isStudies = false;
@@ -156,9 +137,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        trainers = 1;
-      });
     } else if (item == profession[5]) {
       isIndustry = false;
       isStudies = false;
@@ -170,9 +148,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        bank = 1;
-      });
     } else if (item == profession[6]) {
       isIndustry = false;
       isStudies = false;
@@ -184,9 +159,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
-      setState(() {
-        searchjob = 1;
-      });
     } else if (item == profession[7]) {
       isIndustry = false;
       isStudies = false;
@@ -198,9 +170,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = true;
       isOther = false;
-      setState(() {
-        govtjob = 1;
-      });
     } else {
       isIndustry = false;
       isStudies = false;
@@ -212,9 +181,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = true;
-      setState(() {
-        other = 1;
-      });
     }
     setState(() {});
   }
@@ -263,8 +229,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String degree,
       String highstudylocation,
       String email,
-      String number
-      ) async {
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -274,7 +239,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'degree': degree,
       'higheducationlocation': highstudylocation,
       'email': email,
-      'number' : "2",
+      'number': "2",
     });
   }
 
@@ -592,17 +557,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 onPressed: () {
                   if (isIndustry == true) {
                     addIndustryUserDetails(
-                        _nameController.text.trim(),
-                        _batchController.text.trim(),
-                        _branchController.text.trim(),
-                        _dobController.text.trim(),
-                        _industrydesignationcontroller.text.trim(),
-                        _industrynamecontroller.text.trim(),
-                        _industrylocationcontroller.text.trim(),
-                        emailcontroller.text.trim(),
-                        _number1controller.text.trim(),
-                        
-                        );
+                      _nameController.text.trim(),
+                      _batchController.text.trim(),
+                      _branchController.text.trim(),
+                      _dobController.text.trim(),
+                      _industrydesignationcontroller.text.trim(),
+                      _industrynamecontroller.text.trim(),
+                      _industrylocationcontroller.text.trim(),
+                      emailcontroller.text.trim(),
+                      _number1controller.text.trim(),
+                    );
                   }
                   if (isStudies == true) {
                     addStudiesUserDetails(
@@ -615,7 +579,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _studylocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
-                        
                   }
                   if (isbusniess == true) {
                     addBusinessUserDetails(

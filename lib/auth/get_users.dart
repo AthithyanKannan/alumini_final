@@ -2,9 +2,6 @@ import 'package:alumini_final/pages/profile/alumini_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../increment.dart';
-
 class GetUser extends StatefulWidget {
   final String documentId;
   int FinalIndustry = 0;
@@ -19,8 +16,6 @@ class GetUser extends StatefulWidget {
 class _GetUserState extends State<GetUser> {
   @override
   void initState() {
-    final int FinalIndustry = industry;
-    final int FinalStudies = higherstudies;
     super.initState();
   }
 
