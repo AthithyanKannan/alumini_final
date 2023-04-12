@@ -3,6 +3,8 @@ import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+  final emailcontroller = TextEditingController();
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -13,17 +15,17 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    final _emailcontroller = TextEditingController();
+  
     final _rollnocontroller = TextEditingController();
 
     Future signin() async {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailcontroller.text.trim(),
+          email: emailcontroller.text.trim(),
           password: _rollnocontroller.text.trim());
     }
 
     void dispose() {
-      _emailcontroller.dispose();
+      emailcontroller.dispose();
       _rollnocontroller.dispose();
       super.dispose();
     }
@@ -33,13 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.only(top: 200)),
+            const Padding(padding: EdgeInsets.only(top: 200)),
             Row(
-              children: [
-                SizedBox(
+              children: const [
+                 SizedBox(
                   width: 50,
                 ),
-                Text(
+                 Text(
                   "Login",
                   style: TextStyle(
                     fontSize: 35,
@@ -49,21 +51,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
-              padding: EdgeInsets.only(left: 25, top: 25),
+              padding: const EdgeInsets.only(left: 25, top: 25),
               width: double.infinity,
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(50.0),
                   )),
               child: Container(
                 height: MediaQuery.of(context).size.height / 1.7,
-                padding: EdgeInsets.fromLTRB(30, 60, 30, 20),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.fromLTRB(30, 60, 30, 20),
+                decoration:const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40.0),
@@ -71,14 +73,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                   const  Text(
                       "Email",
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Roboto'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -88,23 +90,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: TextField(
-                          controller: _emailcontroller,
-                          decoration: InputDecoration(
+                          controller: emailcontroller,
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: 'Email'),
                         ),
                       ),
                     ),
-                    SizedBox(
+                   const SizedBox(
                       height: 30,
                     ),
-                    Text(
+                    const Text(
                       "Roll-No",
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Roboto'),
                     ),
-                    SizedBox(
+                   const  SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -115,12 +117,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.only(left: 20),
                         child: TextField(
                           controller: _rollnocontroller,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none, hintText: 'Roll-No'),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Row(
@@ -136,15 +138,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 (route) => false);
                           },
-                          child: Text('Sign-in'),
+                          child:  Text('Sign-in'),
                           style: ButtonStyle(
-                              elevation: MaterialStatePropertyAll(2),
+                              elevation:const  MaterialStatePropertyAll(2),
                               shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
                               padding: MaterialStateProperty.all(
-                                EdgeInsets.symmetric(
+                               const EdgeInsets.symmetric(
                                     vertical: 17, horizontal: 50),
                               ),
                               backgroundColor:

@@ -67,7 +67,7 @@ class Tab2 extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "United States, California",
+                  "Cumbum",
                   style: TextStyle(
                       // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,
@@ -101,7 +101,7 @@ class Tab2 extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "App Developer",
+                  "Bank Appraiser",
                   style: TextStyle(
                       // letterSpacing: 1.0,
                       fontWeight: FontWeight.w600,

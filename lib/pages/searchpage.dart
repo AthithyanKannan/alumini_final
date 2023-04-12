@@ -32,48 +32,48 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: BackgroundColor,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: primaryColor,
-          elevation: 0,
-          title: RichText(
-            text: TextSpan(
-                text: 'Alumini ',
-                style: TextStyle(fontSize: 20),
-                children: [
-                  TextSpan(
-                      text: 'Connect',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
-                ]),
-          ),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => UpdateEvent(),
-                      ));
-                },
-                icon: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                )),
-            IconButton(
+      backgroundColor: BackgroundColor,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: primaryColor,
+        elevation: 0,
+        title: RichText(
+          text: TextSpan(
+              text: 'Alumini ',
+              style: TextStyle(fontSize: 20),
+              children: [
+                TextSpan(
+                    text: 'Connect',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+              ]),
+        ),
+        actions: [
+          IconButton(
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => EventNotification())));
+                      builder: (context) => UpdateEvent(),
+                    ));
               },
-              icon: Icon(Icons.notifications),
-              color: Colors.white,
-            ),
-          ],
-        ),
-        body: Column(children: [
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              )),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => EventNotification())));
+            },
+            icon: Icon(Icons.notifications),
+            color: Colors.white,
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 1),
             margin: EdgeInsets.symmetric(vertical: 12),
@@ -104,50 +104,51 @@ class _SearchPageState extends State<SearchPage> {
                     },
                   );
                 }),
-            )
-            ],
-          ),
-          );
-  }
-
-  Widget CardFormat(String name, String profession, AssetImage assetImage) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AluminiProfile(),
-            ));
-      },
-      onLongPress: () => Colors.grey,
-      child: Card(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(width: 10),
-            CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 25,
-                backgroundImage: assetImage),
-            SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(fontFamily: 'Roboto', fontSize: 18),
-                ),
-                Text(
-                  profession,
-                  style: TextStyle(fontFamily: 'Roboto', fontSize: 14),
-                )
-              ],
-            )
-          ],
-        ),
-      )),
+          )
+        ],
+      ),
     );
   }
 }
+
+//   Widget CardFormat(String name, String profession, AssetImage assetImage) {
+//     return InkWell(
+//       onTap: () {
+//         Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) => AluminiProfile(),
+//             ));
+//       },
+//       onLongPress: () => Colors.grey,
+//       child: Card(
+//           child: Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             SizedBox(width: 10),
+//             CircleAvatar(
+//                 backgroundColor: Colors.black,
+//                 radius: 25,
+//                 backgroundImage: assetImage),
+//             SizedBox(width: 20),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Text(
+//                   name,
+//                   style: TextStyle(fontFamily: 'Roboto', fontSize: 18),
+//                 ),
+//                 Text(
+//                   profession,
+//                   style: TextStyle(fontFamily: 'Roboto', fontSize: 14),
+//                 )
+//               ],
+//             )
+//           ],
+//         ),
+//       )),
+//     );
+//   }
+// }

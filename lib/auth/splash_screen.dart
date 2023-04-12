@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:alumini_final/auth/authenthication.dart';
-import 'package:alumini_final/auth/otp_number.dart';
 import 'package:alumini_final/auth/signin.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
@@ -25,7 +24,7 @@ class StartState extends State<StatefulWidget> {
     StartTimer();
   }
 
-  // ignore: non_constant_identifier_names
+
   StartTimer() async {
     var duration = Duration(seconds: 2);
     return Timer(duration, route);
@@ -35,7 +34,7 @@ class StartState extends State<StatefulWidget> {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: ((context) => Authentication())));
   }
-
+ 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: BackgroundColor,

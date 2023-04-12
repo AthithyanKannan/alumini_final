@@ -1,6 +1,4 @@
 import 'package:alumini_final/auth/login_screen.dart';
-import 'package:alumini_final/auth/otp_number.dart';
-import 'package:alumini_final/auth/otp_verification.dart';
 import 'package:alumini_final/auth/signin.dart';
 import 'package:alumini_final/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +13,13 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    
+    
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

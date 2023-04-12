@@ -1,10 +1,15 @@
+import 'package:alumini_final/auth/get_users.dart';
+import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
+import 'package:alumini_final/increment.dart';
 import 'package:alumini_final/pages/home.dart';
+import 'package:alumini_final/pages/profile/alumini_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-
-int industry = 0;
+export 'update_profile.dart';
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -53,12 +58,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
       TextEditingController();
   final TextEditingController _govtlocationcontroller = TextEditingController();
   final TextEditingController _otheraboutcontroller = TextEditingController();
+  final TextEditingController _number1controller = TextEditingController();
 
   List<String> profession = [
     'Industry',
     'Higher Studies',
     'Entrepreneur',
-    'Competative exams',
+    'Competitive Exams',
     'Trainers',
     'Banking sectors',
     'Searching job',
@@ -68,6 +74,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   String? selectedValue;
   final _formKey = GlobalKey<FormState>();
+
   bool isIndustry = false,
       isStudies = false,
       isbusniess = false,
@@ -78,7 +85,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false,
       isGovt = false,
       isOther = false;
-  int industry = 1;
 
   viewFields(item) {
     if (item == profession[0]) {
@@ -92,6 +98,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        industry = 1;
+        higherstudies = -1;
+        entrepreneur = -1;
+      });
     } else if (item == profession[1]) {
       isIndustry = false;
       isStudies = true;
@@ -103,6 +114,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        higherstudies = 1;
+      });
     } else if (item == profession[2]) {
       isIndustry = false;
       isStudies = false;
@@ -114,6 +128,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        entrepreneur = 1;
+      });
     } else if (item == profession[3]) {
       isIndustry = false;
       isStudies = false;
@@ -125,6 +142,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        competitive_exam = 1;
+      });
     } else if (item == profession[4]) {
       isIndustry = false;
       isStudies = false;
@@ -136,6 +156,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        trainers = 1;
+      });
     } else if (item == profession[5]) {
       isIndustry = false;
       isStudies = false;
@@ -147,6 +170,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        bank = 1;
+      });
     } else if (item == profession[6]) {
       isIndustry = false;
       isStudies = false;
@@ -158,6 +184,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = false;
+      setState(() {
+        searchjob = 1;
+      });
     } else if (item == profession[7]) {
       isIndustry = false;
       isStudies = false;
@@ -169,6 +198,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = true;
       isOther = false;
+      setState(() {
+        govtjob = 1;
+      });
     } else {
       isIndustry = false;
       isStudies = false;
@@ -180,6 +212,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       isHousewife = false;
       isGovt = false;
       isOther = true;
+      setState(() {
+        other = 1;
+      });
     }
     setState(() {});
   }
@@ -198,12 +233,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addIndustryUserDetails(
       String name,
-      int batch,
+      String batch,
       String branch,
       String dob,
       String designation,
       String industryname,
-      String location) async {
+      String location,
+      String email,
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -212,6 +249,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'designation': designation,
       'industryname': industryname,
       'location': location,
+      'email': email,
+      'number': "1",
     });
   }
 
@@ -222,7 +261,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String dob,
       String highstudycollege,
       String degree,
-      String highstudylocation) async {
+      String highstudylocation,
+      String email,
+      String number
+      ) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -231,17 +273,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'higheducation': highstudycollege,
       'degree': degree,
       'higheducationlocation': highstudylocation,
+      'email': email,
+      'number' : "2",
     });
   }
 
-  Future addBusinessUserDetails(
-    String name,
-    int batch,
-    String branch,
-    String dob,
-    String aboutbusiness,
-    String location,
-  ) async {
+  Future addBusinessUserDetails(String name, String batch, String branch,
+      String dob, String aboutbusiness, String location, String email) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -249,12 +287,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'dob': dob,
       'about business': aboutbusiness,
       'location': location,
+      'email': email
     });
   }
 
   Future addExamUserDetails(
     String name,
-    int batch,
+    String batch,
     String branch,
     String dob,
     String preparingfor,
@@ -272,7 +311,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addTrainerUserDetails(
     String name,
-    int batch,
+    String batch,
     String branch,
     String dob,
     String trainingplatform,
@@ -292,7 +331,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addBankUserDetails(
     String name,
-    int batch,
+    String batch,
     String branch,
     String dob,
     String bankname,
@@ -312,7 +351,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addSearchUserDetails(
     String name,
-    int batch,
+    String batch,
     String branch,
     String dob,
     String searchfor,
@@ -332,7 +371,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addGovtUserDetails(
     String name,
-    int batch,
+    String batch,
     String branch,
     String dob,
     String designation,
@@ -350,7 +389,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addIsOtherUserDetails(
     String name,
-    int batch,
+    String batch,
     String branch,
     String dob,
     String other,
@@ -495,18 +534,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('College/Institute', _highcollegecontroller),
                   WorkTextBox('Degree', _degreecontroller),
                   WorkTextBox('Location', _studylocationcontroller),
+                  //start date//end date
                 ],
               ),
             if (isbusniess)
               Column(
                 children: [
+                  //designation
                   WorkTextBox('About business', _aboutbusinesscontroller),
-                  WorkTextBox('Location', _businesslocationcontroller)
+                  WorkTextBox('Location', _businesslocationcontroller),
                 ],
               ),
             if (isExam)
               Column(
                 children: [
+                  //////institite/own
                   WorkTextBox('Preparing For', _exampreparecontroller),
                   WorkTextBox('Location', _examlocation)
                 ],
@@ -551,12 +593,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (isIndustry == true) {
                     addIndustryUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _industrydesignationcontroller.text.trim(),
                         _industrynamecontroller.text.trim(),
-                        _industrylocationcontroller.text.trim());
+                        _industrylocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim(),
+                        
+                        );
                   }
                   if (isStudies == true) {
                     addStudiesUserDetails(
@@ -566,22 +612,26 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _dobController.text.trim(),
                         _highcollegecontroller.text.trim(),
                         _degreecontroller.text.trim(),
-                        _studylocationcontroller.text.trim());
+                        _studylocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
+                        
                   }
                   if (isbusniess == true) {
                     addBusinessUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _aboutbusinesscontroller.text.trim(),
-                        _businesslocationcontroller.text.trim());
+                        _businesslocationcontroller.text.trim(),
+                        emailcontroller.text.trim());
                   }
 
                   if (isExam == true) {
                     addExamUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _exampreparecontroller.text.trim(),
@@ -590,7 +640,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (isTrainer == true) {
                     addTrainerUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _trainingplatformcontroller.text.trim(),
@@ -600,7 +650,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (isBank == true) {
                     addBankUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _banknamecontroller.text.trim(),
@@ -610,7 +660,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (isSearch == true) {
                     addSearchUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _searchaboutcontroller.text.trim(),
@@ -621,22 +671,20 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (isGovt == true) {
                     addGovtUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _govtdesignationcontroller.text.trim(),
                         _govtlocationcontroller.text.trim());
                   }
-
                   if (isOther == true) {
                     addIsOtherUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _otheraboutcontroller.text.trim());
                   }
-
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
@@ -644,7 +692,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       ),
                       (route) => false);
                 },
-                child: const Text('Save'),
+                child: Text('Save'),
                 style: ButtonStyle(
                     textStyle: MaterialStateProperty.all(
                         const TextStyle(fontSize: 15)),
