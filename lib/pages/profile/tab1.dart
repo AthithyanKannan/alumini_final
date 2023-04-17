@@ -1,9 +1,6 @@
 import 'package:alumini_final/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'profilepage.dart';
 
 class Tab1 extends StatefulWidget {
   final QueryDocumentSnapshot TabBar1Data;
@@ -22,32 +19,30 @@ class _Tab1State extends State<Tab1> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
-              if ('${widget.TabBar1Data['1']}' == '1')
-                CurrentUserTabView1()
-              else if ('${widget.TabBar1Data['2']}' == '2')
-                CurrentUserTabView1()
-              else if ('${widget.TabBar1Data['3']}' == '3')
-                CurrentUserTabView1()
-              else if (widget.TabBar1Data['4'] == '4')
-                CurrentUserTabView1()
-              else if (widget.TabBar1Data['5'] == '5')
-                CurrentUserTabView1()
-              else if (widget.TabBar1Data['6'] == '6')
-                CurrentUserTabView1()
-              else if (widget.TabBar1Data['7'] == '7')
-                CurrentUserTabView1()
-              else if (widget.TabBar1Data['8'] == '8')
-                CurrentUserTabView1()
+              if ('${widget.TabBar1Data['number']}' == '1')
+                currentUserTabView1(),
+              if ('${widget.TabBar1Data['number']}' == '2')
+                currentUserTabView1(),
+              if ('${widget.TabBar1Data['number']}' == '3')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '4')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '5')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '6')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '7')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '8')
+                currentUserTabView1()
               else
-                CurrentUserTabView1()
+                currentUserTabView1()
             ],
-          )
-          // ]),
-          ),
+          )),
     );
   }
 
-  Widget CurrentUserTabView1() {
+  Widget currentUserTabView1() {
     return Column(
       children: [
         Container(
@@ -63,7 +58,6 @@ class _Tab1State extends State<Tab1> {
               const Text(
                 "Branch",
                 style: TextStyle(
-                    // letterSpacing: 1.0,
                     fontWeight: FontWeight.w600,
                     color: Colors.blueGrey,
                     fontSize: 13),
@@ -73,10 +67,8 @@ class _Tab1State extends State<Tab1> {
               ),
               Text(
                 '${widget.TabBar1Data['branch']}',
-                style: const TextStyle(
-                    // letterSpacing: 1.0,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
               ),
             ],
           ),
@@ -97,7 +89,6 @@ class _Tab1State extends State<Tab1> {
               const Text(
                 "Batch",
                 style: TextStyle(
-                    // letterSpacing: 1.0,
                     fontWeight: FontWeight.w600,
                     color: Colors.blueGrey,
                     fontSize: 13),
@@ -107,20 +98,18 @@ class _Tab1State extends State<Tab1> {
               ),
               Text(
                 '${widget.TabBar1Data['batch']}',
-                style: const TextStyle(
-                    // letterSpacing: 1.0,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
               ),
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Color.fromRGBO(245, 245, 245, 1),
           ),
@@ -128,23 +117,20 @@ class _Tab1State extends State<Tab1> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Date Of birth",
                 style: TextStyle(
-                    // letterSpacing: 1.0,
                     fontWeight: FontWeight.w600,
                     color: Colors.blueGrey,
                     fontSize: 13),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Text(
                 '${widget.TabBar1Data['dob']}',
-                style: TextStyle(
-                    // letterSpacing: 1.0,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
               ),
             ],
           ),

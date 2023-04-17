@@ -26,14 +26,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
   final TextEditingController _industrynamecontroller = TextEditingController();
   final TextEditingController _industrylocationcontroller =
       TextEditingController();
+  final TextEditingController _startdatecontroller = TextEditingController();
+  final TextEditingController _enddatecontroller = TextEditingController();
   final TextEditingController _highcollegecontroller = TextEditingController();
   final TextEditingController _studylocationcontroller =
       TextEditingController();
   final TextEditingController _degreecontroller = TextEditingController();
+  final TextEditingController _businessdesignationcontroller =
+      TextEditingController();
   final TextEditingController _aboutbusinesscontroller =
       TextEditingController();
   final TextEditingController _businesslocationcontroller =
       TextEditingController();
+  final TextEditingController _instituteowncontroller = TextEditingController();
   final TextEditingController _exampreparecontroller = TextEditingController();
   final TextEditingController _examlocation = TextEditingController();
   final TextEditingController _banknamecontroller = TextEditingController();
@@ -222,12 +227,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future addStudiesUserDetails(
       String name,
-      int batch,
+      String batch,
       String branch,
       String dob,
       String highstudycollege,
       String degree,
       String highstudylocation,
+      String startdate,
+      String enddate,
       String email,
       String number) async {
     await FirebaseFirestore.instance.collection('users').add({
@@ -238,51 +245,70 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'higheducation': highstudycollege,
       'degree': degree,
       'higheducationlocation': highstudylocation,
+      'start date': startdate,
+      'end date': enddate,
       'email': email,
       'number': "2",
     });
   }
 
-  Future addBusinessUserDetails(String name, String batch, String branch,
-      String dob, String aboutbusiness, String location, String email) async {
+  Future addBusinessUserDetails(
+    String name,
+    String batch,
+    String branch,
+    String dob,
+    String designation,
+    String aboutbusiness,
+    String location,
+    String email,
+    String number,
+  ) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
       'branch': branch,
       'dob': dob,
+      'designation': designation,
       'about business': aboutbusiness,
       'location': location,
-      'email': email
+      'email': email,
+      'number': '3'
     });
   }
 
   Future addExamUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String preparingfor,
-    String location,
-  ) async {
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String institute,
+      String preparingfor,
+      String location,
+      String email,
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
       'branch': branch,
       'dob': dob,
+      'instituteown': institute,
       'preparing for': preparingfor,
       'location': location,
+      'email': email,
+      'number': '4'
     });
   }
 
   Future addTrainerUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String trainingplatform,
-    String trainingrole,
-    String traininglocation,
-  ) async {
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String trainingplatform,
+      String trainingrole,
+      String traininglocation,
+      String email,
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -290,19 +316,22 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'dob': dob,
       'institute/college': trainingplatform,
       'training role': trainingplatform,
-      'training location': traininglocation
+      'training location': traininglocation,
+      'email': email,
+      'number': '5'
     });
   }
 
   Future addBankUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String bankname,
-    String designation,
-    String location,
-  ) async {
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String bankname,
+      String designation,
+      String location,
+      String email,
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -310,19 +339,22 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'dob': dob,
       'bank name': bankname,
       'designation': designation,
-      'location': location
+      'location': location,
+      'email': email,
+      'number': '6'
     });
   }
 
   Future addSearchUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String searchfor,
-    String skillsat,
-    String location,
-  ) async {
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String searchfor,
+      String skillsat,
+      String location,
+      String email,
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -330,41 +362,43 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'dob': dob,
       'searching for': searchfor,
       'skills at': skillsat,
-      'location': location
+      'location': location,
+      'email': email,
+      'number': '7'
     });
   }
 
   Future addGovtUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String designation,
-    String location,
-  ) async {
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String designation,
+      String location,
+      String email,
+      String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
       'branch': branch,
       'dob': dob,
       'designation': designation,
-      'location': location
+      'location': location,
+      'email': email,
+      'number': '8'
     });
   }
 
-  Future addIsOtherUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String other,
-  ) async {
+  Future addIsOtherUserDetails(String name, String batch, String branch,
+      String dob, String other, String email, String number) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
       'branch': branch,
       'dob': dob,
       'other': other,
+      'email': email,
+      'number': '9'
     });
   }
 
@@ -499,13 +533,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('College/Institute', _highcollegecontroller),
                   WorkTextBox('Degree', _degreecontroller),
                   WorkTextBox('Location', _studylocationcontroller),
-                  //start date//end date
+                  WorkTextBox("Start Date", _startdatecontroller),
+                  WorkTextBox("End Date", _enddatecontroller)
                 ],
               ),
             if (isbusniess)
               Column(
                 children: [
-                  //designation
+                  WorkTextBox('Designation', _businessdesignationcontroller),
                   WorkTextBox('About business', _aboutbusinesscontroller),
                   WorkTextBox('Location', _businesslocationcontroller),
                 ],
@@ -513,7 +548,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
             if (isExam)
               Column(
                 children: [
-                  //////institite/own
+                  WorkTextBox("At Institute Or Own", _instituteowncontroller),
                   WorkTextBox('Preparing For', _exampreparecontroller),
                   WorkTextBox('Location', _examlocation)
                 ],
@@ -571,12 +606,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (isStudies == true) {
                     addStudiesUserDetails(
                         _nameController.text.trim(),
-                        int.parse(_batchController.text.trim()),
+                        _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _highcollegecontroller.text.trim(),
                         _degreecontroller.text.trim(),
                         _studylocationcontroller.text.trim(),
+                        _startdatecontroller.text.trim(),
+                        _enddatecontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
                   }
@@ -586,9 +623,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
+                        _businessdesignationcontroller.text.trim(),
                         _aboutbusinesscontroller.text.trim(),
                         _businesslocationcontroller.text.trim(),
-                        emailcontroller.text.trim());
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
 
                   if (isExam == true) {
@@ -597,8 +636,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
+                        _instituteowncontroller.text.trim(),
                         _exampreparecontroller.text.trim(),
-                        _examlocation.text.trim());
+                        _examlocation.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
                   if (isTrainer == true) {
                     addTrainerUserDetails(
@@ -608,7 +650,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _dobController.text.trim(),
                         _trainingplatformcontroller.text.trim(),
                         _trainingrolecontroller.text.trim(),
-                        _traininglocationcontroller.text.trim());
+                        _traininglocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
                   if (isBank == true) {
                     addBankUserDetails(
@@ -618,7 +662,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _dobController.text.trim(),
                         _banknamecontroller.text.trim(),
                         _bankdesignationcontroller.text.trim(),
-                        _banklocationcontroller.text.trim());
+                        _banklocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
                   if (isSearch == true) {
                     addSearchUserDetails(
@@ -628,7 +674,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _dobController.text.trim(),
                         _searchaboutcontroller.text.trim(),
                         _skillsatcontroller.text.trim(),
-                        _searchlocationcontroller.text.trim());
+                        _searchlocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
 
                   if (isGovt == true) {
@@ -638,7 +686,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _branchController.text.trim(),
                         _dobController.text.trim(),
                         _govtdesignationcontroller.text.trim(),
-                        _govtlocationcontroller.text.trim());
+                        _govtlocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
                   if (isOther == true) {
                     addIsOtherUserDetails(
@@ -646,7 +696,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _batchController.text.trim(),
                         _branchController.text.trim(),
                         _dobController.text.trim(),
-                        _otheraboutcontroller.text.trim());
+                        _otheraboutcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim());
                   }
                   Navigator.pushAndRemoveUntil(
                       context,

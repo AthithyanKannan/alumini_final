@@ -2,10 +2,9 @@ import 'package:alumini_final/pages/profile/alumini_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+
 class GetUser extends StatefulWidget {
   final String documentId;
-  int FinalIndustry = 0;
-  int FinalStudies = 0;
 
   GetUser({required this.documentId});
 
@@ -46,28 +45,27 @@ class _GetUserState extends State<GetUser> {
                   const CircleAvatar(
                     backgroundColor: Colors.black,
                     radius: 25,
-                    backgroundImage: AssetImage('assets/profile icon.png'),
+                    backgroundImage: AssetImage('assets/common logo.png'),
                   ),
                   const SizedBox(width: 20),
-                  // if (widget.FinalIndustry == 1)
-                  //   DisplayUser('${data['name']}', '${data['designation']}'),
-                  // if (widget.FinalStudies == 1)
-                  //   DisplayUser('${data['name']}', '${data['degree']}'),
-                  // if (finalEntreprenuer == 1)
-                  // DisplayUser('${data['name']}', '${data['about business']}'),
-                  // if (competitive_exam == 1)
-                  //   DisplayUser('${data['name']}', '${data['location']}'),
-                  // if (trainers == 1)
-                  //   DisplayUser('${data['name']}', '${data['trainig role']}'),
-                  // if (bank == 1)
-                  //   DisplayUser('${data['name']}', '${data['designation']}'),
-                  // if (searchjob == 1)
-                  //   DisplayUser('${data['name']}',
-                  //       'Searching For.${data['searching for']}'),
-                  // if (govtjob == 1)
-                  //   DisplayUser('${data['name']}', '${data['designation']}'),
-                  // if (other == 1)
-                  //   DisplayUser('${data['name']}', '${data['other']}'),
+                  if ('${data['number']}' == '1')
+                    DisplayUser('${data['name']}', '${data['designation']}'),
+                  if ('${data['number']}' == '2')
+                    DisplayUser('${data['name']}', '${data['degree']}'),
+                  if ('${data['number']}' == '3')
+                    DisplayUser('${data['name']}', '${data['about business']}'),
+                  if ('${data['number']}' == '4')
+                    DisplayUser('${data['name']}', '${data['location']}'),
+                  if ('${data['number']}' == '5')
+                    DisplayUser('${data['name']}', '${data['training role']}'),
+                  if ('${data['number']}' == '6')
+                    DisplayUser('${data['name']}', '${data['designation']}'),
+                  if ('${data['number']}' == '7')
+                    DisplayUser('${data['name']}', '${data['location']}'),
+                  if ('${data['number']}' == '8')
+                    DisplayUser('${data['name']}', '${data['designation']}'),
+                  if ('${data['number']}' == '9')
+                    DisplayUser('${data['name']}', '${data['other']}'),
                 ],
               ),
             )),

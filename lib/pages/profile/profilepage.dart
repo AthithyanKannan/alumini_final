@@ -1,5 +1,4 @@
 import 'package:alumini_final/auth/login_screen.dart';
-import 'package:alumini_final/auth/signin.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
@@ -36,7 +35,6 @@ class _MyProfileState extends State<MyProfile>
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
-        // centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: primaryColor,
         elevation: 0,
@@ -100,7 +98,7 @@ class _MyProfileState extends State<MyProfile>
           if (snapshot.connectionState == ConnectionState.done) {
             final QueryDocumentSnapshot tabbarData =
                 snapshot.data! as QueryDocumentSnapshot;
-            if (snapshot.data!['number'] == '1')
+            if ('${snapshot.data!['number']}' == '1') {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -110,12 +108,12 @@ class _MyProfileState extends State<MyProfile>
                         snapshot.data!['location']),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -124,12 +122,13 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -137,7 +136,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -168,20 +167,22 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "2")
+            } else if ('${snapshot.data!['number']}' == '2') {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(snapshot.data!['name'],
-                        snapshot.data!['degree'], snapshot.data!['location']),
+                    ProfileUser(
+                        snapshot.data!['name'],
+                        snapshot.data!['degree'],
+                        snapshot.data!['higheducationlocation']),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -234,7 +235,7 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "3")
+            } else if ('${snapshot.data!['number']}' == "3") {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -302,7 +303,7 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "4")
+            } else if ('${snapshot.data!['number']}' == "4") {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -368,7 +369,7 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "5")
+            } else if ('${snapshot.data!['number']}' == "5") {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -434,7 +435,7 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "6")
+            } else if ('${snapshot.data!['number']}' == "6") {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -444,7 +445,7 @@ class _MyProfileState extends State<MyProfile>
                         snapshot.data!['location']),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
@@ -502,7 +503,73 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "8")
+            } else if ('${snapshot.data!['number']}' == "7") {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ProfileUser(snapshot.data!['name'],
+                        snapshot.data!['branch'], snapshot.data!['location']),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 1.8,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 25),
+                            Container(
+                              width: MediaQuery.of(context).size.height,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: TabBar(
+                                      indicatorColor: primaryColor,
+                                      controller: tabController,
+                                      indicatorPadding:
+                                          EdgeInsets.symmetric(horizontal: 1),
+                                      indicatorWeight: 1,
+                                      indicator: BoxDecoration(
+                                          color: primaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      labelColor: Colors.white,
+                                      unselectedLabelColor: Colors.black,
+                                      tabs: [
+                                        Tab(
+                                          text: 'Personal Info',
+                                        ),
+                                        Tab(
+                                          text: 'Working Experience',
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: TabBarView(
+                                controller: tabController,
+                                children: [
+                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab2(
+                                    TabBar2Data: tabbarData,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            } else if ('${snapshot.data!['number']}' == "8") {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -568,7 +635,7 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
-            if (snapshot.data!['number'] == "9")
+            } else if ('${snapshot.data!['number']}' == "9") {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -634,6 +701,7 @@ class _MyProfileState extends State<MyProfile>
                   ],
                 ),
               );
+            }
           }
           return Text("Loading");
         },

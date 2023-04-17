@@ -15,7 +15,7 @@ class _EventNotificationState extends State<EventNotification> {
       backgroundColor: BackgroundColor,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -24,13 +24,13 @@ class _EventNotificationState extends State<EventNotification> {
         centerTitle: true,
         backgroundColor: primaryColor,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Notification',
-          style: TextStyle(
-              color: Colors.white, letterSpacing: 1),
+          style: TextStyle(color: Colors.white, letterSpacing: 1),
         ),
       ),
-      body: Center(child: Text(
+      body: const Center(
+          child: Text(
         'No More Events',
         style: TextStyle(
           fontSize: 20,

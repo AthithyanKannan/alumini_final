@@ -3,7 +3,7 @@ import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-  final emailcontroller = TextEditingController();
+final emailcontroller = TextEditingController();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-  
     final _rollnocontroller = TextEditingController();
 
     Future signin() async {
@@ -38,10 +37,10 @@ class _LoginScreenState extends State<LoginScreen> {
             const Padding(padding: EdgeInsets.only(top: 200)),
             Row(
               children: const [
-                 SizedBox(
+                SizedBox(
                   width: 50,
                 ),
-                 Text(
+                Text(
                   "Login",
                   style: TextStyle(
                     fontSize: 35,
@@ -65,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Container(
                 height: MediaQuery.of(context).size.height / 1.7,
                 padding: const EdgeInsets.fromLTRB(30, 60, 30, 20),
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40.0),
@@ -73,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   const  Text(
+                    const Text(
                       "Email",
                       style: TextStyle(
                           fontSize: 22,
@@ -96,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                   const SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     const Text(
@@ -106,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Roboto'),
                     ),
-                   const  SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -138,15 +137,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 (route) => false);
                           },
-                          child:  Text('Sign-in'),
+                          child: Text('Sign-in'),
                           style: ButtonStyle(
-                              elevation:const  MaterialStatePropertyAll(2),
+                              elevation: const MaterialStatePropertyAll(2),
                               shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
                               padding: MaterialStateProperty.all(
-                               const EdgeInsets.symmetric(
+                                const EdgeInsets.symmetric(
                                     vertical: 17, horizontal: 50),
                               ),
                               backgroundColor:

@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(fontFamily: 'Roboto'),
         debugShowCheckedModeBanner: false,
-        home: SplashScreen());
+        home: SplashScreen()
+        );
   }
 }
