@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:math';
-
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/editpersonaltab.dart';
 import 'package:alumini_final/pages/profile/editworktab.dart';
@@ -22,7 +19,7 @@ class _editprofileState extends State<editprofile>
         child: Scaffold(
             appBar: AppBar(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                     text: 'Edit ',
                     style: TextStyle(fontSize: 20),
                     children: [
@@ -39,25 +36,25 @@ class _editprofileState extends State<editprofile>
                   Navigator.pop(context);
                 },
                 iconSize: 20,
-                icon: Icon(Icons.arrow_back_ios_new),
+                icon: const Icon(Icons.arrow_back),
               ),
             ),
             body: SingleChildScrollView(
                 child: Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height / 1.5,
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
                 height: MediaQuery.of(context).size.height,
                 child: Column(children: [
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Container(
                     width: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: TabBar(
                         indicatorColor: primaryColor,
                         controller: _edittabcontroller,
@@ -85,10 +82,8 @@ class _editprofileState extends State<editprofile>
                     children: [EditPersonalTab(), EditWorkTab()],
                   )),
                   ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Save Changes'),
+                      onPressed: () {},
+                      child: Text('Save Changes'),
                       style: ButtonStyle(
                           textStyle: MaterialStateProperty.all(
                               const TextStyle(fontSize: 15)),

@@ -424,6 +424,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Complete your",
                           style: TextStyle(color: Colors.white, fontSize: 25),
@@ -437,19 +440,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         )
                       ],
                     ),
-                  ),
-                ),
-                const Positioned(
-                  top: 140,
-                  left: 130,
-                  child: CircleAvatar(
-                    radius: 50,
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.black,
-                      size: 60,
-                    ),
-                    backgroundColor: Color.fromRGBO(217, 217, 217, 1.0),
                   ),
                 ),
               ],

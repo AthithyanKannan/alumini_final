@@ -1,14 +1,9 @@
 import 'dart:async';
 import 'package:alumini_final/auth/authenthication.dart';
-import 'package:alumini_final/auth/signin.dart';
-import 'package:alumini_final/colors.dart';
-import 'package:alumini_final/pages/home.dart';
-import 'package:alumini_final/pages/profile/profilepage.dart';
-import 'package:alumini_final/pages/searchpage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
-import '../pages/update_screens/update_profile.dart';
+import 'package:alumini_final/colors.dart';
+
+import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -24,7 +19,6 @@ class StartState extends State<StatefulWidget> {
     StartTimer();
   }
 
-
   StartTimer() async {
     var duration = Duration(seconds: 2);
     return Timer(duration, route);
@@ -34,7 +28,7 @@ class StartState extends State<StatefulWidget> {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: ((context) => Authentication())));
   }
- 
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: BackgroundColor,

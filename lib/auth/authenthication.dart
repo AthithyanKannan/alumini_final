@@ -1,8 +1,6 @@
 import 'package:alumini_final/auth/login_screen.dart';
-import 'package:alumini_final/auth/signin.dart';
 import 'package:alumini_final/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Authentication extends StatefulWidget {

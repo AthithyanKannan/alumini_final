@@ -17,7 +17,7 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           EditTextBox('Name', EditnameController, TextInputType.name),

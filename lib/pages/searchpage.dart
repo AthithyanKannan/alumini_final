@@ -1,12 +1,8 @@
 import 'package:alumini_final/colors.dart';
-import 'package:alumini_final/pages/profile/alumini_profile.dart';
 import 'package:alumini_final/pages/update_screens/events_notifications.dart';
 import 'package:alumini_final/pages/update_screens/update_events.dart';
-import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../auth/get_users.dart';
 
 class SearchPage extends StatefulWidget {
@@ -38,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
         backgroundColor: primaryColor,
         elevation: 0,
         title: RichText(
-          text: TextSpan(
+          text: const TextSpan(
               text: 'Alumini ',
               style: TextStyle(fontSize: 20),
               children: [
@@ -56,7 +52,7 @@ class _SearchPageState extends State<SearchPage> {
                       builder: (context) => UpdateEvent(),
                     ));
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.add,
                 color: Colors.white,
               )),
@@ -67,7 +63,7 @@ class _SearchPageState extends State<SearchPage> {
                   MaterialPageRoute(
                       builder: ((context) => EventNotification())));
             },
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             color: Colors.white,
           ),
         ],
@@ -75,11 +71,11 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 1),
-            margin: EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 1),
+            margin: const EdgeInsets.symmetric(vertical: 12),
             width: size.width * 0.9,
             decoration: BoxDecoration(
-                color: Color.fromRGBO(217, 217, 217, 1.0),
+                color: const Color.fromRGBO(217, 217, 217, 1.0),
                 borderRadius: BorderRadius.circular(8)),
             child: TextFormField(
               decoration: InputDecoration(
@@ -97,7 +93,7 @@ class _SearchPageState extends State<SearchPage> {
                 future: getDocIDs(),
                 builder: (context, snapshot) {
                   return ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 17),
+                    padding: const EdgeInsets.symmetric(horizontal: 17),
                     itemCount: docIDs.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GetUser(documentId: docIDs[index]);

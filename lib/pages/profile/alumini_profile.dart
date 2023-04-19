@@ -542,7 +542,6 @@ class _AluminiProfileState extends State<AluminiProfile> {
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,
-                                // letterSpacing: 1.0
                               )),
                           const SizedBox(
                             height: 10,
@@ -552,7 +551,6 @@ class _AluminiProfileState extends State<AluminiProfile> {
                                 color: Colors.blueGrey,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
-                                // letterSpacing: 1.0
                               )),
                           const SizedBox(
                             height: 10,
