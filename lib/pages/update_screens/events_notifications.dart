@@ -4,10 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class EventNotification extends StatefulWidget {
-  // final String eventsDocId;
-
-  // const EventNotification({required this.eventsDocId, super.key})
-  // ;
   EventNotification({super.key});
 
   @override
@@ -68,73 +64,5 @@ class _EventNotificationState extends State<EventNotification> {
         )),
       ]),
     );
-
-    // body: FutureBuilder<DocumentSnapshot>(
-    //   future: events.doc(widget.eventsDocId).get(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.done) {
-    //       Map<String, dynamic> eventdata =
-    //           snapshot.data!.data() as Map<String, dynamic>;
-    //       final imageurl = eventdata['imageUrl'];
-    //       final title = eventdata['text'];
-    //       final timestamp = eventdata['timestamp'] as Timestamp;
-    //       return ListTile(
-    //         title: title,
-    //         leading:
-    //             imageurl != null ? Image.network(imageurl) : Text("Null"),
-    //         subtitle: Text(timestamp.toDate().toString()),
-    //       );
-    //     }
-
-    //     return Text("Loading");
-    //   },
-    // ),
-    // body: StreamBuilder<QuerySnapshot>(
-    //   stream: FirebaseFirestore.instance
-    //       .collection('events')
-    //       .orderBy('timestamp', descending: true)
-    //       .snapshots(),
-    //   builder: (context, snapshot) {
-    //     Map<String, dynamic> data = snapshot.data! as Map<String, dynamic>;
-    //     final imageUrl = data['imagesUrl'];
-    //     final title = data['text'];
-    //     final timestamp = data['timestamp'] as Timestamp;
-    //     if (snapshot.connectionState == ConnectionState.done) {
-    //       return ListTile(
-    //         leading: imageUrl != null ? Image.network(imageUrl) : null,
-    //         title: Text(title),
-    //         subtitle: Text(timestamp.toDate().toString()),
-    //       );
-    //     }
-    //     return ListTile(
-    //       leading: imageUrl != null ? Image.network(imageUrl) : null,
-    //       title: Text(title),
-    //       subtitle: Text(timestamp.toDate().toString()),
-    //     );
-    //   },
-    // ));
-
-    //   body: Center(
-    //       child: FutureBuilder<QuerySnapshot>(
-    //     future: FirebaseFirestore.instance
-    //         .collection('events') // 👈 Your collection name here
-    //         .get(),
-    //     builder: (context, snapshot) {
-    //       if (snapshot.hasError) return Text('Error = ${snapshot.error}');
-    //       if (snapshot.connectionState == ConnectionState.waiting) {
-    //         return const Text("Loading");
-    //       }
-    //       return ListView(
-    //           children: snapshot.data!.docs.map((DocumentSnapshot document) {
-    //         Map<String, dynamic> data =
-    //             document.data()! as Map<String, dynamic>;
-    //         return ListTile(
-    //           // leading: Text(data['timestamp']),
-    //           title: Text(data['text']), // 👈 Your valid data here
-    //         );
-    //       }).toList());
-    //     },
-    //   )),
-    // );
   }
 }

@@ -18,9 +18,35 @@ class _LoginScreenState extends State<LoginScreen> {
     final _rollnocontroller = TextEditingController();
 
     Future signin() async {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailcontroller.text.trim(),
-          password: _rollnocontroller.text.trim());
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: emailcontroller.text.trim(),
+            password: _rollnocontroller.text.trim());
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('No user found for that email.'),
+              clipBehavior: Clip.none,
+              backgroundColor: Colors.teal,
+              behavior: SnackBarBehavior.floating,
+              width: 200,
+            ),
+          );
+        } else if (e.code == 'wrong-password') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Wrong password provided for that user.'),
+            ),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: $e'),
+          ),
+        );
+      }
     }
 
     void dispose() {

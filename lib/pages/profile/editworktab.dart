@@ -265,11 +265,11 @@ class _EditWorkTabState extends State<EditWorkTab> {
   Widget EditWorkTextBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(217, 217, 217, 1.0),
+          color:const  Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
       child: TextFormField(
         cursorColor: Colors.black,

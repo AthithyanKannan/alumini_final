@@ -20,10 +20,10 @@ class _Tab1State extends State<Tab1> {
           child: Column(
             children: [
               if ('${widget.TabBar1Data['number']}' == '1')
-                currentUserTabView1(),
-              if ('${widget.TabBar1Data['number']}' == '2')
-                currentUserTabView1(),
-              if ('${widget.TabBar1Data['number']}' == '3')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '2')
+                currentUserTabView1()
+              else if ('${widget.TabBar1Data['number']}' == '3')
                 currentUserTabView1()
               else if ('${widget.TabBar1Data['number']}' == '4')
                 currentUserTabView1()

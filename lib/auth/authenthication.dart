@@ -1,5 +1,6 @@
 import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/pages/home.dart';
+import 'package:alumini_final/pages/update_screens/update_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,6 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +19,7 @@ class _AuthenticationState extends State<Authentication> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+
               return HomeScreen();
             } else {
               return LoginScreen();

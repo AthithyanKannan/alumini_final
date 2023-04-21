@@ -1,7 +1,6 @@
 import 'dart:io';
+import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
-import 'package:alumini_final/pages/update_screens/events_notifications.dart';
-import 'package:alumini_final/pages/update_screens/get_events.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,17 +14,7 @@ class UpdateEvent extends StatefulWidget {
 }
 
 class _UpdateEventState extends State<UpdateEvent> {
-  // File? image;
-  // Future pickImage() async {
-  //   try {
-  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //     if (image == null) return;
-  //     final imageTemporary = File(image.path);
-  //     this.image = imageTemporary;
-  //   } on PlatformException catch (e) {
-  //     print('Failed to pick image');
-  //   }
-  // }
+  
   TextEditingController EventName = TextEditingController();
   TextEditingController EventDescription = TextEditingController();
   String Eventname = '';
@@ -41,7 +30,8 @@ class _UpdateEventState extends State<UpdateEvent> {
     }
   }
 
-  void sendMessage(String title, File? image, String description) async {
+  void sendMessage(
+      String title, File? image, String description, String email) async {
     final messagesRef = FirebaseFirestore.instance.collection('events');
     if (image != null) {
       final storageref = FirebaseStorage.instance
@@ -53,13 +43,15 @@ class _UpdateEventState extends State<UpdateEvent> {
         'title': title,
         'imagesUrl': imageurl,
         'description': description,
-        "timestamp": FieldValue.serverTimestamp()
+        "timestamp": FieldValue.serverTimestamp(),
+        'email' : email
       });
     } else {
       messagesRef.add({
         'title': title,
         "timestamp": FieldValue.serverTimestamp(),
         'description': description,
+        'email' : email
       });
     }
 
@@ -92,7 +84,8 @@ class _UpdateEventState extends State<UpdateEvent> {
         actions: [
           IconButton(
             onPressed: () {
-              sendMessage(Eventname, image, Eventdescription);
+              sendMessage(Eventname, image, Eventdescription,
+                  emailcontroller.text.trim());
               Navigator.pop(context);
             },
             icon: const Icon(Icons.done),

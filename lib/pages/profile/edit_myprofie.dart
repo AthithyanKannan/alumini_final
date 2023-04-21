@@ -4,7 +4,17 @@ import 'package:alumini_final/pages/profile/editworktab.dart';
 import 'package:flutter/material.dart';
 
 class editprofile extends StatefulWidget {
-  const editprofile({super.key});
+  String name1;
+  String batch1;
+  String branch1;
+  String dob1;
+
+  editprofile(
+      {required this.name1,
+      required this.batch1,
+      required this.branch1,
+      required this.dob1,
+      super.key});
 
   @override
   State<editprofile> createState() => _editprofileState();
@@ -79,22 +89,30 @@ class _editprofileState extends State<editprofile>
                   Expanded(
                       child: TabBarView(
                     controller: _edittabcontroller,
-                    children: [EditPersonalTab(), EditWorkTab()],
+                    children: [
+                      EditPersonalTab(
+                        name2: widget.name1,
+                        batch2: widget.batch1,
+                        branch2: widget.branch1,
+                        dob2: widget.dob1,
+                      ),
+                      EditWorkTab()
+                    ],
                   )),
-                  ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Save Changes'),
-                      style: ButtonStyle(
-                          textStyle: MaterialStateProperty.all(
-                              const TextStyle(fontSize: 15)),
-                          backgroundColor:
-                              MaterialStateProperty.all(primaryColor),
-                          padding: MaterialStateProperty.all(
-                              const EdgeInsets.symmetric(
-                                  horizontal: 80, vertical: 15)),
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)))))
+                  // ElevatedButton(
+                  //     onPressed: () {},
+                  //     child: Text('Save Changes'),
+                  //     style: ButtonStyle(
+                  //         textStyle: MaterialStateProperty.all(
+                  //             const TextStyle(fontSize: 15)),
+                  //         backgroundColor:
+                  //             MaterialStateProperty.all(primaryColor),
+                  //         padding: MaterialStateProperty.all(
+                  //             const EdgeInsets.symmetric(
+                  //                 horizontal: 80, vertical: 15)),
+                  //         shape: MaterialStateProperty.all(
+                  //             RoundedRectangleBorder(
+                  //                 borderRadius: BorderRadius.circular(8)))))
                 ]),
               ),
             ))));

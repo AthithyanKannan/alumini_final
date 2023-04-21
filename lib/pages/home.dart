@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: BackgroundColor,
       body: pages[currentindex],
       bottomNavigationBar: BottomNavigationBar(
-         backgroundColor: primaryColor,
+        backgroundColor: primaryColor,
         onTap: Ontap,
         selectedFontSize: 0,
         unselectedFontSize: 0,
@@ -35,10 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
         showUnselectedLabels: false,
         currentIndex: currentindex,
         elevation: 0,
-        items: [
-          BottomNavigationBarItem(
-           
-            icon: Icon(Icons.search), label: 'Search'),
+        items:const [
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: 'My Profile'),
         ],

@@ -21,6 +21,7 @@ class _MyProfileState extends State<MyProfile>
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
+
     super.initState();
   }
 
@@ -49,6 +50,15 @@ class _MyProfileState extends State<MyProfile>
               ]),
         ),
         actions: [
+          // IconButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => editprofile(),
+          //           ));
+          //     },
+          //     icon: Icon(Icons.edit)),
           IconButton(
               onPressed: () {
                 showDialog(
@@ -98,6 +108,18 @@ class _MyProfileState extends State<MyProfile>
           if (snapshot.connectionState == ConnectionState.done) {
             final QueryDocumentSnapshot tabbarData =
                 snapshot.data! as QueryDocumentSnapshot;
+            String name = snapshot.data!['name'];
+            String batch = snapshot.data!['batch'];
+            String branch = snapshot.data!['branch'];
+            String dob = snapshot.data!['dob'];
+
+            // EditPersonalTab(
+            //   name: name,
+            //   batch: batch,
+            //   branch: branch,
+            //   dob: dob,
+            // );
+
             if ('${snapshot.data!['number']}' == '1') {
               return SingleChildScrollView(
                 child: Column(
@@ -106,6 +128,37 @@ class _MyProfileState extends State<MyProfile>
                         snapshot.data!['name'],
                         snapshot.data!['designation'],
                         snapshot.data!['location']),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => editprofile(
+                                      name1: name,
+                                      batch1: batch,
+                                      branch1: branch,
+                                      dob1: dob,
+                                    ),
+                                  ));
+                            },
+                            style: ElevatedButton.styleFrom(
+                                onPrimary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                backgroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10)),
+                            child: Text(
+                              "Edit Profile",
+                              style: TextStyle(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w600),
+                            )),
+                      ],
+                    ),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -196,7 +249,7 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -802,33 +855,33 @@ class _MyProfileState extends State<MyProfile>
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => editprofile(),
-                        ));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      backgroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10)),
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(
-                        color: primaryColor,
-                        // letterSpacing: 1.0,
-                        fontWeight: FontWeight.w600),
-                  )),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     ElevatedButton(
+          //         onPressed: () {
+          //           Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                 builder: (context) => editprofile(),
+          //               ));
+          //         },
+          //         style: ElevatedButton.styleFrom(
+          //             onPrimary: Colors.white,
+          //             shape: RoundedRectangleBorder(
+          //                 borderRadius: BorderRadius.circular(10)),
+          //             backgroundColor: Colors.white,
+          //             padding: const EdgeInsets.symmetric(
+          //                 horizontal: 20, vertical: 10)),
+          //         child: Text(
+          //           "Edit Profile",
+          //           style: TextStyle(
+          //               color: primaryColor,
+          //               // letterSpacing: 1.0,
+          //               fontWeight: FontWeight.w600),
+          //         )),
+          //   ],
+          // ),
         ],
       ),
     );
