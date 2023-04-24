@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('No user found for that email.'),
               clipBehavior: Clip.none,
               backgroundColor: Colors.teal,
@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         } else if (e.code == 'wrong-password') {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Wrong password provided for that user.'),
             ),
           );

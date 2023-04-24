@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 export 'update_profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -59,6 +60,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
   final TextEditingController _govtlocationcontroller = TextEditingController();
   final TextEditingController _otheraboutcontroller = TextEditingController();
   final TextEditingController _number1controller = TextEditingController();
+
+  Future<void> checkIfPageVisited() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool pageVisited = prefs.getBool('page_visited') ?? false;
+    if (pageVisited) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+          (route) => false);
+    } else {
+      await prefs.setBool('page_visited', true);
+    }
+  }
 
   List<String> profession = [
     'Industry',
@@ -400,6 +416,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'email': email,
       'number': '9'
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfPageVisited();
   }
 
   @override

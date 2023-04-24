@@ -19,9 +19,9 @@ class _AuthenticationState extends State<Authentication> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-
               return HomeScreen();
-            } else {
+            }
+            else {
               return LoginScreen();
             }
           }),

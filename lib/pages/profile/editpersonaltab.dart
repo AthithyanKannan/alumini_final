@@ -57,13 +57,13 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
   }
 
   Widget build(BuildContext context) {
-    TextEditingController EditnameController =
+    final TextEditingController EditnameController =
         TextEditingController(text: widget.name2);
-    TextEditingController EditBatchController =
+    final TextEditingController EditBatchController =
         TextEditingController(text: widget.batch2);
-    TextEditingController EditBranchController =
+    final TextEditingController EditBranchController =
         TextEditingController(text: widget.branch2);
-    TextEditingController EditDobController =
+    final TextEditingController EditDobController =
         TextEditingController(text: widget.dob2);
     return Scaffold(
         body: Column(

@@ -20,8 +20,7 @@ class _GetEventsState extends State<GetEvents> {
 
     if (user != null) {
       email = user.email!;
-    } else {
-    }
+    } else {}
     CollectionReference eventCollectionRef =
         FirebaseFirestore.instance.collection('events');
     return FutureBuilder<DocumentSnapshot>(
@@ -34,7 +33,7 @@ class _GetEventsState extends State<GetEvents> {
           final imageurl = eventdata['imagesUrl'];
           final description = eventdata['description'];
           final timestamp = eventdata['timestamp'] as Timestamp;
-          if ('${eventdata['email']}' == email)
+          if ('${eventdata['email']}' == email) {
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -59,12 +58,13 @@ class _GetEventsState extends State<GetEvents> {
                       height: 20,
                     ),
                     Text(timestamp.toDate().toString()),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.delete)),
                   ],
                 ),
               )),
             );
-          else {
+          } else {
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -79,17 +79,46 @@ class _GetEventsState extends State<GetEvents> {
               child: Card(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 20,
+                    Row(
+                      children: [
+                        const Text(
+                          "Name:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 17),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "${eventdata['title']}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 17),
+                        ),
+                      ],
                     ),
-                    Text("${eventdata['title']}"),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Text(timestamp.toDate().toString()),
+                    Row(
+                      children: [
+                        const Text(
+                          "Time:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 17),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          timestamp.toDate().toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 17),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               )),

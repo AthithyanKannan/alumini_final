@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/update_screens/events_notifications.dart';
 import 'package:alumini_final/pages/update_screens/update_events.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../auth/get_users.dart';
 
@@ -14,6 +17,15 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   List<String> docIDs = [];
+  String query = '';
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+  Stream<QuerySnapshot> getData() {
+    return collectionReference
+        .where('name', isGreaterThanOrEqualTo: query)
+        .where('name', isLessThanOrEqualTo: query + '\uf8ff')
+        .snapshots();
+  }
 
   Future getDocIDs() async {
     await FirebaseFirestore.instance
@@ -78,6 +90,11 @@ class _SearchPageState extends State<SearchPage> {
                 color: const Color.fromRGBO(217, 217, 217, 1.0),
                 borderRadius: BorderRadius.circular(8)),
             child: TextFormField(
+              onChanged: (value) {
+                setState(() {
+                  query = value;
+                });
+              },
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   prefixIconColor: Colors.black,
@@ -91,7 +108,17 @@ class _SearchPageState extends State<SearchPage> {
             child: FutureBuilder(
                 // future is what you acutually waiting for
                 future: getDocIDs(),
+                initialData: getData(),
                 builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 17),
+                      itemCount: docIDs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GetUser(documentId: docIDs[index]);
+                      },
+                    );
+                  }
                   return ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 17),
                     itemCount: docIDs.length,
@@ -100,7 +127,26 @@ class _SearchPageState extends State<SearchPage> {
                     },
                   );
                 }),
-          )
+          ),
+          // Expanded(
+          //   child: StreamBuilder<QuerySnapshot>(
+          //     stream: getData(),
+          //     builder: (BuildContext context,
+          //         AsyncSnapshot<QuerySnapshot> snapshot) {
+          //       if (!snapshot.hasData) {
+          //         return CircularProgressIndicator();
+          //       }
+          //       return ListView.builder(
+          //         padding: const EdgeInsets.symmetric(horizontal: 17),
+          //         //           itemCount: docIDs.length,
+          //         itemCount: docIDs.length,
+          //         itemBuilder: (BuildContext context, int index) {
+          //           return GetUser(documentId: docIDs[index]);
+          //         },
+          //       );
+          //     },
+          //   ),
+          // )
         ],
       ),
     );
