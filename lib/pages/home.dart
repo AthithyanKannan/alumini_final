@@ -1,6 +1,8 @@
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/profilepage.dart';
 import 'package:alumini_final/pages/searchpage.dart';
+import 'package:alumini_final/pages/update_screens/events_notifications.dart';
+import 'package:alumini_final/pages/update_screens/update_events.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
         showUnselectedLabels: false,
         currentIndex: currentindex,
         elevation: 0,
-        items:const [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: 'My Profile'),

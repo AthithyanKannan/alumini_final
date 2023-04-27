@@ -127,38 +127,11 @@ class _MyProfileState extends State<MyProfile>
                     ProfileUser(
                         snapshot.data!['name'],
                         snapshot.data!['designation'],
-                        snapshot.data!['location']),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => editprofile(
-                                      name1: name,
-                                      batch1: batch,
-                                      branch1: branch,
-                                      dob1: dob,
-                                    ),
-                                  ));
-                            },
-                            style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                backgroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10)),
-                            child: Text(
-                              "Edit Profile",
-                              style: TextStyle(
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.w600),
-                            )),
-                      ],
-                    ),
+                        snapshot.data!['location'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -227,7 +200,11 @@ class _MyProfileState extends State<MyProfile>
                     ProfileUser(
                         snapshot.data!['name'],
                         snapshot.data!['degree'],
-                        snapshot.data!['higheducationlocation']),
+                        snapshot.data!['higheducationlocation'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -249,7 +226,8 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -295,7 +273,11 @@ class _MyProfileState extends State<MyProfile>
                     ProfileUser(
                         snapshot.data!['name'],
                         snapshot.data!['about business'],
-                        snapshot.data!['location']),
+                        snapshot.data!['location'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -361,7 +343,7 @@ class _MyProfileState extends State<MyProfile>
                 child: Column(
                   children: [
                     ProfileUser(snapshot.data!['name'], snapshot.data!['batch'],
-                        snapshot.data!['location']),
+                        snapshot.data!['location'], name, batch, branch, dob),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -429,7 +411,11 @@ class _MyProfileState extends State<MyProfile>
                     ProfileUser(
                         snapshot.data!['name'],
                         snapshot.data!['training role'],
-                        snapshot.data!['training location']),
+                        snapshot.data!['training location'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -495,7 +481,11 @@ class _MyProfileState extends State<MyProfile>
                     ProfileUser(
                         snapshot.data!['name'],
                         snapshot.data!['designation'],
-                        snapshot.data!['location']),
+                        snapshot.data!['location'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -560,8 +550,14 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(snapshot.data!['name'],
-                        snapshot.data!['branch'], snapshot.data!['location']),
+                    ProfileUser(
+                        snapshot.data!['name'],
+                        snapshot.data!['branch'],
+                        snapshot.data!['location'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -626,8 +622,14 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(snapshot.data!['name'],
-                        snapshot.data!['branch'], snapshot.data!['location']),
+                    ProfileUser(
+                        snapshot.data!['name'],
+                        snapshot.data!['branch'],
+                        snapshot.data!['location'],
+                        name,
+                        batch,
+                        branch,
+                        dob),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -693,7 +695,7 @@ class _MyProfileState extends State<MyProfile>
                 child: Column(
                   children: [
                     ProfileUser(snapshot.data!['name'], snapshot.data!['batch'],
-                        snapshot.data!['other']),
+                        snapshot.data!['other'], name, batch, branch, dob),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -781,7 +783,13 @@ class _MyProfileState extends State<MyProfile>
   }
 
   Widget ProfileUser(
-      String name, String accordingtouser, String accordingtouser1) {
+      String name,
+      String accordingtouser,
+      String accordingtouser1,
+      String name1,
+      String batch,
+      String branch,
+      String dob) {
     return Container(
       decoration: BoxDecoration(
         color: primaryColor,
@@ -855,33 +863,38 @@ class _MyProfileState extends State<MyProfile>
               ),
             ],
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          //     ElevatedButton(
-          //         onPressed: () {
-          //           Navigator.push(
-          //               context,
-          //               MaterialPageRoute(
-          //                 builder: (context) => editprofile(),
-          //               ));
-          //         },
-          //         style: ElevatedButton.styleFrom(
-          //             onPrimary: Colors.white,
-          //             shape: RoundedRectangleBorder(
-          //                 borderRadius: BorderRadius.circular(10)),
-          //             backgroundColor: Colors.white,
-          //             padding: const EdgeInsets.symmetric(
-          //                 horizontal: 20, vertical: 10)),
-          //         child: Text(
-          //           "Edit Profile",
-          //           style: TextStyle(
-          //               color: primaryColor,
-          //               // letterSpacing: 1.0,
-          //               fontWeight: FontWeight.w600),
-          //         )),
-          //   ],
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => editprofile(
+                            name1: name,
+                            batch1: batch,
+                            branch1: branch,
+                            dob1: dob,
+                          ),
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                      onPrimary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10)),
+                  child: Text(
+                    "Edit Profile",
+                    style: TextStyle(
+                        color: primaryColor,
+                        // letterSpacing: 1.0,
+                        fontWeight: FontWeight.w600),
+                  )),
+            ],
+          ),
         ],
       ),
     );

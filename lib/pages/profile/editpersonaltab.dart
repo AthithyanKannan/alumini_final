@@ -52,7 +52,6 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
   @override
   void initState() {
     getDocumentIdByCondition();
-    print(documentId);
     super.initState();
   }
 

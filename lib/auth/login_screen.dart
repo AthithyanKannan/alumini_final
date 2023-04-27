@@ -18,35 +18,9 @@ class _LoginScreenState extends State<LoginScreen> {
     final _rollnocontroller = TextEditingController();
 
     Future signin() async {
-      try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: emailcontroller.text.trim(),
-            password: _rollnocontroller.text.trim());
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('No user found for that email.'),
-              clipBehavior: Clip.none,
-              backgroundColor: Colors.teal,
-              behavior: SnackBarBehavior.floating,
-              width: 200,
-            ),
-          );
-        } else if (e.code == 'wrong-password') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Wrong password provided for that user.'),
-            ),
-          );
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: $e'),
-          ),
-        );
-      }
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailcontroller.text.trim(),
+          password: _rollnocontroller.text.trim());
     }
 
     void dispose() {
@@ -60,7 +34,27 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(padding: EdgeInsets.only(top: 200)),
+            const Padding(padding: EdgeInsets.only(top: 70)),
+            CircleAvatar(
+              radius: 70.0,
+        
+              backgroundImage: AssetImage("assets/logo_brand.png",),
+              backgroundColor: Colors.white,
+
+            ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(vertical: 90),
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: AssetImage('assets/Alumini_logo.png'),
+            //       fit: BoxFit.fitHeight,
+            //     ),
+            //     shape: BoxShape.rectangle,
+            //   ),
+            // ),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               children: const [
                 SizedBox(
