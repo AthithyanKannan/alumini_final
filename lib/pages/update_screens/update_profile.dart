@@ -1,5 +1,4 @@
 import 'package:alumini_final/auth/login.dart';
-import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -564,7 +563,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           hintText: "Start Date", border: InputBorder.none),
                     ),
                   ),
-                   Container(
+                  Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     margin: const EdgeInsets.symmetric(vertical: 12),
@@ -636,8 +635,66 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 children: [WorkTextBox('About', _otheraboutcontroller)],
               ),
             ElevatedButton(
-                onPressed: () {
-                  if (isIndustry == true) {
+              onPressed: () {
+                final String name = _nameController.text.trim();
+                final String batch = _batchController.text.trim();
+                final String branch = _branchController.text.trim();
+                final String dob = _dobController.text.trim();
+                final String industryname = _industrynamecontroller.text.trim();
+                final String industrydesignation =
+                    _industrydesignationcontroller.text.trim();
+                final String industrylocation =
+                    _industrylocationcontroller.text.trim();
+                final String startdate = _startdatecontroller.text.trim();
+                final String enddate = _enddatecontroller.text.trim();
+                final String highcollege = _highcollegecontroller.text.trim();
+                final String studylocation =
+                    _studylocationcontroller.text.trim();
+                final String degree = _degreecontroller.text.trim();
+                final String businessdesignation =
+                    _businesslocationcontroller.text.trim();
+                final String aboutbusiness =
+                    _aboutbusinesscontroller.text.trim();
+                final String businesslocation =
+                    _businesslocationcontroller.text.trim();
+                final String instituteown = _instituteowncontroller.text.trim();
+                final String examprepare = _exampreparecontroller.text.trim();
+                final String examlocation = _examlocation.text.trim();
+                final String bankname = _banknamecontroller.text.trim();
+                final String bankdesignation =
+                    _bankdesignationcontroller.text.trim();
+                final String banklocation =
+                    _bankdesignationcontroller.text.trim();
+                final String trainingplatform =
+                    _trainingplatformcontroller.text.trim();
+                final String trainingrole = _trainingrolecontroller.text.trim();
+                final String traininglocation =
+                    _traininglocationcontroller.text.trim();
+                final String searchabout = _searchaboutcontroller.text.trim();
+                final String searchlocation =
+                    _industrylocationcontroller.text.trim();
+                final String skills_at = _skillsatcontroller.text.trim();
+                final String govtdesignation =
+                    _govtdesignationcontroller.text.trim();
+                final String govtlocation = _govtlocationcontroller.text.trim();
+                final String otherabout = _otheraboutcontroller.text.trim();
+
+                if (isIndustry == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      industryname.isEmpty ||
+                      industrydesignation.isEmpty ||
+                      industrylocation.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addIndustryUserDetails(
                       _nameController.text.trim(),
                       _batchController.text.trim(),
@@ -649,8 +706,32 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       emailcontroller.text.trim(),
                       _number1controller.text.trim(),
                     );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  if (isStudies == true) {
+                }
+                if (isStudies == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      highcollege.isEmpty ||
+                      degree.isEmpty ||
+                      studylocation.isEmpty ||
+                      startdate.isEmpty ||
+                      enddate.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addStudiesUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -663,8 +744,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _enddatecontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  if (isbusniess == true) {
+                }
+                if (isbusniess == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      businesslocation.isEmpty ||
+                      businessdesignation.isEmpty ||
+                      aboutbusiness.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addBusinessUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -675,9 +778,31 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _businesslocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
+                }
 
-                  if (isExam == true) {
+                if (isExam == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      instituteown.isEmpty ||
+                      examprepare.isEmpty ||
+                      examlocation.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addExamUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -688,8 +813,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _examlocation.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  if (isTrainer == true) {
+                }
+                if (isTrainer == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      trainingrole.isEmpty ||
+                      trainingplatform.isEmpty ||
+                      traininglocation.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addTrainerUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -700,8 +847,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _traininglocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  if (isBank == true) {
+                }
+                if (isBank == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      bankdesignation.isEmpty ||
+                      banklocation.isEmpty ||
+                      bankname.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addBankUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -712,8 +881,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _banklocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  if (isSearch == true) {
+                }
+                if (isSearch == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      searchabout.isEmpty ||
+                      searchlocation.isEmpty ||
+                      skills_at.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addSearchUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -724,9 +915,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _searchlocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
+                }
 
-                  if (isGovt == true) {
+                if (isGovt == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      govtlocation.isEmpty ||
+                      govtdesignation.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addGovtUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -736,8 +948,28 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _govtlocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  if (isOther == true) {
+                }
+                if (isOther == true) {
+                  if (name.isEmpty ||
+                      batch.isEmpty ||
+                      branch.isEmpty ||
+                      dob.isEmpty ||
+                      otherabout.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Please Enter All Fields!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+                  } else {
                     addIsOtherUserDetails(
                         _nameController.text.trim(),
                         _batchController.text.trim(),
@@ -746,24 +978,25 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _otheraboutcontroller.text.trim(),
                         emailcontroller.text.trim(),
                         _number1controller.text.trim());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   }
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
-                      ),
-                      (route) => false);
-                },
-                child: Text('Save'),
-                style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
-                        const TextStyle(fontSize: 15)),
-                    backgroundColor: MaterialStateProperty.all(primaryColor),
-                    padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(
-                            horizontal: 80, vertical: 15)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)))))
+                }
+              },
+              style: ButtonStyle(
+                  textStyle:
+                      MaterialStateProperty.all(const TextStyle(fontSize: 15)),
+                  backgroundColor: MaterialStateProperty.all(primaryColor),
+                  padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(horizontal: 80, vertical: 15)),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)))),
+              child: const Text('Save'),
+            )
           ],
         ),
       ),

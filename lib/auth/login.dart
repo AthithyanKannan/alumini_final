@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
       _rollnocontroller.dispose();
       super.dispose();
     }
-  TextEditingController _rollnocontroller =TextEditingController();
+  TextEditingController _rollnocontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,11 +67,11 @@ class _LoginState extends State<Login> {
                  const SizedBox(
                     height: 20,
                   ),
-                 UpdateTextBox('Enter your name', emailcontroller, TextInputType.emailAddress),
+                 UpdateTextBox('Enter your email', emailcontroller, TextInputType.emailAddress),
                   const SizedBox(
                     height: 15,
                   ),
-                  UpdateTextBox("Enter your roll_no", _rollnocontroller, TextInputType.name),
+                  UpdateTextBox("Enter your roll no", _rollnocontroller, TextInputType.name),
                   const SizedBox(
                     height: 40,
                   ),

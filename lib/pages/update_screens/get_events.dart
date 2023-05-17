@@ -135,7 +135,7 @@ class _GetEventsState extends State<GetEvents> {
                               width: 10,
                             ),
                             Text(
-                              timestamp!.toDate().toString(),
+                              timestamp.toDate().toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 17),
                             ),
