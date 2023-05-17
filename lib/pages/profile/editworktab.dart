@@ -158,17 +158,17 @@ class _EditWorkTabState extends State<EditWorkTab> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 1),
-              margin: EdgeInsets.symmetric(vertical: 7),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1),
+              margin: const EdgeInsets.symmetric(vertical: 7),
               width: size.width * 0.8,
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(217, 217, 217, 1.0),
+                  color: const Color.fromRGBO(217, 217, 217, 1.0),
                   borderRadius: BorderRadius.circular(12)),
               child: DropdownButtonFormField2(
-                hint: Text('Current Status', style: TextStyle(fontSize: 15)),
-                icon: Icon(Icons.arrow_drop_down),
-                iconEnabledColor: Color.fromRGBO(5, 68, 94, 35.0),
-                iconDisabledColor: Color.fromRGBO(217, 217, 217, 1.0),
+                hint: const Text('Current Status', style: TextStyle(fontSize: 15)),
+                icon: const Icon(Icons.arrow_drop_down),
+                iconEnabledColor:const  Color.fromRGBO(5, 68, 94, 35.0),
+                iconDisabledColor:const  Color.fromRGBO(217, 217, 217, 1.0),
                 buttonHeight: 22,
                 isDense: true,
                 items: editprofession
@@ -189,80 +189,80 @@ class _EditWorkTabState extends State<EditWorkTab> {
           if (isIndustry)
             Column(
               children: [
-                EditWorkTextBox('Designation', editdesignationcontroller),
-                EditWorkTextBox('Industry Name', editnamecontroller),
-                EditWorkTextBox(' Location', editlocationcontroller),
+                editWorkTextBox('Designation', editdesignationcontroller),
+                editWorkTextBox('Industry Name', editnamecontroller),
+                editWorkTextBox(' Location', editlocationcontroller),
               ],
             ),
           if (isStudies)
             Column(
               children: [
-                EditWorkTextBox('Collage/institute', editnamecontroller),
-                EditWorkTextBox('Location', editlocationcontroller),
-                EditWorkTextBox('Degree', editdegreecontroller),
+                editWorkTextBox('Collage/institute', editnamecontroller),
+                editWorkTextBox('Location', editlocationcontroller),
+                editWorkTextBox('Degree', editdegreecontroller),
               ],
             ),
           if (isbusniess)
             Column(
               children: [
-                EditWorkTextBox('About business', editaboutcontroller),
-                EditWorkTextBox('location', editlocationcontroller)
+                editWorkTextBox('About business', editaboutcontroller),
+                editWorkTextBox('location', editlocationcontroller)
               ],
             ),
           if (isExam)
             Column(
               children: [
-                EditWorkTextBox('Institute name', editnamecontroller),
-                EditWorkTextBox('Degree', editdegreecontroller),
-                EditWorkTextBox('location', editlocationcontroller)
+                editWorkTextBox('Institute name', editnamecontroller),
+                editWorkTextBox('Degree', editdegreecontroller),
+                editWorkTextBox('location', editlocationcontroller)
               ],
             ),
           if (isTrainer)
             Column(
               children: [
-                EditWorkTextBox('Working at', editnamecontroller),
-                EditWorkTextBox('Location', editlocationcontroller),
-                EditWorkTextBox('Designation', editdesignationcontroller)
+                editWorkTextBox('Working at', editnamecontroller),
+                editWorkTextBox('Location', editlocationcontroller),
+                editWorkTextBox('Designation', editdesignationcontroller)
               ],
             ),
           if (isBank)
             Column(
               children: [
-                EditWorkTextBox('Institute name', editnamecontroller),
-                EditWorkTextBox('Designation', editdesignationcontroller),
-                EditWorkTextBox('Location', editlocationcontroller)
+                editWorkTextBox('Institute name', editnamecontroller),
+                editWorkTextBox('Designation', editdesignationcontroller),
+                editWorkTextBox('Location', editlocationcontroller)
               ],
             ),
           if (isSearch)
             Column(
               children: [
-                EditWorkTextBox('About business', editaboutcontroller),
-                EditWorkTextBox('Location', editlocationcontroller)
+                editWorkTextBox('About business', editaboutcontroller),
+                editWorkTextBox('Location', editlocationcontroller)
               ],
             ),
           if (isHousewife)
             Column(
               children: [
-                EditWorkTextBox('About', editaboutcontroller),
+                editWorkTextBox('About', editaboutcontroller),
               ],
             ),
           if (isGovt)
             Column(
               children: [
-                EditWorkTextBox('Designation', editdesignationcontroller),
-                EditWorkTextBox('Location', editlocationcontroller)
+                editWorkTextBox('Designation', editdesignationcontroller),
+                editWorkTextBox('Location', editlocationcontroller)
               ],
             ),
           if (isOther)
             Column(
-              children: [EditWorkTextBox('About', editaboutcontroller)],
+              children: [editWorkTextBox('About', editaboutcontroller)],
             ),
         ],
       ),
     );
   }
 
-  Widget EditWorkTextBox(String hint, TextEditingController controller) {
+  Widget editWorkTextBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

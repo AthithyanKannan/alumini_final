@@ -619,7 +619,6 @@ class _AluminiProfileState extends State<AluminiProfile> {
                       const Text(
                         "Contact",
                         style: TextStyle(
-                            // letterSpacing: 1.0,
                             fontWeight: FontWeight.w600,
                             color: Colors.blueGrey,
                             fontSize: 13),

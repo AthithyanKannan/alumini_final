@@ -545,8 +545,42 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   WorkTextBox('College/Institute', _highcollegecontroller),
                   WorkTextBox('Degree', _degreecontroller),
                   WorkTextBox('Location', _studylocationcontroller),
-                  WorkTextBox("Start Date", _startdatecontroller),
-                  WorkTextBox("End Date", _enddatecontroller)
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    margin: const EdgeInsets.symmetric(vertical: 12),
+                    width: size.width * 0.9,
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(217, 217, 217, 1.0),
+                        borderRadius: BorderRadius.circular(12)),
+                    height: 50,
+                    child: TextFormField(
+                      cursorColor: Colors.black,
+                      textCapitalization: TextCapitalization.sentences,
+                      keyboardType: TextInputType.number,
+                      controller: _startdatecontroller,
+                      decoration: const InputDecoration(
+                          hintText: "Start Date", border: InputBorder.none),
+                    ),
+                  ),
+                   Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    margin: const EdgeInsets.symmetric(vertical: 12),
+                    width: size.width * 0.9,
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(217, 217, 217, 1.0),
+                        borderRadius: BorderRadius.circular(12)),
+                    height: 50,
+                    child: TextFormField(
+                      cursorColor: Colors.black,
+                      textCapitalization: TextCapitalization.sentences,
+                      keyboardType: TextInputType.number,
+                      controller: _enddatecontroller,
+                      decoration: const InputDecoration(
+                          hintText: "End Date", border: InputBorder.none),
+                    ),
+                  )
                 ],
               ),
             if (isbusniess)
@@ -770,11 +804,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
   Widget WorkTextBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(217, 217, 217, 1.0),
+          color: const Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
       height: 50,
       child: TextFormField(

@@ -1,8 +1,6 @@
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/profilepage.dart';
 import 'package:alumini_final/pages/searchpage.dart';
-import 'package:alumini_final/pages/update_screens/events_notifications.dart';
-import 'package:alumini_final/pages/update_screens/update_events.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,9 +11,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List pages = [SearchPage(), MyProfile()];
+  List pages = [const SearchPage(), const MyProfile()];
   int currentindex = 0;
-  void Ontap(int index) {
+  void ontap(int index) {
     setState(() {
       currentindex = index;
     });
@@ -28,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: pages[currentindex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: primaryColor,
-        onTap: Ontap,
+        onTap: ontap,
         selectedFontSize: 0,
         unselectedFontSize: 0,
         selectedItemColor: Colors.white,
@@ -38,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: currentindex,
         elevation: 0,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: 'My Profile'),
         ],

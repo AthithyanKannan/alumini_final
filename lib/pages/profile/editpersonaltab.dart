@@ -18,7 +18,7 @@ class EditPersonalTab extends StatefulWidget {
   EditPersonalTab(
       {required this.name2,
       required this.batch2,
-      required this.branch2,
+      required this.branch2,  
       required this.dob2,
       super.key});
   @override
@@ -56,13 +56,13 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
   }
 
   Widget build(BuildContext context) {
-    final TextEditingController EditnameController =
+    final TextEditingController editnameController =
         TextEditingController(text: widget.name2);
-    final TextEditingController EditBatchController =
+    final TextEditingController editBatchController =
         TextEditingController(text: widget.batch2);
-    final TextEditingController EditBranchController =
+    final TextEditingController editBranchController =
         TextEditingController(text: widget.branch2);
-    final TextEditingController EditDobController =
+    final TextEditingController editDobController =
         TextEditingController(text: widget.dob2);
     return Scaffold(
         body: Column(
@@ -70,23 +70,22 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
         const SizedBox(
           height: 10,
         ),
-        EditTextBox('Name', EditnameController, TextInputType.name),
-        EditTextBox('Batch', EditBatchController, TextInputType.number),
-        EditTextBox('Branch', EditBranchController, TextInputType.name),
-        EditTextBox('DOB', EditDobController, TextInputType.datetime),
+        editTextBox('Name', editnameController, TextInputType.name),
+        editTextBox('Batch', editBatchController, TextInputType.number),
+        editTextBox('Branch', editBranchController, TextInputType.name),
+        editTextBox('DOB', editDobController, TextInputType.datetime),
         const SizedBox(
           height: 50,
         ),
         ElevatedButton(
             onPressed: () {
               updateCurrentUserPersonal(
-                  EditnameController.text.trim(),
-                  EditBatchController.text.trim(),
-                  EditBranchController.text.trim(),
-                  EditDobController.text.trim());
+                  editnameController.text.trim(),
+                  editBatchController.text.trim(),
+                  editBranchController.text.trim(),
+                  editDobController.text.trim());
               Navigator.pop(context);
             },
-            child: const Text('Save Changes'),
             style: ButtonStyle(
                 textStyle:
                     MaterialStateProperty.all(const TextStyle(fontSize: 15)),
@@ -94,21 +93,24 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
                 padding: MaterialStateProperty.all(
                     const EdgeInsets.symmetric(horizontal: 80, vertical: 15)),
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)))))
+                    borderRadius: BorderRadius.circular(8)))),
+                     child:  const Text('Save Changes'),
+                    )
       ],
     ));
   }
 
-  Widget EditTextBox(
+  Widget editTextBox(
       String hint, TextEditingController controller, TextInputType type) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(217, 217, 217, 1.0),
+          color: const Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
+      height: 50,
       child: TextFormField(
         keyboardType: type,
         cursorColor: Colors.black,
@@ -116,7 +118,7 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
         controller: controller,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
-      height: 50,
+ 
     );
   }
 

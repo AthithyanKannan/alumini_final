@@ -113,7 +113,7 @@ class _Tab1State extends State<Tab1> {
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: Color.fromRGBO(245, 245, 245, 1),
           ),
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

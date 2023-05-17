@@ -1,6 +1,4 @@
 import 'package:alumini_final/colors.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,7 +7,7 @@ class EventImage extends StatefulWidget {
   final image;
   final title;
   final eventdescription;
-  EventImage(
+   EventImage(
       {required this.image,
       required this.title,
       required this.eventdescription,
@@ -24,8 +22,6 @@ class EventImage extends StatefulWidget {
 class _EventImageState extends State<EventImage> {
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -66,10 +62,10 @@ class _EventImageState extends State<EventImage> {
               child: Column(children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
+                  children:  [
+                     Row(
+                      children: const [
+                          Text(
                           "Event Name",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
@@ -78,7 +74,7 @@ class _EventImageState extends State<EventImage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -94,7 +90,7 @@ class _EventImageState extends State<EventImage> {
                       height: 10,
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 150),
+                      padding: const EdgeInsets.symmetric(vertical: 150),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
@@ -108,7 +104,7 @@ class _EventImageState extends State<EventImage> {
                       height: 20,
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Text(
                           "Event Description",
                           style: TextStyle(

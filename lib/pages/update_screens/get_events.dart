@@ -28,13 +28,19 @@ void getEventDocumentIdByCondition() async {
       .where('email', isEqualTo: user!.email)
       .get();
 
-  if (querySnapshot != null) {
+
+  try{
+    if (querySnapshot != null) {
     final DocumentSnapshot documentSnapshot = querySnapshot.docs.first;
     String DeletedocumentId = documentSnapshot.id;
     setEventDocumentId(DeletedocumentId);
   } else {
     null;
   }
+  }on StateError catch(e){
+    return null;
+  }
+
 }
 
 
@@ -57,7 +63,6 @@ class _GetEventsState extends State<GetEvents> {
 
   @override
   Widget build(BuildContext context) {
-    // bool _isvisible = true;
     String email = '';
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
@@ -76,8 +81,8 @@ class _GetEventsState extends State<GetEvents> {
           final text = eventdata['title'];
           final imageurl = eventdata['imagesUrl'];
           final description = eventdata['description'];
-          final timestamp = eventdata['timestamp'] as Timestamp;
-
+          final timestamp = eventdata['timestamp'] as Timestamp?;
+          final datestring = timestamp!.toDate().toString();
           if ('${eventdata['email']}' == email) {
             return GestureDetector(
               onTap: () {
@@ -130,7 +135,7 @@ class _GetEventsState extends State<GetEvents> {
                               width: 10,
                             ),
                             Text(
-                              timestamp.toDate().toString(),
+                              timestamp!.toDate().toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 17),
                             ),
@@ -200,7 +205,7 @@ class _GetEventsState extends State<GetEvents> {
                           width: 10,
                         ),
                         Text(
-                          timestamp.toDate().toString(),
+                         datestring,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 17),
                         ),
@@ -213,8 +218,8 @@ class _GetEventsState extends State<GetEvents> {
           }
         }
 
-        return Center(
-            child: const Text(
+        return const Center(
+            child:  Text(
           "No more events",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ));

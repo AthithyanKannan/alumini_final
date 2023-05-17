@@ -51,7 +51,12 @@ dependencies:
   firebase_messaging: ^14.4.0
   firebase_storage: ^11.1.0
   shared_preferences: ^2.0.8
-  
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  image_path: "assets/App icon.jpg"
+  android: true
+  ios: false
 
 dev_dependencies:
   flutter_test:

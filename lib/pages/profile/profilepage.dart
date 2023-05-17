@@ -1,6 +1,8 @@
+import 'package:alumini_final/auth/login.dart';
 import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
+import 'package:alumini_final/pages/profile/editpersonaltab.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
 import 'package:alumini_final/pages/profile/tab2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -84,7 +86,7 @@ class _MyProfileState extends State<MyProfile>
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
+                                      builder: (context) => const Login(),
                                     ),
                                     (route) => false);
                               },
@@ -113,13 +115,6 @@ class _MyProfileState extends State<MyProfile>
             String branch = snapshot.data!['branch'];
             String dob = snapshot.data!['dob'];
 
-            // EditPersonalTab(
-            //   name: name,
-            //   batch: batch,
-            //   branch: branch,
-            //   dob: dob,
-            // );
-
             if ('${snapshot.data!['number']}' == '1') {
               return SingleChildScrollView(
                 child: Column(
@@ -135,7 +130,7 @@ class _MyProfileState extends State<MyProfile>
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -221,7 +216,7 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
@@ -235,7 +230,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -280,12 +275,12 @@ class _MyProfileState extends State<MyProfile>
                         dob),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -294,12 +289,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                         const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -307,7 +302,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -346,12 +341,12 @@ class _MyProfileState extends State<MyProfile>
                         snapshot.data!['location'], name, batch, branch, dob),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -360,12 +355,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding:const  EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -373,7 +368,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -418,12 +413,12 @@ class _MyProfileState extends State<MyProfile>
                         dob),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -432,12 +427,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                         const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -445,7 +440,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -493,7 +488,7 @@ class _MyProfileState extends State<MyProfile>
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -502,12 +497,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -515,7 +510,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs:const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -565,7 +560,7 @@ class _MyProfileState extends State<MyProfile>
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -574,12 +569,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -587,7 +582,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -632,12 +627,12 @@ class _MyProfileState extends State<MyProfile>
                         dob),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -646,12 +641,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding:const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                         const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -659,7 +654,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -698,12 +693,12 @@ class _MyProfileState extends State<MyProfile>
                         snapshot.data!['other'], name, batch, branch, dob),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             Container(
                               width: MediaQuery.of(context).size.height,
                               decoration: BoxDecoration(
@@ -712,12 +707,12 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -758,7 +753,7 @@ class _MyProfileState extends State<MyProfile>
               );
             }
           }
-          return Text("Loading");
+          return const Text("Loading");
         },
       ),
     );
@@ -828,15 +823,14 @@ class _MyProfileState extends State<MyProfile>
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                     const SizedBox(
                         height: 5,
                       ),
                       Text(name,
-                          style: TextStyle(
+                          style: const  TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
-                            // letterSpacing: 1.0
                           )),
                       const SizedBox(
                         height: 10,
@@ -846,7 +840,6 @@ class _MyProfileState extends State<MyProfile>
                             color: Colors.blueGrey,
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
-                            // letterSpacing: 1.0
                           )),
                       const SizedBox(
                         height: 10,
@@ -890,7 +883,6 @@ class _MyProfileState extends State<MyProfile>
                     "Edit Profile",
                     style: TextStyle(
                         color: primaryColor,
-                        // letterSpacing: 1.0,
                         fontWeight: FontWeight.w600),
                   )),
             ],
