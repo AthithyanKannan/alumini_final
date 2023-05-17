@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../pages/update_screens/update_profile.dart';
 
 
-  TextEditingController _emailcontroller =  TextEditingController();
+final TextEditingController emailcontroller =  TextEditingController();
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -17,12 +16,12 @@ class _LoginState extends State<Login> {
 
  Future signin() async {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailcontroller.text.trim(),
+          email: emailcontroller.text.trim(),
           password: _rollnocontroller.text.trim());
     }
 
     void dispose() {
-      _emailcontroller.dispose();
+      emailcontroller.dispose();
       _rollnocontroller.dispose();
       super.dispose();
     }
@@ -68,7 +67,7 @@ class _LoginState extends State<Login> {
                  const SizedBox(
                     height: 20,
                   ),
-                 UpdateTextBox('Enter your name', _emailcontroller, TextInputType.emailAddress),
+                 UpdateTextBox('Enter your name', emailcontroller, TextInputType.emailAddress),
                   const SizedBox(
                     height: 15,
                   ),
