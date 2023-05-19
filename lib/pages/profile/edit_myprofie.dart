@@ -8,12 +8,14 @@ class editprofile extends StatefulWidget {
   String batch1;
   String branch1;
   String dob1;
+  String contact1;
 
   editprofile(
       {required this.name1,
       required this.batch1,
       required this.branch1,
       required this.dob1,
+      required this.contact1,
       super.key});
 
   @override
@@ -54,7 +56,7 @@ class _editprofileState extends State<editprofile>
               width: double.infinity,
               height: MediaQuery.of(context).size.height / 1.5,
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Column(children: [
                   const SizedBox(height: 15),
@@ -68,14 +70,14 @@ class _editprofileState extends State<editprofile>
                       child: TabBar(
                         indicatorColor: primaryColor,
                         controller: _edittabcontroller,
-                        indicatorPadding: EdgeInsets.symmetric(horizontal: 1),
+                        indicatorPadding: const EdgeInsets.symmetric(horizontal: 1),
                         indicatorWeight: 1,
                         indicator: BoxDecoration(
                             color: primaryColor,
                             borderRadius: BorderRadius.circular(5)),
                         labelColor: Colors.white,
                         unselectedLabelColor: Colors.black,
-                        tabs: [
+                        tabs: const [
                           Tab(
                             text: 'Personal Info',
                           ),
@@ -95,8 +97,9 @@ class _editprofileState extends State<editprofile>
                         batch2: widget.batch1,
                         branch2: widget.branch1,
                         dob2: widget.dob1,
+                        contact2: widget.contact1
                       ),
-                      EditWorkTab()
+                      const EditWorkTab()
                     ],
                   )),
                   // ElevatedButton(

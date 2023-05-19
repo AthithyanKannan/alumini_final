@@ -41,7 +41,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                 widget.data1['name'],
                 widget.data1['designation'],
                 widget.data1['location'],
-                widget.data1['email'],
+                widget.data1['contact'],
                 widget.data1['branch'],
                 widget.data1['batch'],
                 widget.data1['dob'],
@@ -59,7 +59,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                   widget.data1['name'],
                   widget.data1['designation'],
                   widget.data1['location'],
-                  widget.data1['email'],
+                  widget.data1['contact'],
                   widget.data1['branch'],
                   widget.data1['batch'],
                   widget.data1['dob'],
@@ -74,7 +74,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                 widget.data1['name'],
                 widget.data1['batch'],
                 widget.data1['location'],
-                widget.data1['email'],
+                widget.data1['contact'],
                 widget.data1['branch'],
                 widget.data1['batch'],
                 widget.data1['dob'],
@@ -90,7 +90,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                   widget.data1['name'],
                   widget.data1['training role'],
                   widget.data1['training location'],
-                  widget.data1['email'],
+                  widget.data1['contact'],
                   widget.data1['branch'],
                   widget.data1['batch'],
                   widget.data1['dob'],
@@ -105,7 +105,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                   widget.data1['name'],
                   widget.data1['designation'],
                   widget.data1['location'],
-                  widget.data1['email'],
+                  widget.data1['contact'],
                   widget.data1['branch'],
                   widget.data1['batch'],
                   widget.data1['dob'],
@@ -120,7 +120,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                   widget.data1['name'],
                   widget.data1['skills at'],
                   widget.data1['location'],
-                  widget.data1['email'],
+                  widget.data1['contact'],
                   widget.data1['branch'],
                   widget.data1['batch'],
                   widget.data1['dob'],
@@ -181,7 +181,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20.0), //or 15.0
-                            child: Container(
+                            child: SizedBox(
                               height: 90.0,
                               width: 90.0,
                               child: Image.asset('assets/Athi.jpg'),
@@ -520,7 +520,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20.0), //or 15.0
-                            child: Container(
+                            child: SizedBox(
                               height: 90.0,
                               width: 90.0,
                               child: Image.asset('assets/Athi.jpg'),
@@ -627,7 +627,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         height: 8,
                       ),
                       Text(
-                        widget.data1['email'],
+                        widget.data1['contact'],
                         style: const TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 15),
                       ),
@@ -643,7 +643,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Color.fromRGBO(245, 245, 245, 1),
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -888,7 +888,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20.0), //or 15.0
-                            child: Container(
+                            child: SizedBox(
                               height: 90.0,
                               width: 90.0,
                               child: Image.asset('assets/Athi.jpg'),
@@ -982,7 +982,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Color.fromRGBO(245, 245, 245, 1),
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1031,7 +1031,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         height: 8,
                       ),
                       Text(
-                        widget.data1['email'],
+                        widget.data1['contact'],
                         style: const TextStyle(
                             // letterSpacing: 1.0,
                             fontWeight: FontWeight.w600,
@@ -1173,7 +1173,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20.0), //or 15.0
-                            child: Container(
+                            child: SizedBox(
                               height: 90.0,
                               width: 90.0,
                               child: Image.asset('assets/Athi.jpg'),
@@ -1257,7 +1257,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Color.fromRGBO(245, 245, 245, 1),
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1303,7 +1303,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                         height: 8,
                       ),
                       Text(
-                        widget.data1['email'],
+                        widget.data1['contact'],
                         style: const TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 15),
                       ),

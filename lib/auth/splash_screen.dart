@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:alumini_final/auth/authenthication.dart';
+import 'package:alumini_final/auth/login.dart';
 
 import 'package:alumini_final/colors.dart';
 
@@ -26,7 +27,7 @@ class StartState extends State<StatefulWidget> {
 
   route() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: ((context) => Authentication())));
+        context, MaterialPageRoute(builder: ((context) => Authentication( admincheck: emailcontroller.text.trim(),))));
   }
 
   Widget build(BuildContext context) {

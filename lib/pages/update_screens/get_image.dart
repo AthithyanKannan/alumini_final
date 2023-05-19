@@ -1,13 +1,11 @@
 import 'package:alumini_final/colors.dart';
 import 'package:flutter/material.dart';
 
-
-
 class EventImage extends StatefulWidget {
   final image;
   final title;
   final eventdescription;
-   EventImage(
+  EventImage(
       {required this.image,
       required this.title,
       required this.eventdescription,
@@ -16,7 +14,6 @@ class EventImage extends StatefulWidget {
   @override
   State<EventImage> createState() => _EventImageState();
 }
-
 
 @override
 class _EventImageState extends State<EventImage> {
@@ -62,10 +59,10 @@ class _EventImageState extends State<EventImage> {
               child: Column(children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children:  [
-                     Row(
+                  children: [
+                    Row(
                       children: const [
-                          Text(
+                        Text(
                           "Event Name",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
@@ -89,17 +86,18 @@ class _EventImageState extends State<EventImage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 150),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                          image: NetworkImage(widget.image),
-                          fit: BoxFit.fill,
+                    if (widget.image != null)
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 150),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: NetworkImage(widget.image),
+                            fit: BoxFit.fill,
+                          ),
+                          shape: BoxShape.rectangle,
                         ),
-                        shape: BoxShape.rectangle,
                       ),
-                    ),
                     const SizedBox(
                       height: 20,
                     ),

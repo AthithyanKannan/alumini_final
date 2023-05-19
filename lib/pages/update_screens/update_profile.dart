@@ -1,11 +1,11 @@
 import 'package:alumini_final/auth/login.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/home.dart';
+import 'package:alumini_final/pages/searchpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 export 'update_profile.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -60,21 +60,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
   final TextEditingController _govtlocationcontroller = TextEditingController();
   final TextEditingController _otheraboutcontroller = TextEditingController();
   final TextEditingController _number1controller = TextEditingController();
-
-  Future<void> checkIfPageVisited() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool pageVisited = prefs.getBool('page_visited') ?? false;
-    if (pageVisited) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-          (route) => false);
-    } else {
-      await prefs.setBool('page_visited', true);
-    }
-  }
+  TextEditingController adminnamecontroller = TextEditingController();
+  TextEditingController admindesignationcontroller = TextEditingController();
+  TextEditingController adminnumcontroller = TextEditingController();
+  TextEditingController _phonenumbercontroller = TextEditingController();
 
   List<String> profession = [
     'Industry',
@@ -227,7 +216,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String industryname,
       String location,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -238,6 +228,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'location': location,
       'email': email,
       'number': "1",
+      'contact': contact
     });
   }
 
@@ -252,7 +243,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String startdate,
       String enddate,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -265,20 +257,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'end date': enddate,
       'email': email,
       'number': "2",
+      'contact': contact
     });
   }
 
   Future addBusinessUserDetails(
-    String name,
-    String batch,
-    String branch,
-    String dob,
-    String designation,
-    String aboutbusiness,
-    String location,
-    String email,
-    String number,
-  ) async {
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String designation,
+      String aboutbusiness,
+      String location,
+      String email,
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -288,7 +281,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'about business': aboutbusiness,
       'location': location,
       'email': email,
-      'number': '3'
+      'number': '3',
+      'contact': contact
     });
   }
 
@@ -301,7 +295,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String preparingfor,
       String location,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -311,7 +306,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'preparing for': preparingfor,
       'location': location,
       'email': email,
-      'number': '4'
+      'number': '4',
+      'contact': contact
     });
   }
 
@@ -324,7 +320,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String trainingrole,
       String traininglocation,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -334,7 +331,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'training role': trainingplatform,
       'training location': traininglocation,
       'email': email,
-      'number': '5'
+      'number': '5',
+      'contact': contact
     });
   }
 
@@ -347,7 +345,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String designation,
       String location,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -357,7 +356,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'designation': designation,
       'location': location,
       'email': email,
-      'number': '6'
+      'number': '6',
+      'contact': contact
     });
   }
 
@@ -370,7 +370,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String skillsat,
       String location,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -380,7 +381,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'skills at': skillsat,
       'location': location,
       'email': email,
-      'number': '7'
+      'number': '7',
+      'contact': contact
     });
   }
 
@@ -392,7 +394,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       String designation,
       String location,
       String email,
-      String number) async {
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -401,12 +404,20 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'designation': designation,
       'location': location,
       'email': email,
-      'number': '8'
+      'number': '8',
+      'contact': contact
     });
   }
 
-  Future addIsOtherUserDetails(String name, String batch, String branch,
-      String dob, String other, String email, String number) async {
+  Future addIsOtherUserDetails(
+      String name,
+      String batch,
+      String branch,
+      String dob,
+      String other,
+      String email,
+      String number,
+      String contact) async {
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'batch': batch,
@@ -414,18 +425,36 @@ class _UpdateScreenState extends State<UpdateScreen> {
       'dob': dob,
       'other': other,
       'email': email,
-      'number': '9'
+      'number': '9',
+      'contact': contact
     });
+  }
+
+  Future addAdminDetails(String name, String designation, String num) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .add({'name': name, 'designation': designation, 'number': "10"});
   }
 
   @override
   void initState() {
     super.initState();
-    checkIfPageVisited();
   }
 
   @override
   Widget build(BuildContext context) {
+    // File? profileimage;
+    // final profilepicker = ImagePicker();
+    // Future<void> getprofileImage() async {
+    //   final pickedfile =
+    //       await profilepicker.pickImage(source: ImageSource.gallery);
+    //   if (pickedfile != null) {
+    //     setState(() {
+    //       profileimage = File(pickedfile.path);
+    //     });
+    //   }
+    // }
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BackgroundColor,
@@ -433,46 +462,128 @@ class _UpdateScreenState extends State<UpdateScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height / 4,
-                  width: double.infinity,
-                  decoration: BoxDecoration(color: primaryColor),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 60.0, horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        SizedBox(
-                          height: 10,
+            'admin1@gmail.com' == emailcontroller.text.trim ||
+                    'admin2@gmail.com' == emailcontroller.text.trim
+                ? Column(
+                    children: [
+                      updateTextBox("Name", adminnamecontroller,
+                          TextInputType.emailAddress),
+                      updateTextBox("Designation", admindesignationcontroller,
+                          TextInputType.text),
+                      ElevatedButton(
+                        onPressed: () {
+                          addAdminDetails(
+                              adminnamecontroller.text.trim(),
+                              admindesignationcontroller.text.trim(),
+                              adminnumcontroller.text.trim());
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SearchPage(),
+                              ),
+                              (route) => false);
+                        },
+                        style: ButtonStyle(
+                            textStyle: MaterialStateProperty.all(
+                                const TextStyle(fontSize: 15)),
+                            backgroundColor:
+                                MaterialStateProperty.all(primaryColor),
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.symmetric(
+                                    horizontal: 80, vertical: 15)),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)))),
+                        child: const Text('Save'),
+                      ),
+                    ],
+                  )
+                : Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: double.infinity,
+                        decoration: BoxDecoration(color: primaryColor),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 60.0, horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Complete your",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 25),
+                              ),
+                              Text(
+                                "Profile",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
                         ),
-                        Text(
-                          "Complete your",
-                          style: TextStyle(color: Colors.white, fontSize: 25),
-                        ),
-                        Text(
-                          "Profile",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
+                      ),
+                      // Positioned(
+                      //   top: 120,
+                      //   right: 20,
+                      //   left: 20,
+                      //   child: Positioned(
+                      //     child: Container(
+                      //         width: 100,
+                      //         height: 100,
+                      //         decoration: BoxDecoration(
+                      //             shape: BoxShape.circle,
+                      //             color: Colors.blue,
+                      //             image: DecorationImage(
+                      //               image: profileimage != null
+                      //                   ? FileImage(profileimage!) as ImageProvider<Object>
+                      //                   : const AssetImage('assets/common logo.png'),
+                      //               fit: BoxFit.fill,
+                      //             ))),
+                      //   ),
+                      // )
+                    ],
                   ),
-                ),
-              ],
-            ),
             const SizedBox(
               height: 70,
             ),
-            UpdateTextBox('Name', _nameController, TextInputType.name),
-            UpdateTextBox('Batch', _batchController, TextInputType.number),
-            UpdateTextBox('Branch', _branchController, TextInputType.name),
-            UpdateTextBox('DOB', _dobController, TextInputType.datetime),
+            // ElevatedButton(
+            //   onPressed: () => getprofileImage(),
+            //   style: ElevatedButton.styleFrom(
+            //       foregroundColor: primaryColor,
+            //       textStyle: const TextStyle(fontSize: 17),
+            //       shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(15))),
+            //   child: const Padding(
+            //     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            //     child: Text('Profile Image(Optional)'),
+            //   ),
+            // ),
+            // if (profileimage != null)
+            //   Container(
+            //       margin: const EdgeInsets.symmetric(vertical: 12),
+            //       height: 200,
+            //       width: 150,
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(12),
+            //         image: DecorationImage(
+            //           image: FileImage(profileimage!),
+            //           fit: BoxFit.cover,
+            //         ),
+            //       )),
+            updateTextBox('Name', _nameController, TextInputType.name),
+            updateTextBox('Batch', _batchController, TextInputType.number),
+            updateTextBox('Branch', _branchController, TextInputType.name),
+            updateTextBox('DOB', _dobController, TextInputType.datetime),
+            updateTextBox('Phone no or Personal email ', _phonenumbercontroller,
+                TextInputType.emailAddress),
             const SizedBox(
               height: 10,
             ),
@@ -534,17 +645,17 @@ class _UpdateScreenState extends State<UpdateScreen> {
             if (isIndustry)
               Column(
                 children: [
-                  WorkTextBox('Designation', _industrydesignationcontroller),
-                  WorkTextBox('Industry Name', _industrynamecontroller),
-                  WorkTextBox('Location', _industrylocationcontroller),
+                  workTextBox('Designation', _industrydesignationcontroller),
+                  workTextBox('Industry Name', _industrynamecontroller),
+                  workTextBox('Location', _industrylocationcontroller),
                 ],
               ),
             if (isStudies)
               Column(
                 children: [
-                  WorkTextBox('College/Institute', _highcollegecontroller),
-                  WorkTextBox('Degree', _degreecontroller),
-                  WorkTextBox('Location', _studylocationcontroller),
+                  workTextBox('College/Institute', _highcollegecontroller),
+                  workTextBox('Degree', _degreecontroller),
+                  workTextBox('Location', _studylocationcontroller),
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -586,53 +697,53 @@ class _UpdateScreenState extends State<UpdateScreen> {
             if (isbusniess)
               Column(
                 children: [
-                  WorkTextBox('Designation', _businessdesignationcontroller),
-                  WorkTextBox('About business', _aboutbusinesscontroller),
-                  WorkTextBox('Location', _businesslocationcontroller),
+                  workTextBox('Designation', _businessdesignationcontroller),
+                  workTextBox('About business', _aboutbusinesscontroller),
+                  workTextBox('Location', _businesslocationcontroller),
                 ],
               ),
             if (isExam)
               Column(
                 children: [
-                  WorkTextBox("At Institute Or Own", _instituteowncontroller),
-                  WorkTextBox('Preparing For', _exampreparecontroller),
-                  WorkTextBox('Location', _examlocation)
+                  workTextBox("At Institute Or Own", _instituteowncontroller),
+                  workTextBox('Preparing For', _exampreparecontroller),
+                  workTextBox('Location', _examlocation)
                 ],
               ),
             if (isTrainer)
               Column(
                 children: [
-                  WorkTextBox('College/Institute', _trainingplatformcontroller),
-                  WorkTextBox('Training Role', _trainingrolecontroller),
-                  WorkTextBox('Location', _traininglocationcontroller),
+                  workTextBox('College/Institute', _trainingplatformcontroller),
+                  workTextBox('Training Role', _trainingrolecontroller),
+                  workTextBox('Location', _traininglocationcontroller),
                 ],
               ),
             if (isBank)
               Column(
                 children: [
-                  WorkTextBox('Bank name', _banknamecontroller),
-                  WorkTextBox('Designation', _bankdesignationcontroller),
-                  WorkTextBox('Location', _banklocationcontroller)
+                  workTextBox('Bank name', _banknamecontroller),
+                  workTextBox('Designation', _bankdesignationcontroller),
+                  workTextBox('Location', _banklocationcontroller)
                 ],
               ),
             if (isSearch)
               Column(
                 children: [
-                  WorkTextBox('Searching For', _searchaboutcontroller),
-                  WorkTextBox('Skills', _skillsatcontroller),
-                  WorkTextBox('Location', _searchlocationcontroller)
+                  workTextBox('Searching For', _searchaboutcontroller),
+                  workTextBox('Skills', _skillsatcontroller),
+                  workTextBox('Location', _searchlocationcontroller)
                 ],
               ),
             if (isGovt)
               Column(
                 children: [
-                  WorkTextBox('Designation', _govtdesignationcontroller),
-                  WorkTextBox('Location', _govtlocationcontroller)
+                  workTextBox('Designation', _govtdesignationcontroller),
+                  workTextBox('Location', _govtlocationcontroller)
                 ],
               ),
             if (isOther)
               Column(
-                children: [WorkTextBox('About', _otheraboutcontroller)],
+                children: [workTextBox('About', _otheraboutcontroller)],
               ),
             ElevatedButton(
               onPressed: () {
@@ -678,6 +789,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     _govtdesignationcontroller.text.trim();
                 final String govtlocation = _govtlocationcontroller.text.trim();
                 final String otherabout = _otheraboutcontroller.text.trim();
+                final String _phonenumber = _phonenumbercontroller.text.trim();
 
                 if (isIndustry == true) {
                   if (name.isEmpty ||
@@ -686,7 +798,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       dob.isEmpty ||
                       industryname.isEmpty ||
                       industrydesignation.isEmpty ||
-                      industrylocation.isEmpty) {
+                      industrylocation.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -696,16 +809,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     ));
                   } else {
                     addIndustryUserDetails(
-                      _nameController.text.trim(),
-                      _batchController.text.trim(),
-                      _branchController.text.trim(),
-                      _dobController.text.trim(),
-                      _industrydesignationcontroller.text.trim(),
-                      _industrynamecontroller.text.trim(),
-                      _industrylocationcontroller.text.trim(),
-                      emailcontroller.text.trim(),
-                      _number1controller.text.trim(),
-                    );
+                        _nameController.text.trim(),
+                        _batchController.text.trim(),
+                        _branchController.text.trim(),
+                        _dobController.text.trim(),
+                        _industrydesignationcontroller.text.trim(),
+                        _industrynamecontroller.text.trim(),
+                        _industrylocationcontroller.text.trim(),
+                        emailcontroller.text.trim(),
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -723,7 +836,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       degree.isEmpty ||
                       studylocation.isEmpty ||
                       startdate.isEmpty ||
-                      enddate.isEmpty) {
+                      enddate.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -743,7 +857,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _startdatecontroller.text.trim(),
                         _enddatecontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -759,7 +874,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       dob.isEmpty ||
                       businesslocation.isEmpty ||
                       businessdesignation.isEmpty ||
-                      aboutbusiness.isEmpty) {
+                      aboutbusiness.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -777,7 +893,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _aboutbusinesscontroller.text.trim(),
                         _businesslocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -794,7 +911,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       dob.isEmpty ||
                       instituteown.isEmpty ||
                       examprepare.isEmpty ||
-                      examlocation.isEmpty) {
+                      examlocation.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -812,7 +930,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _exampreparecontroller.text.trim(),
                         _examlocation.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -828,7 +947,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       dob.isEmpty ||
                       trainingrole.isEmpty ||
                       trainingplatform.isEmpty ||
-                      traininglocation.isEmpty) {
+                      traininglocation.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -846,7 +966,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _trainingrolecontroller.text.trim(),
                         _traininglocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -862,7 +983,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       dob.isEmpty ||
                       bankdesignation.isEmpty ||
                       banklocation.isEmpty ||
-                      bankname.isEmpty) {
+                      bankname.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -880,7 +1002,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _bankdesignationcontroller.text.trim(),
                         _banklocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -896,7 +1019,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       dob.isEmpty ||
                       searchabout.isEmpty ||
                       searchlocation.isEmpty ||
-                      skills_at.isEmpty) {
+                      skills_at.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -914,7 +1038,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _skillsatcontroller.text.trim(),
                         _searchlocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -930,7 +1055,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       branch.isEmpty ||
                       dob.isEmpty ||
                       govtlocation.isEmpty ||
-                      govtdesignation.isEmpty) {
+                      govtdesignation.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -947,7 +1073,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _govtdesignationcontroller.text.trim(),
                         _govtlocationcontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -961,7 +1088,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       batch.isEmpty ||
                       branch.isEmpty ||
                       dob.isEmpty ||
-                      otherabout.isEmpty) {
+                      otherabout.isEmpty ||
+                      _phonenumber.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text('Please Enter All Fields!'),
                       behavior: SnackBarBehavior.floating,
@@ -977,7 +1105,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         _dobController.text.trim(),
                         _otheraboutcontroller.text.trim(),
                         emailcontroller.text.trim(),
-                        _number1controller.text.trim());
+                        _number1controller.text.trim(),
+                        _phonenumbercontroller.text.trim());
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -1003,7 +1132,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
     );
   }
 
-  Widget UpdateTextBox(
+  Widget updateTextBox(
       String hint, TextEditingController controller, TextInputType type) {
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -1035,7 +1164,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
     );
   }
 
-  Widget WorkTextBox(String hint, TextEditingController controller) {
+  Widget workTextBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

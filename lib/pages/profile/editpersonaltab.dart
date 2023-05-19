@@ -14,12 +14,14 @@ class EditPersonalTab extends StatefulWidget {
   String batch2;
   String branch2;
   String dob2;
+  String contact2;
 
   EditPersonalTab(
       {required this.name2,
       required this.batch2,
       required this.branch2,  
       required this.dob2,
+       required this.contact2,
       super.key});
   @override
   State<EditPersonalTab> createState() => _EditPersonalTabState();
@@ -41,11 +43,11 @@ void getDocumentIdByCondition() async {
 }
 
 void updateCurrentUserPersonal(
-    String name, String batch, String branch, String dob) {
+    String name, String batch, String branch, String dob,String contact) {
   _firestore
       .collection('users')
       .doc(documentId)
-      .update({'name': name, 'batch': batch, 'branch': branch, 'dob': dob});
+      .update({'name': name, 'batch': batch, 'branch': branch, 'dob': dob,'contact' : contact});
 }
 
 class _EditPersonalTabState extends State<EditPersonalTab> {
@@ -64,6 +66,8 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
         TextEditingController(text: widget.branch2);
     final TextEditingController editDobController =
         TextEditingController(text: widget.dob2);
+    final TextEditingController editcontactcontroller = TextEditingController(text:widget.contact2);
+    
     return Scaffold(
         body: Column(
       children: [
@@ -83,7 +87,9 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
                   editnameController.text.trim(),
                   editBatchController.text.trim(),
                   editBranchController.text.trim(),
-                  editDobController.text.trim());
+                  editDobController.text.trim(),
+                  editcontactcontroller.text.trim()
+                  );
               Navigator.pop(context);
             },
             style: ButtonStyle(

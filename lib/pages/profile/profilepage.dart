@@ -1,13 +1,13 @@
 import 'package:alumini_final/auth/login.dart';
-import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
-import 'package:alumini_final/pages/profile/editpersonaltab.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
 import 'package:alumini_final/pages/profile/tab2.dart';
+import 'package:alumini_final/pages/update_screens/get_events.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -18,23 +18,31 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile>
     with SingleTickerProviderStateMixin {
+  Future<void> deleteDocument() async {
+    final FirebaseAuth deleteFirebaseAuth = FirebaseAuth.instance;
+    final User? deleteuser = deleteFirebaseAuth.currentUser;
+    QuerySnapshot deletecurrentuserSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: deleteuser!.email)
+        .get();
+    deletecurrentuserSnapshot.docs.forEach((document) {
+      document.reference.delete();
+    });
+  }
+
   late TabController tabController;
+  bool _isdisposed = false;
 
   @override
   void initState() {
+    _isdisposed = true;
     tabController = TabController(length: 2, vsync: this);
-
     super.initState();
   }
 
   @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    BuildContext dialogContext = context;
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
@@ -52,52 +60,44 @@ class _MyProfileState extends State<MyProfile>
               ]),
         ),
         actions: [
-          // IconButton(
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //             builder: (context) => editprofile(),
-          //           ));
-          //     },
-          //     icon: Icon(Icons.edit)),
           IconButton(
               onPressed: () {
                 showDialog(
-                    useSafeArea: false,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Expanded(
-                          child: AlertDialog(
-                        title: const Text('Log Out'),
-                        content: const Text('Are you sure to Logout'),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text(
-                                'Back',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              )),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const Login(),
-                                    ),
-                                    (route) => false);
-                              },
-                              child: const Text(
-                                'Exit',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ))
-                        ],
-                      ));
-                    });
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      backgroundColor: primaryColor,
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure to logout"),
+                      actions: [
+                        MaterialButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              "Back",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                        MaterialButton(
+                            onPressed: () {
+                              deleteDocument();
+                              Navigator.popAndPushNamed(context, '/login');
+
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => const Login(),
+                              //     ),
+                              //   );
+                            },
+                            child: const Text(
+                              "Logout",
+                              style: TextStyle(color: Colors.white),
+                            ))
+                      ],
+                    );
+                  },
+                );
               },
               icon: const Icon(
                 Icons.logout,
@@ -114,19 +114,20 @@ class _MyProfileState extends State<MyProfile>
             String batch = snapshot.data!['batch'];
             String branch = snapshot.data!['branch'];
             String dob = snapshot.data!['dob'];
+            String contact = snapshot.data!['contact'];
 
             if ('${snapshot.data!['number']}' == '1') {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['designation'],
                         snapshot.data!['location'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -174,7 +175,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -192,18 +193,18 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['degree'],
                         snapshot.data!['higheducationlocation'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -247,7 +248,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -265,18 +266,18 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['about business'],
                         snapshot.data!['location'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -294,7 +295,8 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                         const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -319,7 +321,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -337,12 +339,12 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(snapshot.data!['name'], snapshot.data!['batch'],
-                        snapshot.data!['location'], name, batch, branch, dob),
+                    profileUser(snapshot.data!['name'], snapshot.data!['batch'],
+                        snapshot.data!['location'], name, batch, branch, dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -355,12 +357,13 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding:const  EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -385,7 +388,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -403,18 +406,18 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['training role'],
                         snapshot.data!['training location'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -432,7 +435,8 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                         const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -457,7 +461,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(TabBar2Data: tabbarData),
                                 ],
                               ),
@@ -473,18 +477,18 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['designation'],
                         snapshot.data!['location'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -502,7 +506,8 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -510,7 +515,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs:const [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -527,7 +532,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -545,18 +550,18 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['branch'],
                         snapshot.data!['location'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -574,7 +579,8 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -599,7 +605,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -617,18 +623,18 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(
+                    profileUser(
                         snapshot.data!['name'],
                         snapshot.data!['branch'],
                         snapshot.data!['location'],
                         name,
                         batch,
                         branch,
-                        dob),
+                        dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -641,12 +647,13 @@ class _MyProfileState extends State<MyProfile>
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding:const EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     child: TabBar(
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                         const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -671,7 +678,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -689,12 +696,12 @@ class _MyProfileState extends State<MyProfile>
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    ProfileUser(snapshot.data!['name'], snapshot.data!['batch'],
-                        snapshot.data!['other'], name, batch, branch, dob),
+                    profileUser(snapshot.data!['name'], snapshot.data!['batch'],
+                        snapshot.data!['other'], name, batch, branch, dob,contact),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height / 1.8,
                         child: Column(
                           children: [
@@ -712,7 +719,8 @@ class _MyProfileState extends State<MyProfile>
                                       indicatorColor: primaryColor,
                                       controller: tabController,
                                       indicatorPadding:
-                                          const EdgeInsets.symmetric(horizontal: 1),
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 1),
                                       indicatorWeight: 1,
                                       indicator: BoxDecoration(
                                           color: primaryColor,
@@ -720,7 +728,7 @@ class _MyProfileState extends State<MyProfile>
                                               BorderRadius.circular(5)),
                                       labelColor: Colors.white,
                                       unselectedLabelColor: Colors.black,
-                                      tabs: [
+                                      tabs: const [
                                         Tab(
                                           text: 'Personal Info',
                                         ),
@@ -737,7 +745,7 @@ class _MyProfileState extends State<MyProfile>
                               child: TabBarView(
                                 controller: tabController,
                                 children: [
-                                  Tab1(TabBar1Data: tabbarData),
+                                  Tab1(tabBar1Data: tabbarData),
                                   Tab2(
                                     TabBar2Data: tabbarData,
                                   ),
@@ -753,7 +761,18 @@ class _MyProfileState extends State<MyProfile>
               );
             }
           }
-          return const Text("Loading");
+          return Shimmer.fromColors(
+            direction: ShimmerDirection.ltr,
+            baseColor: Colors.grey.shade300,
+            highlightColor: Colors.white,
+            child: Card(
+              child: Column(
+                children: [Container(
+                  height: 200,
+                ),]
+              ),
+            ),
+          );
         },
       ),
     );
@@ -777,14 +796,16 @@ class _MyProfileState extends State<MyProfile>
     }
   }
 
-  Widget ProfileUser(
+  Widget profileUser(
       String name,
       String accordingtouser,
       String accordingtouser1,
       String name1,
       String batch,
       String branch,
-      String dob) {
+      String dob,
+      String contact
+      ) {
     return Container(
       decoration: BoxDecoration(
         color: primaryColor,
@@ -806,7 +827,7 @@ class _MyProfileState extends State<MyProfile>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
-                    children: [
+                    children: [   
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20.0), //or 15.0
                         child: SizedBox(
@@ -823,11 +844,11 @@ class _MyProfileState extends State<MyProfile>
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     const SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(name,
-                          style: const  TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
@@ -869,11 +890,12 @@ class _MyProfileState extends State<MyProfile>
                             batch1: batch,
                             branch1: branch,
                             dob1: dob,
+                            contact1: contact,
                           ),
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       backgroundColor: Colors.white,
@@ -882,8 +904,7 @@ class _MyProfileState extends State<MyProfile>
                   child: Text(
                     "Edit Profile",
                     style: TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w600),
+                        color: primaryColor, fontWeight: FontWeight.w600),
                   )),
             ],
           ),

@@ -1,9 +1,11 @@
+import 'package:alumini_final/auth/adminpage.dart';
+import 'package:alumini_final/colors.dart';
+import 'package:alumini_final/pages/searchpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../pages/update_screens/update_profile.dart';
 
-
-final TextEditingController emailcontroller =  TextEditingController();
+final TextEditingController emailcontroller = TextEditingController();
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,19 +15,52 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool disposed = false;
 
- Future signin() async {
+  @override
+  void dispose() {
+    disposed = true;
+    emailcontroller.dispose();
+    _rollnocontroller.dispose();
+    super.dispose();
+  }
+
+  Future signin() async {
+    try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: _rollnocontroller.text.trim());
+      if (!disposed) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>  UpdateScreen(),
+            ),
+            (route) => false);
+      }
+    } on FirebaseAuthException catch (e) {
+      String errormessage = 'Error Occured';
+      if (e.code == 'user-not-found') {
+        errormessage = 'User not found.Please check your email';
+      } else if (e.code == 'wrong-password') {
+        errormessage = 'User not found.Please check your rollno';
+      }
+      if (!disposed) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              errormessage,
+              style: const TextStyle(color: Colors.black),
+            ),
+            backgroundColor: BackgroundColor,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
     }
+  }
 
-    void dispose() {
-      emailcontroller.dispose();
-      _rollnocontroller.dispose();
-      super.dispose();
-    }
-  TextEditingController _rollnocontroller = TextEditingController();
+  final TextEditingController _rollnocontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +75,10 @@ class _LoginState extends State<Login> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                 CircleAvatar(
+                CircleAvatar(
                   radius: 70,
                   backgroundImage: AssetImage('assets/logo symbol.png'),
-                  backgroundColor:  Color.fromRGBO(34, 40, 49, 1.0),
+                  backgroundColor: Color.fromRGBO(34, 40, 49, 1.0),
                 ),
               ],
             ),
@@ -57,54 +92,67 @@ class _LoginState extends State<Login> {
                 children: [
                   const Text(
                     "Login",
-                    style: TextStyle(color: Colors.white, fontSize: 27),
+                    style: TextStyle(
+                      color: Colors.white, 
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold
+                      ),
                   ),
                   const SizedBox(height: 2),
-                   const Text(
+                  const Text(
                     "Please Login to continue",
                     style: TextStyle(color: Colors.grey, fontSize: 15),
                   ),
-                 const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                 UpdateTextBox('Enter your email', emailcontroller, TextInputType.emailAddress),
+                  updateTextBox('Enter your email', emailcontroller,
+                      TextInputType.emailAddress),
                   const SizedBox(
                     height: 15,
                   ),
-                  UpdateTextBox("Enter your roll no", _rollnocontroller, TextInputType.name),
+                  updateTextBox("Enter your roll no", _rollnocontroller,
+                      TextInputType.name),
                   const SizedBox(
                     height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(onPressed: () {
-                          signin();
-                            Navigator.pushAndRemoveUntil(
+                      ElevatedButton(
+                        onPressed: () {
+                          if ("admin1@gmail.com" ==
+                              emailcontroller.text.trim() || "admin2@gmail.com" ==
+                              emailcontroller.text.trim()) {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const UpdateScreen(),
+                                  builder: (context) => const AdminPage(),
+                                ));
+                          } else {
+                            signin();
+                          }
+                        },
+                        style: ButtonStyle(
+                            textStyle: MaterialStateProperty.all(
+                                const TextStyle(fontSize: 15)),
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(255, 128, 0, 1.0)
                                 ),
-                                (route) => false);
-                        
-                      }, 
-                      style: ButtonStyle(
-                        textStyle: MaterialStateProperty.all(
-                            const TextStyle(fontSize: 15)),
-                        backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(217, 217, 217, 1.0)),
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.symmetric(
-                                horizontal: 90, vertical: 15)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)))),
-                            child: const Text(
-                        'Login',
-                         style: TextStyle(
-                          color: Colors.black
-                         ),
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.symmetric(
+                                    horizontal: 60, vertical: 15)),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)))),
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Colors.black,
+                                fontWeight: FontWeight.bold
+                            ),
+                        ),
                       ),
-                      ),
-                      
                     ],
                   )
                 ],
@@ -115,7 +163,8 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-   Widget UpdateTextBox(
+
+  Widget updateTextBox(
       String hint, TextEditingController controller, TextInputType type) {
     Size size = MediaQuery.of(context).size;
     return Container(

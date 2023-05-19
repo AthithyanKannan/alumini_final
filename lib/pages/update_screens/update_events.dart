@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:alumini_final/auth/login.dart';
-import 'package:alumini_final/auth/login_screen.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +14,10 @@ class UpdateEvent extends StatefulWidget {
 }
 
 class _UpdateEventState extends State<UpdateEvent> {
-  
-  TextEditingController EventName = TextEditingController();
-  TextEditingController EventDescription = TextEditingController();
-  String Eventname = '';
-  String Eventdescription = '';
+  TextEditingController eventName = TextEditingController();
+  TextEditingController eventDescription = TextEditingController();
+  String eventname = '';
+  String eventdescription = '';
   File? image;
   final _picker = ImagePicker();
   Future<void> _getImage() async {
@@ -45,26 +43,28 @@ class _UpdateEventState extends State<UpdateEvent> {
         'imagesUrl': imageurl,
         'description': description,
         "timestamp": FieldValue.serverTimestamp(),
-        'email' : email
+        'email': email
       });
     } else {
       messagesRef.add({
         'title': title,
         "timestamp": FieldValue.serverTimestamp(),
         'description': description,
-        'email' : email
+        'email': email
       });
     }
 
     setState(() {
-      Eventname = '';
+      eventname = '';
       image = null;
-      Eventdescription = '';
+      eventdescription = '';
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    String EVENTNAME = eventName.text.trim();
+    String EVENTDESCRIPTION = eventDescription.text.trim();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BackgroundColor,
@@ -85,8 +85,18 @@ class _UpdateEventState extends State<UpdateEvent> {
         actions: [
           IconButton(
             onPressed: () {
-              sendMessage(Eventname, image, Eventdescription,
+              if(EVENTNAME.isEmpty || EVENTDESCRIPTION.isEmpty){
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text('Event Name and Description is required!'),
+                      behavior: SnackBarBehavior.floating,
+                      elevation: 1,
+                      clipBehavior: Clip.hardEdge,
+                      backgroundColor: primaryColor,
+                    ));
+              }
+              sendMessage(eventname, image, eventdescription,
                   emailcontroller.text.trim());
+                  
               Navigator.pop(context);
             },
             icon: const Icon(Icons.done),
@@ -100,24 +110,37 @@ class _UpdateEventState extends State<UpdateEvent> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              UpdateEventBox('Event Name', EventName),
+              updateEventBox('Event Name', eventName),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                      onPressed: () => _getImage(),
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                        child: Text('Pick Image'),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
-                          textStyle: TextStyle(fontSize: 17),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)))),
+                    onPressed: () => _getImage(),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        textStyle: const TextStyle(fontSize: 17),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      child: Text('Pick Image'),
+                    ),
+                  ),
                 ],
               ),
+              if (image != null)
+                Container(
+                    margin: const EdgeInsets.symmetric(vertical: 12),
+                    height: size.height / 3,
+                    width: size.width * 0.9,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1),
+                      image: DecorationImage(
+                        image: FileImage(image!),
+                        fit: BoxFit.cover,
+                      ),
+                    )),
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -129,10 +152,10 @@ class _UpdateEventState extends State<UpdateEvent> {
                     borderRadius: BorderRadius.circular(12)),
                 child: TextField(
                   onChanged: (value) {
-                    Eventdescription = value;
+                    eventdescription = value;
                   },
                   textCapitalization: TextCapitalization.words,
-                  controller: EventDescription,
+                  controller: eventDescription,
                   maxLines: 200,
                   decoration: const InputDecoration(
                       hintText: 'Event Description', border: InputBorder.none),
@@ -145,26 +168,26 @@ class _UpdateEventState extends State<UpdateEvent> {
     );
   }
 
-  Widget UpdateEventBox(String hint, TextEditingController controller) {
+  Widget updateEventBox(String hint, TextEditingController controller) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      margin: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(217, 217, 217, 1.0),
+          color: const Color.fromRGBO(217, 217, 217, 1.0),
           borderRadius: BorderRadius.circular(12)),
+      height: 50,
       child: TextFormField(
         onChanged: (value) {
           setState(() {
-            Eventname = value;
+            eventname = value;
           });
         },
         textCapitalization: TextCapitalization.words,
         controller: controller,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
-      height: 50,
     );
   }
 }

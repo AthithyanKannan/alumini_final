@@ -66,6 +66,8 @@ class _GetUserState extends State<GetUser> {
                     DisplayUser('${data['name']}', '${data['designation']}'),
                   if ('${data['number']}' == '9')
                     DisplayUser('${data['name']}', '${data['other']}'),
+                  if ('${data['number']}' == '10')
+                    DisplayUser('${data['name']}', '${data['designation']}'),
                 ],
               ),
             )),

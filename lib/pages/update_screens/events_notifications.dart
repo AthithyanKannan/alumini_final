@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class EventNotification extends StatefulWidget {
-  EventNotification({super.key});
+  const EventNotification({super.key});
 
   @override
   State<EventNotification> createState() => _EventNotificationState();
