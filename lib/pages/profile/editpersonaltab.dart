@@ -78,8 +78,9 @@ class _EditPersonalTabState extends State<EditPersonalTab> {
         editTextBox('Batch', editBatchController, TextInputType.number),
         editTextBox('Branch', editBranchController, TextInputType.name),
         editTextBox('DOB', editDobController, TextInputType.datetime),
+        editTextBox('Contact', editcontactcontroller, TextInputType.emailAddress),
         const SizedBox(
-          height: 50,
+          height: 5,
         ),
         ElevatedButton(
             onPressed: () {

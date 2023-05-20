@@ -155,110 +155,113 @@ class _EditWorkTabState extends State<EditWorkTab> {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1),
-              margin: const EdgeInsets.symmetric(vertical: 7),
-              width: size.width * 0.8,
-              decoration: BoxDecoration(
-                  color: const Color.fromRGBO(217, 217, 217, 1.0),
-                  borderRadius: BorderRadius.circular(12)),
-              child: DropdownButtonFormField2(
-                hint: const Text('Current Status', style: TextStyle(fontSize: 15)),
-                icon: const Icon(Icons.arrow_drop_down),
-                iconEnabledColor:const  Color.fromRGBO(5, 68, 94, 35.0),
-                iconDisabledColor:const  Color.fromRGBO(217, 217, 217, 1.0),
-                buttonHeight: 22,
-                isDense: true,
-                items: editprofession
-                    .map((e) => DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(
-                            e,
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  viewFields(value);
-                },
-              ),
-            ),
-          ),
-          if (isIndustry)
-            Column(
-              children: [
-                editWorkTextBox('Designation', editdesignationcontroller),
-                editWorkTextBox('Industry Name', editnamecontroller),
-                editWorkTextBox(' Location', editlocationcontroller),
-              ],
-            ),
-          if (isStudies)
-            Column(
-              children: [
-                editWorkTextBox('Collage/institute', editnamecontroller),
-                editWorkTextBox('Location', editlocationcontroller),
-                editWorkTextBox('Degree', editdegreecontroller),
-              ],
-            ),
-          if (isbusniess)
-            Column(
-              children: [
-                editWorkTextBox('About business', editaboutcontroller),
-                editWorkTextBox('location', editlocationcontroller)
-              ],
-            ),
-          if (isExam)
-            Column(
-              children: [
-                editWorkTextBox('Institute name', editnamecontroller),
-                editWorkTextBox('Degree', editdegreecontroller),
-                editWorkTextBox('location', editlocationcontroller)
-              ],
-            ),
-          if (isTrainer)
-            Column(
-              children: [
-                editWorkTextBox('Working at', editnamecontroller),
-                editWorkTextBox('Location', editlocationcontroller),
-                editWorkTextBox('Designation', editdesignationcontroller)
-              ],
-            ),
-          if (isBank)
-            Column(
-              children: [
-                editWorkTextBox('Institute name', editnamecontroller),
-                editWorkTextBox('Designation', editdesignationcontroller),
-                editWorkTextBox('Location', editlocationcontroller)
-              ],
-            ),
-          if (isSearch)
-            Column(
-              children: [
-                editWorkTextBox('About business', editaboutcontroller),
-                editWorkTextBox('Location', editlocationcontroller)
-              ],
-            ),
-          if (isHousewife)
-            Column(
-              children: [
-                editWorkTextBox('About', editaboutcontroller),
-              ],
-            ),
-          if (isGovt)
-            Column(
-              children: [
-                editWorkTextBox('Designation', editdesignationcontroller),
-                editWorkTextBox('Location', editlocationcontroller)
-              ],
-            ),
-          if (isOther)
-            Column(
-              children: [editWorkTextBox('About', editaboutcontroller)],
-            ),
-        ],
-      ),
+          Text("Cannot Edit")
+      //     Padding(
+      //       padding: const EdgeInsets.all(18.0),
+      //       child: Container(
+      //         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1),
+      //         margin: const EdgeInsets.symmetric(vertical: 7),
+      //         width: size.width * 0.8,
+      //         decoration: BoxDecoration(
+      //             color: const Color.fromRGBO(217, 217, 217, 1.0),
+      //             borderRadius: BorderRadius.circular(12)),
+      //         child: DropdownButtonFormField2(
+      //           hint: const Text('Current Status', style: TextStyle(fontSize: 15)),
+      //           icon: const Icon(Icons.arrow_drop_down),
+      //           iconEnabledColor:const  Color.fromRGBO(5, 68, 94, 35.0),
+      //           iconDisabledColor:const  Color.fromRGBO(217, 217, 217, 1.0),
+      //           buttonHeight: 22,
+      //           isDense: true,
+      //           items: editprofession
+      //               .map((e) => DropdownMenuItem<String>(
+      //                     value: e,
+      //                     child: Text(
+      //                       e,
+      //                       style: const TextStyle(fontSize: 14),
+      //                     ),
+      //                   ))
+      //               .toList(),
+      //           onChanged: (value) {
+      //             viewFields(value);
+      //           },
+      //         ),
+      //       ),
+      //     ),
+      //     if (isIndustry)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('Designation', editdesignationcontroller),
+      //           editWorkTextBox('Industry Name', editnamecontroller),
+      //           editWorkTextBox(' Location', editlocationcontroller),
+      //         ],
+      //       ),
+      //     if (isStudies)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('Collage/institute', editnamecontroller),
+      //           editWorkTextBox('Location', editlocationcontroller),
+      //           editWorkTextBox('Degree', editdegreecontroller),
+      //         ],
+      //       ),
+      //     if (isbusniess)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('About business', editaboutcontroller),
+      //           editWorkTextBox('location', editlocationcontroller)
+      //         ],
+      //       ),
+      //     if (isExam)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('Institute name', editnamecontroller),
+      //           editWorkTextBox('Degree', editdegreecontroller),
+      //           editWorkTextBox('location', editlocationcontroller)
+      //         ],
+      //       ),
+      //     if (isTrainer)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('Working at', editnamecontroller),
+      //           editWorkTextBox('Location', editlocationcontroller),
+      //           editWorkTextBox('Designation', editdesignationcontroller)
+      //         ],
+      //       ),
+      //     if (isBank)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('Institute name', editnamecontroller),
+      //           editWorkTextBox('Designation', editdesignationcontroller),
+      //           editWorkTextBox('Location', editlocationcontroller)
+      //         ],
+      //       ),
+      //     if (isSearch)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('About business', editaboutcontroller),
+      //           editWorkTextBox('Location', editlocationcontroller)
+      //         ],
+      //       ),
+      //     if (isHousewife)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('About', editaboutcontroller),
+      //         ],
+      //       ),
+      //     if (isGovt)
+      //       Column(
+      //         children: [
+      //           editWorkTextBox('Designation', editdesignationcontroller),
+      //           editWorkTextBox('Location', editlocationcontroller)
+      //         ],
+      //       ),
+      //     if (isOther)
+      //       Column(
+      //         children: [editWorkTextBox('About', editaboutcontroller)],
+      //       ),
+      //   ],
+      // ),
+        ]
+      )
     );
   }
 

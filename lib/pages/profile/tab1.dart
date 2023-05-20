@@ -135,6 +135,9 @@ class _Tab1State extends State<Tab1> {
             ],
           ),
         ),
+         const SizedBox(
+          height: 20,
+        ),
           Container(
           width: double.infinity,
           decoration: const BoxDecoration(

@@ -30,7 +30,7 @@ class _EventNotificationState extends State<EventNotification> {
       backgroundColor: BackgroundColor,
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },

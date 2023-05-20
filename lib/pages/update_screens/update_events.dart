@@ -54,11 +54,13 @@ class _UpdateEventState extends State<UpdateEvent> {
       });
     }
 
-    setState(() {
+
+      setState(() {
       eventname = '';
       image = null;
       eventdescription = '';
     });
+  
   }
 
   @override
@@ -78,26 +80,34 @@ class _UpdateEventState extends State<UpdateEvent> {
         ),
         backgroundColor: primaryColor,
         elevation: 0,
-        title: const Text(
-          'Add Events',
-          style: TextStyle(color: Colors.white, letterSpacing: 1),
+        title: RichText(
+          text: const TextSpan(
+              text: 'Add ',
+              style: TextStyle(fontSize: 20),
+              children: [
+                TextSpan(
+                    text: 'Events',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))
+              ]),
         ),
         actions: [
           IconButton(
             onPressed: () {
-              if(EVENTNAME.isEmpty || EVENTDESCRIPTION.isEmpty){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: const Text('Event Name and Description is required!'),
-                      behavior: SnackBarBehavior.floating,
-                      elevation: 1,
-                      clipBehavior: Clip.hardEdge,
-                      backgroundColor: primaryColor,
-                    ));
+              if (EVENTNAME.isEmpty || EVENTDESCRIPTION.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content:
+                      const Text('Event Name and Description is required!'),
+                  behavior: SnackBarBehavior.floating,
+                  elevation: 1,
+                  clipBehavior: Clip.hardEdge,
+                  backgroundColor: primaryColor,
+                ));
+              } else {
+                sendMessage(eventname, image, eventdescription,
+                    emailcontroller.text.trim());
+
+                Navigator.pop(context);
               }
-              sendMessage(eventname, image, eventdescription,
-                  emailcontroller.text.trim());
-                  
-              Navigator.pop(context);
             },
             icon: const Icon(Icons.done),
             color: Colors.white,
@@ -156,6 +166,7 @@ class _UpdateEventState extends State<UpdateEvent> {
                   },
                   textCapitalization: TextCapitalization.words,
                   controller: eventDescription,
+                  cursorColor: primaryColor,
                   maxLines: 200,
                   decoration: const InputDecoration(
                       hintText: 'Event Description', border: InputBorder.none),
@@ -184,8 +195,10 @@ class _UpdateEventState extends State<UpdateEvent> {
             eventname = value;
           });
         },
-        textCapitalization: TextCapitalization.words,
+        textCapitalization: TextCapitalization.sentences,
+        cursorColor: primaryColor,
         controller: controller,
+        maxLines: 100,
         decoration: InputDecoration(hintText: hint, border: InputBorder.none),
       ),
     );

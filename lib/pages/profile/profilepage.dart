@@ -1,9 +1,7 @@
-import 'package:alumini_final/auth/login.dart';
 import 'package:alumini_final/colors.dart';
 import 'package:alumini_final/pages/profile/edit_myprofie.dart';
 import 'package:alumini_final/pages/profile/tab1.dart';
 import 'package:alumini_final/pages/profile/tab2.dart';
-import 'package:alumini_final/pages/update_screens/get_events.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -833,7 +831,7 @@ class _MyProfileState extends State<MyProfile>
                         child: SizedBox(
                           height: 90.0,
                           width: 90.0,
-                          child: Image.asset('assets/Athi.jpg'),
+                          child: Image.asset('assets/commonprofile.png'),
                         ),
                       ),
                     ],
@@ -841,37 +839,39 @@ class _MyProfileState extends State<MyProfile>
                   const SizedBox(
                     width: 20,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          )),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(accordingtouser,
-                          style: const TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          )),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(accordingtouser1,
-                          style: const TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          )),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            )),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(accordingtouser,
+                            style: const TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            )),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(accordingtouser1,
+                            style: const TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),

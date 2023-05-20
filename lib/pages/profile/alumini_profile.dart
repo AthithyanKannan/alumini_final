@@ -184,7 +184,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                             child: SizedBox(
                               height: 90.0,
                               width: 90.0,
-                              child: Image.asset('assets/Athi.jpg'),
+                              child: Image.asset('assets/commonprofile.png'),
                             ),
                           ),
                         ],
@@ -523,7 +523,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                             child: SizedBox(
                               height: 90.0,
                               width: 90.0,
-                              child: Image.asset('assets/Athi.jpg'),
+                              child: Image.asset('assets/commonprofile.png'),
                             ),
                           ),
                         ],
@@ -891,7 +891,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                             child: SizedBox(
                               height: 90.0,
                               width: 90.0,
-                              child: Image.asset('assets/Athi.jpg'),
+                              child: Image.asset('assets/commonprofile.png'),
                             ),
                           ),
                         ],
@@ -1176,7 +1176,7 @@ class _AluminiProfileState extends State<AluminiProfile> {
                             child: SizedBox(
                               height: 90.0,
                               width: 90.0,
-                              child: Image.asset('assets/Athi.jpg'),
+                              child: Image.asset('assets/commonprofile.png'),
                             ),
                           ),
                         ],

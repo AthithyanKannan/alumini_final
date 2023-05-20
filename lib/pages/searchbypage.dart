@@ -13,12 +13,10 @@ class SearchByPage extends StatefulWidget {
 class _SearchByPageState extends State<SearchByPage> {
   List<String> searchdocIDs = [];
   Future<void> getSearchDocIDs() async {
-     FirebaseFirestore.instance
-        .collection('users')
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((document) {
-              searchdocIDs.add(document.reference.id);
-            }));
+    final snapshot = await FirebaseFirestore.instance.collection('users').get();
+    setState(() {
+      searchdocIDs = snapshot.docs.map((doc) => doc.reference.id).toList();
+    });
   }
 
   List<DocumentSnapshot> searchresults = [];
@@ -27,24 +25,22 @@ class _SearchByPageState extends State<SearchByPage> {
   Future<void> searchUsers(String query) async {
     final snapshot = await FirebaseFirestore.instance
         .collection('users')
-        .where('name', isEqualTo: query)
+        .where('name', isGreaterThanOrEqualTo: query)
+          .where('name', isLessThan: query + 'z')
         .get();
     setState(() {
       searchresults = snapshot.docs;
     });
   }
-  
+
   @override
   void initState() {
     super.initState();
     getSearchDocIDs();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -54,8 +50,9 @@ class _SearchByPageState extends State<SearchByPage> {
           margin: const EdgeInsets.symmetric(vertical: 12),
           width: size.width * 0.6,
           decoration: BoxDecoration(
-              color: const Color.fromRGBO(217, 217, 217, 1.0),
-              borderRadius: BorderRadius.circular(12)),
+            color: const Color.fromRGBO(217, 217, 217, 1.0),
+            borderRadius: BorderRadius.circular(12),
+          ),
           height: 45,
           child: TextFormField(
             onChanged: (value) {
@@ -68,46 +65,19 @@ class _SearchByPageState extends State<SearchByPage> {
             textCapitalization: TextCapitalization.sentences,
             controller: searchbyusercontroller,
             decoration: const InputDecoration(
-                hintText: "Search", border: InputBorder.none),
+              hintText: "Search",
+              border: InputBorder.none,
+            ),
           ),
         ),
       ),
-      body: FutureBuilder(
-        builder: (context, snapshot) {
-          return ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 17),
-            itemCount: searchresults.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GetUser(documentId: searchdocIDs[index]);
-            },
-          );
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 17),
+        itemCount: searchresults.length,
+        itemBuilder: (BuildContext context, int index) {
+          return GetUser(documentId: searchresults[index].reference.id);
         },
       ),
-        //  body: ListView.builder(
-        // padding: const EdgeInsets.symmetric(horizontal: 17),
-        // itemCount: searchresults.length,
-        // itemBuilder: (BuildContext context, int index) {
-        //   final documentData = searchresults[index].data();
-        //   return ListTile(
-        //     title: Text('${documentData['name']}'),
-        //     subtitle: Text(documentData['profession']),
-        //     onTap: () {
-        //       // Handle item tap
-        //       // For example, navigate to the details page for the selected item
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //           builder: (context) => DetailsPage(documentData: documentData),
-        //         ),
-        //       );
-      // body: ListView.builder(
-      //   itemCount: searchresults.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //         final documentdata = searchresults[index].data();
-      //         return ListTile(
-      //               //  title:  Text(documentdata['name']),
-      //         );
-      // },),
     );
   }
 }

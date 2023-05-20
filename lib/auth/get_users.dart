@@ -45,7 +45,7 @@ class _GetUserState extends State<GetUser> {
                   const CircleAvatar(
                     backgroundColor: Colors.black,
                     radius: 25,
-                    backgroundImage: AssetImage('assets/common logo.png'),
+                    backgroundImage: AssetImage('assets/commonprofile.png'),
                   ),
                   const SizedBox(width: 20),
                   if ('${data['number']}' == '1')
@@ -91,19 +91,21 @@ class _GetUserState extends State<GetUser> {
     String name,
     String accoringtouser,
   ) {
-    return GestureDetector(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: TextStyle(fontFamily: 'Roboto', fontSize: 18),
-          ),
-          Text(
-            accoringtouser,
-            style: TextStyle(fontFamily: 'Roboto', fontSize: 14),
-          ),
-        ],
+    return Expanded(
+      child: GestureDetector(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              name,
+              style: TextStyle(fontFamily: 'Roboto', fontSize: 18),
+            ),
+            Text(
+              accoringtouser,
+              style: TextStyle(fontFamily: 'Roboto', fontSize: 14),
+            ),
+          ],
+        ),
       ),
     );
   }
